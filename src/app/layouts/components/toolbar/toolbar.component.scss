@@ -1,0 +1,16 @@
+app-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f5f5f5;
+  height: 72px;
+  padding-right: 10px;
+
+  .logo {
+    .logo-icon {
+      height: 100%;
+      max-height: 72px;
+    }
+  }
+}

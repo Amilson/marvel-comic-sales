@@ -1,0 +1,33 @@
+<div class="d-flex flex-column justify-content-start">
+  <div class="login-box">
+    <progress class="marvel-progress marvel-progress__theme" *ngIf="_isSubmitting"></progress>
+    <div class="login-box-header">
+      <img class="logo" [src]="_config?.theme?.logos?.login" />
+      <h5 class="title">
+        {{ 'LOGIN.TITLE' | translate }}
+      </h5>
+      <div class="separator"></div>
+      <span class="sub-title">
+        {{ 'LOGIN.LOGIN' | translate }}
+      </span>
+    </div>
+    <div class="login-box-body">
+      <form name="loginForm" [formGroup]="_loginForm" novalidate (submit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-12">xxx</div>
+        </div>
+      </form>
+      <div class="mt-2">xxx</div>
+      <div class="mt-2">xx</div>
+      <div class="login-box-bottom">
+        <div class="mt-2">xx</div>
+      </div>
+    </div>
+  </div>
+  <div class="login-footer">
+    <img class="logo" [src]="_config?.theme?.logos?.footer" />
+    <span class="title">
+      {{ 'FOOTER.MARVEL.LOGIN-TITLE' | translate }}
+    </span>
+  </div>
+</div>

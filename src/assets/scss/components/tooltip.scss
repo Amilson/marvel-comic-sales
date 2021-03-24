@@ -1,0 +1,73 @@
+.marvel-tooltip {
+  position: absolute;
+  max-width: 150px;
+  font-size: 14px;
+  text-align: center;
+  color: #f8f8f2;
+  padding: 3px 8px;
+  background: #474747;
+  border-radius: 4px;
+  z-index: 1000;
+  opacity: 0;
+}
+
+.marvel-tooltip-title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #fafafa;
+}
+
+.marvel-tooltip-description {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #fafafa;
+}
+
+.marvel-tooltip:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+.marvel-tooltip-top:after {
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-color: #474747 transparent transparent transparent;
+}
+.marvel-tooltip-bottom:after {
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-color: transparent transparent #474747 transparent;
+}
+.marvel-tooltip-left:after {
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-color: transparent transparent transparent #474747;
+}
+.marvel-tooltip-right:after {
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-color: transparent #474747 transparent transparent;
+}
+.marvel-tooltip-show {
+  opacity: 1;
+}

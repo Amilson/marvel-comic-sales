@@ -1,0 +1,18 @@
+app-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #b91818;
+
+  .logo {
+    width: 25px;
+    height: 25px;
+  }
+
+  .title {
+    margin-left: 6px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
