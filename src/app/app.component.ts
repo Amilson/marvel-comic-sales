@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { MarvelConfigService } from './core/services/config/marvel-config.service';
+import { MarvelConfigService } from 'app/core/services/config/marvel-config.service';
 
 @Component({
   selector: 'app-root',

@@ -4,6 +4,7 @@ import { OnDestroy, Directive } from '@angular/core';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelPaginationOptions, MarvelTranslateOptions } from 'app/interfaces';
 import { takeUntil } from 'rxjs/operators';
+import { MarvelUtils } from '../../../../../projects/marvel-style/src/public-api';
 
 @Directive({
   selector: '[baseComponent]',
@@ -148,7 +149,7 @@ export abstract class BaseComponent implements OnDestroy {
       }
     });
 
-    /*TODO if (MarvelUtils.persistNullEmptyUndefined(index)) {
+    if (MarvelUtils.persistNullEmptyUndefined(index)) {
       this.__marvelFormErrors[index] = formErrors;
     } else {
       let obj: any;
@@ -167,7 +168,7 @@ export abstract class BaseComponent implements OnDestroy {
         ...this.__marvelFormErrors,
         ...obj,
       };
-    }*/
+    }
     f.markAllAsTouched();
     return false;
   }

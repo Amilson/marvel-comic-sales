@@ -8,14 +8,21 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { throwError, BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 import { Marveli18nConfigService } from './marvel-i18n-config.service';
-import { MarvelSplashScreenService } from '../splash-screen/MARVEL-splash-screen.service';
+import { MarvelSplashScreenService } from '../splash-screen/marvel-splash-screen.service';
 import { MarvelServiceWorkerConfigService } from './marvel-service-worker-config.service';
 import { MarvelMaintenanceConfigService } from './marvel-maintenance-config.service';
+import {
+  MarvelStyleSettingsService,
+  MarvelUtils,
+} from '../../../../../projects/marvel-style/src/public-api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MarvelConfigService extends MarvelCommonsService {
+  private boostrapRoute: string = `${environment.urlSettings}/settings`;
+  private themeRoute: string = `${environment.urlSettings}/settings/theme`;
+
   private readonly configSubject$: BehaviorSubject<MarvelConfig>;
 
   private readonly configBoostrapSubject$: BehaviorSubject<MarvelConfig>;
@@ -25,7 +32,8 @@ export class MarvelConfigService extends MarvelCommonsService {
     private marveli18nConfigService: Marveli18nConfigService,
     private marvelSplashScreenService: MarvelSplashScreenService,
     private marvelServiceWorkerConfigService: MarvelServiceWorkerConfigService,
-    private marvelMaintenanceConfigService: MarvelMaintenanceConfigService
+    private marvelMaintenanceConfigService: MarvelMaintenanceConfigService,
+    private marvelStyleSettingsService: MarvelStyleSettingsService
   ) {
     super(marvelService);
     this.configSubject$ = new BehaviorSubject(null);
@@ -44,26 +52,29 @@ export class MarvelConfigService extends MarvelCommonsService {
     marvelMaintenanceConfigService.apply(configBoostrap);
   }
 
-  private getWhiteLabelSettings(marvelCode: string, configBoostrap: MarvelConfigBoostrap = null) {
-    const { marvelService, marveli18nConfigService, configSubject$, internalValidations } = this;
-    marvelService
-      .get<any>(`${environment.urlSettings}/marvelecx/${marvelCode.toLowerCase()}/white-label.json`)
-      .subscribe(
-        (config: MarvelConfig) => {
-          marveli18nConfigService.apply(config);
-          /*marvelStyleGuideSettingsService.boostrap(
-            `${
-              environment.urlSettings
-            }/marvelecx/${marvelCode.toLowerCase()}/marvel-style-guide-settings.json`,
-            internalValidations.bind(this, configBoostrap)
-          );*/
-          configSubject$.next(config);
-        },
-        (err: HttpErrorResponse) => {
-          console.error('Program Configuration not found!');
-          throwError(err);
-        }
-      );
+  private getWhiteLabelSettings(configBoostrap: MarvelConfigBoostrap = null) {
+    const {
+      themeRoute,
+      marvelService,
+      marveli18nConfigService,
+      marvelStyleSettingsService,
+      configSubject$,
+      internalValidations,
+    } = this;
+    marvelService.get<any>(`${themeRoute}/white-label.json`).subscribe(
+      (config: MarvelConfig) => {
+        marveli18nConfigService.apply(config);
+        marvelStyleSettingsService.boostrap(
+          `${themeRoute}/style.json`,
+          internalValidations.bind(this, configBoostrap)
+        );
+        configSubject$.next(config);
+      },
+      (err: HttpErrorResponse) => {
+        console.error('Program Configuration not found!');
+        throwError(err);
+      }
+    );
   }
 
   @MarvelCoreService({
@@ -75,22 +86,14 @@ export class MarvelConfigService extends MarvelCommonsService {
     },
   })
   public init() {
-    const { marvelService, configBoostrapSubject$ } = this;
+    const { marvelService, boostrapRoute, configBoostrapSubject$ } = this;
 
     marvelService
-      .get(
-        `${environment.urlSettings}/settings/boostrap.json?t=${
-          /*TODO MarvelUtils.getRandomString(30)*/ 1
-        }`
-      )
+      .get(`${boostrapRoute}/boostrap.json?t=${MarvelUtils.getRandomString(30)}`)
       .subscribe(
         (resp: any) => {
-          /*if (marvelCode) {
-            this.getWhiteLabelSettings(marvelCode, body);
-            configBoostrapSubject$.next(body);
-          } else {
-            console.error(`Boostrap ${marvelCode} Configuration not found!`);
-          }*/
+          this.getWhiteLabelSettings(resp);
+          configBoostrapSubject$.next(resp);
         },
         (err: HttpErrorResponse) => {
           console.error('Boostrap Configuration not found!');

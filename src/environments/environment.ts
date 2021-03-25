@@ -6,6 +6,14 @@ export const environment = {
   environment: 'dev',
   production: false,
   urlSettings: 'assets',
+  firebase: {
+    apiKey: 'AIzaSyCYk8UzFe_rNUCyxh4L6NrC8ug0541U2WQ',
+    authDomain: 'marvel-comic-sales.firebaseapp.com',
+    projectId: 'marvel-comic-sales',
+    storageBucket: 'marvel-comic-sales.appspot.com',
+    messagingSenderId: '1014012743211',
+    appId: '1:1014012743211:web:036e65db26786b81ce646e',
+  },
 };
 
 /*

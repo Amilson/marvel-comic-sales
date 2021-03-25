@@ -124,8 +124,53 @@
               "devServerTarget": "marvel-comic-sales:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    },
+    "marvel-style": {
+      "projectType": "library",
+      "root": "projects/marvel-style",
+      "sourceRoot": "projects/marvel-style/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/marvel-style/tsconfig.lib.json",
+            "project": "projects/marvel-style/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/marvel-style/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/marvel-style/src/test.ts",
+            "tsConfig": "projects/marvel-style/tsconfig.spec.json",
+            "karmaConfig": "projects/marvel-style/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/marvel-style/tsconfig.lib.json",
+              "projects/marvel-style/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "marvel-comic-sales"
 }

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "marvel-comic-sales": {
+      "hosting": {
+        "marvel-comic-sales": [
+          "marvel-comic-sales"
+        ]
+      }
+    }
+  }
+}

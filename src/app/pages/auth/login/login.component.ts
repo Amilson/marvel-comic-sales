@@ -5,6 +5,8 @@ import { AuthCredentials, MarvelConfig } from 'app/interfaces';
 import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
 import { LoginService } from './login.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +24,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
   private loginData: AuthCredentials;
 
   constructor(
+    private auth: AngularFireAuth,
     private formBuilder: FormBuilder,
     private marvelConfigService: MarvelConfigService,
     private loginService: LoginService
@@ -86,5 +89,16 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
       _loginForm.disable();
       loginService.login(params, _config);
     }
+  }
+
+  login() {
+    //this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.auth.createUserWithEmailAndPassword('amilson@teste.cc', '123456').then((resp) => {
+      console.log(resp);
+    });
+  }
+
+  logout() {
+    this.auth.signOut();
   }
 }

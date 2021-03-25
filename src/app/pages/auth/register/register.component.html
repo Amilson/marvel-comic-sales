@@ -1,0 +1,90 @@
+<div class="d-flex flex-column justify-content-start m-auto">
+  <div class="register-box">
+    <progress class="marvel-progress marvel-progress__theme" *ngIf="_isSubmitting"></progress>
+    <div class="register-box-header">
+      <img class="logo" [src]="_config?.theme?.logos?.login" />
+    </div>
+    <div class="register-box-body">
+      <form name="registerForm" [formGroup]="_registerForm" novalidate (submit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-12">
+            <marvel-input
+              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
+                __marvelFormErrors?.username?.lastMessage | translate
+              }}"
+              formControlName="username"
+              name="name"
+              [placeholder]="'Name'"
+            >
+            </marvel-input>
+          </div>
+          <div class="col-md-12">
+            <marvel-input
+              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
+                __marvelFormErrors?.username?.lastMessage | translate
+              }}"
+              formControlName="username"
+              name="email"
+              [placeholder]="'Email'"
+            >
+            </marvel-input>
+          </div>
+          <div class="col-md-12">
+            <marvel-input
+              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
+                __marvelFormErrors?.username?.lastMessage | translate
+              }}"
+              formControlName="password"
+              name="password"
+              type="password"
+              [placeholder]="'Password'"
+            >
+            </marvel-input>
+          </div>
+          <div class="col-md-12">
+            <marvel-input
+              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
+                __marvelFormErrors?.username?.lastMessage | translate
+              }}"
+              formControlName="username"
+              name="confirmPassword"
+              type="password"
+              [placeholder]="'Confirm Password'"
+            >
+            </marvel-input>
+          </div>
+        </div>
+      </form>
+      <div class="mt-2">
+        <marvel-button color="theme" (click)="onSubmit()" [disabled]="_isSubmitting">
+          {{ 'REGISTER.BUTTON.CONFIRM' | translate }}
+        </marvel-button>
+      </div>
+      <div class="mt-4">Register account using</div>
+      <div class="d-flex justify-content-center align-items-center mt-4">
+        <marvel-button color="google" (click)="onSubmit()" [disabled]="_isSubmitting" class="mr-4">
+          <marvel-icon icon="google-20" color="#ffffff"></marvel-icon>
+          <span>Google</span>
+        </marvel-button>
+        <marvel-button color="facebook" (click)="onSubmit()" [disabled]="_isSubmitting">
+          <marvel-icon icon="facebook-22" color="#ffffff"></marvel-icon>
+          <span>Facebook</span>
+        </marvel-button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="register-footer">
+  <div class="d-flex justify-content-end align-items-center">
+    <span class="mr-4">I already have a login</span>
+    <marvel-button
+      type="border"
+      color="none"
+      (click)="onSubmit()"
+      [disabled]="_isSubmitting"
+      [routerLink]="['/auth/login']"
+    >
+      <span>Back to login</span>
+    </marvel-button>
+  </div>
+</div>

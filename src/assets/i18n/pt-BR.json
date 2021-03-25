@@ -1,0 +1,20 @@
+{
+  "lang": "pt-BR",
+  "data": {
+    "LOGIN": {
+      "TITLE": ""
+    },
+    "ERRORS": {
+      "OPTIONAL": "Opcional",
+      "MANDATORY": "Obrigatório",
+      "FIELD-REQUIRED": "Campo Obrigatório",
+      "FIELD-INVALID": "Campo Inválido",
+      "INVALID-EMAIL": "Email Inválido",
+      "MIN-LENGTH": "Mínimo de",
+      "MAX-LENGTH": "Máximo de",
+      "MIN": "Mínimo de",
+      "MAX": "Máximo de",
+      "MATCH-PASSWORD": "As senhas não conferem"
+    }
+  }
+}

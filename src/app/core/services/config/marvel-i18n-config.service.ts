@@ -22,8 +22,8 @@ export class Marveli18nConfigService extends MarvelCommonsService {
     super(marvelService);
 
     this.translateService.addLangs(['pt-BR', 'en-US']);
-    this.translateService.setDefaultLang('pt-BR');
-    this.translateService.use('pt-BR');
+    this.translateService.setDefaultLang('en-US');
+    this.translateService.use('en-US');
     this.applyLocal();
   }
 

@@ -1,16 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MarvelComicSales</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
-</head>
-<body>
-  <app-root></app-root>
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>MarvelComicSales</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#1976d2" />
+    <style type="text/css">
+      body {
+        pointer-events: none;
+      }
+
+      #marvel-splash-screen {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(163, 142, 163, 0) 0%,
+            rgba(199, 103, 16, 0.03) 100%
+          ),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0) 100%),
+          #ffffff;
+        background-blend-mode: multiply, normal, normal;
+        z-index: 99999;
+        pointer-events: none;
+      }
+
+      #marvel-splash-screen .center {
+        display: block;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      #marvel-splash-screen .logo {
+        width: 128px;
+        margin: 0 auto;
+      }
+
+      .loader {
+        position: relative;
+        margin: 0px auto;
+        width: 100px;
+        height: 100px;
+        zoom: 1;
+      }
+
+      .circular {
+        animation: rotate 1s linear infinite;
+        height: 100px;
+        position: relative;
+        width: 100px;
+      }
+
+      .path {
+        stroke: #0273e8;
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        animation: dash 1.5s ease-in-out infinite;
+        stroke-linecap: round;
+      }
+
+      @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes dash {
+        0% {
+          stroke-dasharray: 1, 200;
+          stroke-dashoffset: 0;
+        }
+
+        50% {
+          stroke-dasharray: 89, 200;
+          stroke-dashoffset: -35;
+        }
+
+        100% {
+          stroke-dasharray: 89, 200;
+          stroke-dashoffset: -124;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <marvel-splash-screen id="marvel-splash-screen">
+      <div class="center">
+        <div class="logo">
+          <img width="128" src="assets/images/marvel.svg" />
+        </div>
+        <div class="spinner">
+          <div class="double-bounce1"></div>
+        </div>
+        <div class="loader">
+          <svg class="circular">
+            <circle
+              class="path"
+              cx="50"
+              cy="50"
+              r="20"
+              fill="none"
+              stroke-width="2"
+              stroke-miterlimit="10"
+            />
+          </svg>
+        </div>
+      </div>
+    </marvel-splash-screen>
+    <app-root></app-root>
+
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+  </body>
 </html>

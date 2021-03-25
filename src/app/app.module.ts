@@ -9,6 +9,8 @@ import { MarvelConfigModule } from './core/services/config/marvel-config.module'
 import { HttpClientModule } from '@angular/common/http';
 import { MarvelCoreCommonModule } from './shared/modules/marvel-core-common.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { MarvelStyleModule } from '../../projects/marvel-style/src/public-api';
+import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,9 +20,11 @@ import { TranslateModule } from '@ngx-translate/core';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    MarvelStyleModule,
     TranslateModule.forRoot(),
     MarvelConfigModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent],

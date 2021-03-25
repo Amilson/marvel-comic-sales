@@ -1,0 +1,27 @@
+{
+  "lang": "en-US",
+  "data": {
+    "LOGIN": {
+      "BUTTON": {
+        "CONFIRM": "Login"
+      }
+    },
+    "REGISTER": {
+      "BUTTON": {
+        "CONFIRM": "Create account"
+      }
+    },
+    "ERRORS": {
+      "OPTIONAL": "Optional",
+      "MANDATORY": "Required",
+      "FIELD-REQUIRED": "Field Required",
+      "FIELD-INVALID": "Inválid Field",
+      "INVALID-EMAIL": "Inválid Email",
+      "MIN-LENGTH": "Min of chars is",
+      "MAX-LENGTH": "Max of chars is",
+      "MIN": "Min value is",
+      "MAX": "Max value is",
+      "MATCH-PASSWORD": "Passwords do not match"
+    }
+  }
+}

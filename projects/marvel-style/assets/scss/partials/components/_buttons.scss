@@ -1,0 +1,287 @@
+@import '../variables.scss';
+
+.mc-button {
+  cursor: pointer;
+  padding: 16px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+
+  &.no-icon {
+    justify-content: center;
+  }
+
+  &.with-icon {
+    justify-content: space-between;
+  }
+
+  marvel-icon {
+    margin-right: 10px;
+  }
+
+  label {
+    cursor: pointer;
+  }
+}
+
+.mc-button-primary {
+  @extend .mc-button;
+
+  &__theme {
+    color: map-get(map-get($mc-theme, contrast), main);
+    background: map-get($mc-theme, main);
+    background-position: center;
+
+    &:hover {
+      background-position: center;
+      transition: background 0.8s;
+      background: map-get($mc-theme, 400)
+        radial-gradient(circle, transparent 1%, map-get($mc-theme, 400) 1%) center/15000%;
+    }
+
+    &:active {
+      background-color: map-get($mc-theme, 100);
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+
+  &__error {
+    color: map-get(map-get($mc-error, contrast), 400);
+    background: map-get($mc-error, main);
+
+    background-position: center;
+
+    &:hover {
+      background-position: center;
+      transition: background 0.8s;
+      background: map-get($mc-error, 400)
+        radial-gradient(circle, transparent 1%, map-get($mc-error, 400) 1%) center/15000%;
+    }
+
+    &:active {
+      background-color: map-get($mc-error, 100);
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+
+  &__warning {
+    color: map-get(map-get($mc-warning, contrast), main);
+    background: map-get($mc-warning, main);
+
+    background-position: center;
+
+    &:hover {
+      background-position: center;
+      transition: background 0.8s;
+      background: map-get($mc-warning, 400)
+        radial-gradient(circle, transparent 1%, map-get($mc-warning, 400) 1%) center/15000%;
+    }
+
+    &:active {
+      background-color: map-get($mc-warning, 100);
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+
+  &__success {
+    color: map-get(map-get($mc-success, contrast), main);
+    background: map-get($mc-success, main);
+
+    background-position: center;
+
+    &:hover {
+      background-position: center;
+      transition: background 0.8s;
+      background: map-get($mc-success, 400)
+        radial-gradient(circle, transparent 1%, map-get($mc-success, 400) 1%) center/15000%;
+    }
+
+    &:active {
+      background-color: map-get($mc-success, 100);
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+
+  &__question {
+    color: map-get(map-get($mc-question, contrast), main);
+    background: map-get($mc-question, main);
+
+    background-position: center;
+
+    &:hover {
+      background-position: center;
+      transition: background 0.8s;
+      background: map-get($mc-question, 400)
+        radial-gradient(circle, transparent 1%, map-get($mc-question, 400) 1%) center/15000%;
+    }
+
+    &:active {
+      background-color: map-get($mc-question, 100);
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+
+  &__google {
+    color: #ffffff;
+    background: #db4437;
+    background-position: center;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.1px;
+    padding: 8px;
+
+    &:hover {
+      background-position: center;
+      transition: background 0.8s;
+      background: #db4437 radial-gradient(circle, transparent 1%, #db4437 1%) center/15000%;
+    }
+
+    &:active {
+      background-color: #f0776c;
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+
+  &__facebook {
+    color: #ffffff;
+    background: #4267b2;
+    background-position: center;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.1px;
+    padding: 8px;
+
+    &:hover {
+      background-position: center;
+      transition: background 0.8s;
+      background: #4267b2 radial-gradient(circle, transparent 1%, #4267b2 1%) center/15000%;
+    }
+
+    &:active {
+      background-color: #6c90d6;
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+
+  &:disabled {
+    @extend .text-muted;
+    color: map-get($mc-theme, main);
+    font-weight: 500;
+    background-color: #ebebeb;
+    border: none;
+  }
+}
+
+.mc-button-none {
+  @extend .mc-button;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #4b4a53;
+  background: #ebebeb;
+
+  &:hover {
+    color: #4b4a53;
+    background-position: center;
+    transition: background 0.8s;
+    background: #f3f3f3 radial-gradient(circle, transparent 1%, #f3f3f3 1%) center/15000%;
+  }
+
+  &:active {
+    color: #4b4a53;
+    background-color: #f3f3f3;
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
+
+.mc-button-border {
+  @extend .mc-button;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: map-get(map-get($mc-theme, contrast), 100);
+  border: 1px solid map-get($mc-theme, main);
+  background: inherit;
+  box-sizing: border-box;
+  padding: 10px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+
+  &__theme {
+    color: map-get(map-get($mc-theme, contrast), 100);
+    border: 1px solid map-get($mc-theme, main);
+
+    &:hover {
+      background-position: center;
+      transition: background 0.8s;
+      color: map-get(map-get($mc-theme, contrast), main);
+      background: map-get($mc-theme, main);
+    }
+
+    &:active {
+      color: map-get(map-get($mc-theme, contrast), main);
+      background: map-get($mc-theme, main);
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+
+  &__none {
+    color: #161616;
+    border: 1px solid #aaaaaa;
+
+    &:hover {
+      background-position: center;
+      transition: background 0.8s;
+      color: #161616;
+      background: #aaaaaa;
+    }
+
+    &:active {
+      color: #161616;
+      background: #888484;
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+}

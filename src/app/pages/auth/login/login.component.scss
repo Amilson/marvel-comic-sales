@@ -62,56 +62,34 @@ app-login {
       height: 88px;
       padding: 10px;
     }
-
-    .title {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 19px;
-      text-align: center;
-      color: #4b4a53;
-      margin-bottom: 10px;
-    }
-
-    .sub-title {
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 19px;
-      text-align: center;
-      color: #2d2d33;
-    }
-
-    .separator {
-      height: 0px;
-      border: 1px solid #d6d6d6;
-      margin-top: 15px;
-      margin-bottom: 15px;
-    }
   }
 
   .login-box-body {
-    padding: 32px;
-  }
-
-  .login-box-bottom {
-    margin-top: 20px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: -0.025em;
+    color: #aaaaaa;
   }
 
   .login-footer {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
+    padding: 32px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: -0.025em;
+    color: #aaaaaa;
+    width: 100%;
+  }
 
-    .logo {
-      width: 25px;
-      height: 25px;
-    }
-    .title {
-      font-size: 14px;
-      font-weight: 400;
+  marvel-button {
+    button {
+      text-align: center;
+      width: 100%;
     }
   }
 }

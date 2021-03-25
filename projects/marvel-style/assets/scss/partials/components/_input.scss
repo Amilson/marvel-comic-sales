@@ -1,0 +1,53 @@
+@import '../variables.scss';
+
+.mc-input {
+  width: 100%;
+  background-color: inherit;
+  border: inherit;
+  padding: 0px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: -0.025em;
+  color: #aaaaaa;
+  margin-right: 12px;
+}
+
+.mc-input-placeholder {
+  /*TODO font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: -0.025em;
+  color: #aaaaaa;*/
+}
+
+input {
+  @extend .mc-input;
+}
+
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  @extend .mc-input-placeholder;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  @extend .mc-input-placeholder;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  @extend .mc-input-placeholder;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  @extend .mc-input-placeholder;
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  @extend .mc-input-placeholder;
+}
+::placeholder {
+  /* Most modern browsers support this now. */
+  @extend .mc-input-placeholder;
+}
