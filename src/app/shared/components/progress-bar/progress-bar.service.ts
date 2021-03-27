@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class MarvelProgressBarService extends MarvelCommonsService {
+export class SharedProgressBarService extends MarvelCommonsService {
   private visible: BehaviorSubject<boolean>;
 
   constructor(private _router: Router) {

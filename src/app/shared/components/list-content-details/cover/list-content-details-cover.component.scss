@@ -1,0 +1,9 @@
+shared-list-content-details-cover {
+  display: flex;
+  justify-content: center;
+  height: 324px;
+  width: 100%;
+  max-width: 216px;
+  background: var(--mc-content-details-cover-image) no-repeat center center;
+  background-size: cover;
+}

@@ -1,0 +1,47 @@
+shared-list-content-header {
+  margin-left: 24px;
+
+  .title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.025em;
+    color: #161616;
+  }
+
+  .title-muted {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.025em;
+    color: #161616;
+  }
+
+  .data {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.025em;
+    color: #161616;
+  }
+
+  .data-rised {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: -28px;
+    letter-spacing: -0.025em;
+    color: #161616;
+  }
+
+  .row-data {
+    margin-top: 8px;
+  }
+
+  .price {
+    min-width: 100px;
+  }
+}

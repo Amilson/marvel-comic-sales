@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AuthLayoutModule } from './layouts/auth/auth-layout.module';
 
@@ -9,20 +9,24 @@ import { AuthLayoutModule } from './layouts/auth/auth-layout.module';
       [
         {
           path: '',
-          children: [
-            {
-              path: '',
-              redirectTo: '/auth/login',
-              pathMatch: 'full',
-            },
-          ],
+          redirectTo: 'main',
+          pathMatch: 'full',
         },
         {
           path: 'auth',
           component: AuthLayoutComponent,
           loadChildren: () => {
-            return import('app/pages/auth/auth.module').then((m: any) => {
+            return import('app/pages/auth').then((m: any) => {
               return m.PagesAuthModule;
+            });
+          },
+        },
+        {
+          path: 'main',
+          component: AuthLayoutComponent,
+          loadChildren: () => {
+            return import('app/pages/main').then((m: any) => {
+              return m.PagesMainModule;
             });
           },
         },

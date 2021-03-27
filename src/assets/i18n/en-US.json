@@ -22,6 +22,15 @@
       "MIN": "Min value is",
       "MAX": "Max value is",
       "MATCH-PASSWORD": "Passwords do not match"
+    },
+    "BUTTONS": {
+      "BACK": "Back",
+      "HOME": "Home",
+      "LOGIN": "Login",
+      "REGISTER": "Register",
+      "FAVORITE": "Favorite",
+      "MORE-INFO": "More Info",
+      "BUY": "Buy"
     }
   }
 }

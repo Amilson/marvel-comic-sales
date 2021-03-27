@@ -1,4 +1,5 @@
 export * from './auth-credentials';
+export * from './list-content';
 export * from './marvel-config-boostrap';
 export * from './marvel-config';
 export * from './marvel-request-paged';

@@ -1,0 +1,22 @@
+shared-list-content-details {
+  position: relative;
+  background: inherit;
+  width: 100%;
+  min-height: 324px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+
+  .characters {
+    margin-top: 53px;
+  }
+
+  marvel-button {
+    button {
+      text-align: center;
+      width: 100%;
+      height: 35px;
+    }
+  }
+}

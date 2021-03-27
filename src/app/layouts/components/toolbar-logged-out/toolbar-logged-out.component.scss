@@ -1,0 +1,29 @@
+app-toolbar-logged-out {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  height: 80px;
+  padding-right: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 100%;
+    max-width: 1080px;
+  }
+
+  .logo {
+    .logo-icon {
+      height: 100%;
+      max-height: 72px;
+    }
+  }
+
+  marvel-button {
+    button {
+      text-align: center;
+      width: 100%;
+      height: 35px;
+    }
+  }
+}

@@ -1,18 +1,27 @@
 app-footer {
+  background: #000000;
+  backdrop-filter: blur(12px);
+  height: 118px;
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-  border-top: 1px solid #b91818;
 
-  .logo {
-    width: 25px;
-    height: 25px;
+  .container {
+    width: 100%;
+    max-width: 1080px;
   }
 
-  .title {
-    margin-left: 6px;
+  .logo {
+    width: 62px;
+    height: 44px;
+  }
+
+  .copyright {
+    font-style: normal;
+    font-weight: normal;
     font-size: 14px;
-    font-weight: 400;
+    line-height: 95.69%;
+    letter-spacing: -0.025em;
+    color: rgba(255, 255, 255, 0.9);
   }
 }

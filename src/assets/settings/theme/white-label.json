@@ -3,7 +3,7 @@
     "logos": {
       "toolbar": "assets/settings/theme/images/toolbar.svg",
       "login": "assets/settings/theme/images/login.svg",
-      "footer": "assets/settings/theme/images/footer.png"
+      "footer": "assets/settings/theme/images/footer.svg"
     }
   },
   "i18n": {
