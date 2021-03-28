@@ -1,0 +1,16 @@
+<div class="mt-4">
+  <div
+    class="col-md-3 d-flex align-items-center justify-content-between character-option-selected mt-2 p-2 mr-2"
+    *ngFor="let character of data?.characters"
+  >
+    <img [src]="character?.thumbnail?.resource" class="logo" width="65" height="65" />
+    <span class="title ml-3">
+      {{ character?.name }}
+    </span>
+    <marvel-icon
+      icon="x-circle-24"
+      color="#aaaaaa"
+      (click)="onChangeCharacters(character, false)"
+    ></marvel-icon>
+  </div>
+</div>

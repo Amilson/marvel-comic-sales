@@ -17,6 +17,13 @@ class BaseIconComponent {
 export class MarvelIconArrowLeftClosedComponent extends BaseIconComponent {}
 
 @Component({
+  selector: 'marvel-icon-arrow-down',
+  templateUrl: `../../../../assets/icons/arrow-down.svg`,
+  encapsulation: ViewEncapsulation.None,
+})
+export class MarvelIconArrowDownClosedComponent extends BaseIconComponent {}
+
+@Component({
   selector: 'marvel-icon-eye-closed',
   templateUrl: `../../../../assets/icons/eye-closed.svg`,
   encapsulation: ViewEncapsulation.None,
@@ -80,6 +87,13 @@ export class MarvelIconMailComponent extends BaseIconComponent {}
 export class MarvelIconSearchComponent extends BaseIconComponent {}
 
 @Component({
+  selector: 'marvel-icon-trash',
+  templateUrl: `../../../../assets/icons/trash.svg`,
+  encapsulation: ViewEncapsulation.None,
+})
+export class MarvelIconTrashComponent extends BaseIconComponent {}
+
+@Component({
   selector: 'marvel-icon-twitter-round',
   templateUrl: `../../../../assets/icons/twitter-round.svg`,
   encapsulation: ViewEncapsulation.None,
@@ -92,3 +106,10 @@ export class MarvelIconTwitterRoundComponent extends BaseIconComponent {}
   encapsulation: ViewEncapsulation.None,
 })
 export class MarvelIconUserComponent extends BaseIconComponent {}
+
+@Component({
+  selector: 'marvel-icon-x-circle',
+  templateUrl: `../../../../assets/icons/x-circle.svg`,
+  encapsulation: ViewEncapsulation.None,
+})
+export class MarvelIconXCircleComponent extends BaseIconComponent {}

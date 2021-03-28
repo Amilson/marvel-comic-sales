@@ -118,6 +118,7 @@ export class MarvelInputComponent implements ControlValueAccessor, OnInit {
   private handledValue: any;
   private onModelChange = (value: any) => {};
   private onModelTouched = (value: any) => {};
+  private timer: any;
 
   public _id: string = `marvel-input-${MarvelUtils.getRandomString(10)}`;
   public _disabled: boolean = false;
@@ -150,6 +151,7 @@ export class MarvelInputComponent implements ControlValueAccessor, OnInit {
   private formatValue(value: any): any {
     const { settings } = this;
     if (this.currency !== undefined) {
+      console.log(settings?.currency);
       return this.currencyPipe.transform(
         `${value}`,
         settings?.currency?.code || 'BRL',
@@ -160,6 +162,15 @@ export class MarvelInputComponent implements ControlValueAccessor, OnInit {
     }
 
     return value;
+  }
+
+  private onHandleValueChanged(value: any) {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    this.timer = setTimeout(() => {
+      this.onChange.next(value);
+    }, 400);
   }
 
   ngOnInit() {
@@ -207,7 +218,7 @@ export class MarvelInputComponent implements ControlValueAccessor, OnInit {
     event?.stopPropagation();
     const handled = this.handleValue(value, true);
     this.writeValue(handled);
-    this.onChange.next(handled);
+    this.onHandleValueChanged(handled);
   }
 
   onShowAndHidePassword() {

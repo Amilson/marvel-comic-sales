@@ -1,0 +1,107 @@
+<marvel-modal [config]="config" [modalRef]="modalRef" (onHandleConfirm)="onHandleConfirm()">
+  <div class="row-search" *ngIf="!_form?.get('id').value">
+    <marvel-select-search
+      [placeholder]="'Character'"
+      (onChange)="onChangeComics($event, true)"
+      (onScrolled)="onScrolledComics($event)"
+      (onSearch)="onSearchComics($event)"
+      [showProgress]="_isLoadingComics"
+      *ngIf="_comics"
+      fieldToCompare="id"
+    >
+      <marvel-option [value]="comic" [type]="'custom'" *ngFor="let comic of _comics">
+        <div class="d-flex just align-items-center comic-option">
+          <img [src]="comic?.thumbnail?.resource" class="logo" width="65" height="65" />
+          <div class="d-flex flex-column ml-3">
+            <div class="mb-2">
+              <span class="title mr-1"> Title: </span>
+              <span class="data">
+                {{ comic?.title }}
+              </span>
+            </div>
+            <div class="mb-2">
+              <span class="title mr-1">Format:</span>
+              <span class="data-muted">
+                {{ comic?.format }}
+              </span>
+            </div>
+            <div class="mb-2">
+              <span class="title mr-1">Page Number:</span>
+              <span class="data-muted">
+                {{ comic?.pageCount }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </marvel-option>
+    </marvel-select-search>
+  </div>
+  <div class="row-form mt-4" *ngIf="_form?.get('id').value">
+    <div class="d-flex justify-content-between comic-option selected mb-2">
+      <div class="d-flex align-items-center">
+        <img [src]="_form?.get('thumbnail').value?.resource" class="logo" width="65" height="65" />
+        <div class="d-flex flex-column ml-3">
+          <div class="mb-2">
+            <span class="title mr-1"> Title: </span>
+            <span class="data">
+              {{ _form?.get('title').value }}
+            </span>
+          </div>
+          <div class="mb-2">
+            <span class="title mr-1">Format:</span>
+            <span class="data-muted">
+              {{ _form?.get('format').value }}
+            </span>
+          </div>
+          <div class="mb-2">
+            <span class="title mr-1">Page Number:</span>
+            <span class="data-muted">
+              {{ _form?.get('pageCount').value }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <marvel-icon
+        icon="trash-24"
+        color="#AAAAAA"
+        (click)="onChangeComics(null, false)"
+      ></marvel-icon>
+    </div>
+
+    <marvel-select
+      [placeholder]="'Condition'"
+      [formControl]="_form.controls['condition']"
+      errorMessage="{{ __marvelFormErrors?.condition?.firstMessage | translate }} {{
+        __marvelFormErrors?.condition?.lastMessage | translate
+      }}"
+    >
+      <marvel-option
+        [label]="'CONDITIONS.' + condition | translate"
+        [value]="condition"
+        *ngFor="let condition of _conditions"
+      >
+      </marvel-option>
+    </marvel-select>
+
+    <marvel-input
+      errorMessage="{{ __marvelFormErrors?.price?.firstMessage | translate }} {{
+        __marvelFormErrors?.price?.lastMessage | translate
+      }}"
+      [formControl]="_form.controls['price']"
+      name="price"
+      currency
+      [placeholder]="'Price'"
+    >
+    </marvel-input>
+
+    <marvel-textarea
+      errorMessage="{{ __marvelFormErrors?.description?.firstMessage | translate }} {{
+        __marvelFormErrors?.description?.lastMessage | translate
+      }}"
+      [formControl]="_form.controls['description']"
+      name="description"
+      [placeholder]="'Description'"
+    >
+    </marvel-textarea>
+  </div>
+</marvel-modal>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { MarvelModalConfig, MarvelModalRefs } from '../../core/interfaces';
 import { MarvelStyleModalService } from '../../core/services/modal/marvel-style-modal.service';
 
@@ -14,10 +14,16 @@ import { MarvelStyleModalService } from '../../core/services/modal/marvel-style-
       "
     >
       <div class="header" *ngIf="config?.title">
-        <span class="h4">
+        <span class="title">
           {{ config?.title }}
         </span>
-        <span class="close" (click)="onClose()" *ngIf="!config?.hideClose"> x </span>
+        <marvel-icon
+          icon="x-circle-20"
+          color="#161616"
+          *ngIf="!config?.hideClose"
+          class="close"
+          (click)="onClose()"
+        ></marvel-icon>
       </div>
       <div class="body">
         <ng-content></ng-content>
@@ -87,7 +93,7 @@ import { MarvelStyleModalService } from '../../core/services/modal/marvel-style-
 export class MarvelModalComponent implements OnInit {
   @Input() config: MarvelModalConfig;
   @Input() modalRef: MarvelModalRefs<this>;
-  @Input() onHandleConfirm = new EventEmitter<any>();
+  @Output() onHandleConfirm = new EventEmitter<any>();
 
   _actionCancel: Function;
   _actionConfirm: Function;
@@ -107,12 +113,13 @@ export class MarvelModalComponent implements OnInit {
       }
     };
     this._actionConfirm = () => {
+      this.onHandleConfirm.next(null);
       if (this.config?.action?.confirm?.action) {
         this.config?.action?.confirm?.action();
         if (!this.config?.action?.confirm?.keepOnAction) {
           this.modalService.close(this.modalRef);
         }
-      } else this.onHandleConfirm.next(null);
+      }
     };
     this._firstAction = () => {
       if (this.config?.action?.firstAction?.action) {

@@ -26,11 +26,22 @@
     "BUTTONS": {
       "BACK": "Back",
       "HOME": "Home",
+      "MY-COMICS": "My Comics",
+      "MY-FAVORITES": "My Favorites",
+      "ADD-COMIC": "Add Comic",
       "LOGIN": "Login",
+      "LOGOUT": "Log Out",
       "REGISTER": "Register",
       "FAVORITE": "Favorite",
       "MORE-INFO": "More Info",
       "BUY": "Buy"
+    },
+    "CONDITIONS": {
+      "LIKE_NEW": "Like New",
+      "VERY_GOOD": "Very Good",
+      "GOOD": "Good",
+      "ACCEPTABLE": "Acceptable",
+      "NEW": "New"
     }
   }
 }

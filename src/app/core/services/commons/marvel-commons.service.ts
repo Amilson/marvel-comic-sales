@@ -1,9 +1,15 @@
-import { MarvelRequestPaged, MarvelTokenCredentials, MarvelTranslateOptions } from 'app/interfaces';
+import {
+  MarvelRequestPaged,
+  MarvelResponsePaged,
+  MarvelTokenCredentials,
+  MarvelTranslateOptions,
+} from 'app/interfaces';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MarvelService } from '../marvel-service.service';
 import { MarvelTokenStorageService } from '../storage/marvel-token-storage.service';
+import { MarvelRequestPagedHandling } from '../request-paged';
 
 export class MarvelCommonsService {
   //TODO criar interface para any
@@ -14,7 +20,7 @@ export class MarvelCommonsService {
 
   __error: any;
 
-  __page: any;
+  __page: MarvelResponsePaged;
 
   __search: any;
 
@@ -32,7 +38,7 @@ export class MarvelCommonsService {
 
   __oni18nDataChanged$: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  __onDoPagination$: BehaviorSubject<Function> = new BehaviorSubject(null);
+  __onDoPagination$: BehaviorSubject<any> = new BehaviorSubject(null);
 
   __tokenCredentials: MarvelTokenCredentials;
 
@@ -53,6 +59,11 @@ export class MarvelCommonsService {
     return this;
   }
 
+  getNormalizedUrl(url: string): string {
+    const { __requestPaged } = this;
+    return new MarvelRequestPagedHandling(url, __requestPaged).getRequestWithPagedParams();
+  }
+
   clear(clearData: boolean) {
     if (clearData) {
       this.__data = null;
@@ -64,19 +75,31 @@ export class MarvelCommonsService {
 
   nextPage(): boolean {
     if (!this.__requestPaged) return false;
-    const { page } = this.__requestPaged;
-    const { number, totalPages } = page;
-    if (number < totalPages) {
+    const { offset, total, limit } = this.__requestPaged?.page;
+    const number = (offset || 0) / (limit || 0) + 1;
+    if (offset < total) {
       this.__requestPaged = {
         ...this.__requestPaged,
         page: {
-          ...page,
-          number: number + 1,
+          ...this.__requestPaged?.page,
+          offset: number * limit,
         },
       };
       return true;
     }
     return false;
+  }
+
+  getResultsData(result: any): any[] | any {
+    const { data } = result;
+    return data ? data?.results : null;
+  }
+
+  getPageData(result: any): any {
+    const { data } = result;
+    if (!data) return null;
+    const { offset, limit, total, count } = data;
+    return { offset, limit, total, count };
   }
 
   resolve(
@@ -100,9 +123,16 @@ export class MarvelCommonsService {
       this.__tokenCredentials = this.tokenStorage.getToken();
     }
 
+    const { __requestPaged } = this;
+    if (!__requestPaged) {
+      this.setPage({
+        page: { offset: 0, total: 0, number: 0 },
+      });
+    }
+
     if (otherArgs?.callbackPagination) {
-      this.__onDoPagination$.subscribe(() => {
-        if (!this.__onLoadingInProgress$.value) {
+      this.__onDoPagination$.subscribe((makePagination: boolean) => {
+        if (!this.__onLoadingInProgress$.value && makePagination) {
           const hasMorePages = this.setPage({
             page: {
               ...this.__page,

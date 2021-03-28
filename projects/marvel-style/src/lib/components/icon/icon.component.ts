@@ -7,6 +7,13 @@ import { MarvelUtils } from '../../core/utils';
 @Component({
   selector: 'marvel-icon',
   template: `
+    <marvel-icon-arrow-down
+      [fillColor]="_fillColor"
+      [id]="_id"
+      [size]="_size"
+      *ngIf="_icon === 'arrow-down'"
+    >
+    </marvel-icon-arrow-down>
     <marvel-icon-arrow-left
       [fillColor]="_fillColor"
       [id]="_id"
@@ -62,6 +69,8 @@ import { MarvelUtils } from '../../core/utils';
       *ngIf="_icon === 'search'"
     >
     </marvel-icon-search>
+    <marvel-icon-trash [fillColor]="_fillColor" [id]="_id" [size]="_size" *ngIf="_icon === 'trash'">
+    </marvel-icon-trash>
     <marvel-icon-twitter-round
       [fillColor]="_fillColor"
       [id]="_id"
@@ -71,6 +80,13 @@ import { MarvelUtils } from '../../core/utils';
     </marvel-icon-twitter-round>
     <marvel-icon-user [fillColor]="_fillColor" [id]="_id" [size]="_size" *ngIf="_icon === 'user'">
     </marvel-icon-user>
+    <marvel-icon-x-circle
+      [fillColor]="_fillColor"
+      [id]="_id"
+      [size]="_size"
+      *ngIf="_icon === 'x-circle'"
+    >
+    </marvel-icon-x-circle>
   `,
   encapsulation: ViewEncapsulation.None,
 })

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MarvelIconComponent } from './icon.component';
 import {
   MarvelIconArrowLeftClosedComponent,
+  MarvelIconArrowDownClosedComponent,
   MarvelIconEyeClosedComponent,
   MarvelIconEyeComponent,
   MarvelIconFacebookComponent,
@@ -10,15 +11,18 @@ import {
   MarvelIconGoogleComponent,
   MarvelIconMailComponent,
   MarvelIconSearchComponent,
+  MarvelIconTrashComponent,
   MarvelIconInstagramRoundComponent,
   MarvelIconTwitterRoundComponent,
   MarvelIconHeartComponent,
   MarvelIconUserComponent,
+  MarvelIconXCircleComponent,
 } from './icons.component';
 
 @NgModule({
   declarations: [
     MarvelIconArrowLeftClosedComponent,
+    MarvelIconArrowDownClosedComponent,
     MarvelIconComponent,
     MarvelIconEyeClosedComponent,
     MarvelIconEyeComponent,
@@ -30,8 +34,10 @@ import {
     MarvelIconEyeComponent,
     MarvelIconMailComponent,
     MarvelIconSearchComponent,
+    MarvelIconTrashComponent,
     MarvelIconTwitterRoundComponent,
     MarvelIconUserComponent,
+    MarvelIconXCircleComponent,
   ],
   imports: [CommonModule],
   exports: [MarvelIconComponent],

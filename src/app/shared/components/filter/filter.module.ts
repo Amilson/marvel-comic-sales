@@ -6,8 +6,11 @@ import {
   MarvelInputModule,
   MarvelIconModule,
   MarvelButtonModule,
+  MarvelSelectModule,
+  MarvelOptionModule,
 } from '../../../../../projects/marvel-style/src/public-api';
 import { SharedFilterComponent } from './filter.component';
+import { SharedFilterCharactersService } from './providers';
 
 @NgModule({
   declarations: [SharedFilterComponent],
@@ -16,9 +19,12 @@ import { SharedFilterComponent } from './filter.component';
     RouterModule,
     TranslateModule.forChild(),
     MarvelInputModule,
+    MarvelSelectModule,
+    MarvelOptionModule,
     MarvelIconModule,
     MarvelButtonModule,
   ],
   exports: [SharedFilterComponent],
+  providers: [SharedFilterCharactersService],
 })
 export class SharedFilterModule {}

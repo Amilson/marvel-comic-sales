@@ -3,8 +3,8 @@
 
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { default as localePTBR } from '@angular/common/locales/global/pt';
-import { default as localeENUS } from '@angular/common/locales/global/en';
+import { default as localePTBR } from '@angular/common/locales/pt';
+import { default as localeENUS } from '@angular/common/locales/en';
 import { MarvelConfig } from 'app/interfaces';
 import { registerLocaleData } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';

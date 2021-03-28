@@ -1,0 +1,11 @@
+<div class="d-flex flex-column full-width">
+  <div class="d-flex justify-content-between">
+    <marvel-button type="primary" color="success" class="mt-1" (click)="onHandleAdd()">
+      +
+      {{ 'BUTTONS.ADD-COMIC' | translate }}
+    </marvel-button>
+    <shared-filter (onFilter)="onFilter($event)"></shared-filter>
+  </div>
+  <shared-filtered [data]="_filter" (onFilter)="onFilter($event)"></shared-filtered>
+  <shared-list-content></shared-list-content>
+</div>

@@ -92,10 +92,10 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    //this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    this.auth.createUserWithEmailAndPassword('amilson@teste.cc', '123456').then((resp) => {
+    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    /*this.auth.createUserWithEmailAndPassword('amilson@teste.cc', '123456').then((resp) => {
       console.log(resp);
-    });
+    });*/
   }
 
   logout() {

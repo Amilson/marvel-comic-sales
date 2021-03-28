@@ -1,4 +1,5 @@
 shared-filter {
+  width: 100%;
   background: inherit;
   height: 48px;
   padding-right: 10px;
@@ -10,11 +11,60 @@ shared-filter {
     }
   }
 
+  .row-search {
+    max-height: 48px;
+  }
+
   marvel-button {
     button {
       text-align: center;
       width: 100%;
       height: 35px;
     }
+  }
+
+  .character-option {
+    text-align: left;
+
+    .logo {
+      width: 65px;
+      min-width: 65px;
+      height: 65px;
+      min-height: 65px;
+    }
+  }
+
+  .character-option-selected {
+    text-align: left;
+    background: #f9f9f9;
+    min-width: 214px;
+
+    .title {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 21px;
+      letter-spacing: -0.025em;
+      color: #161616;
+    }
+
+    .logo {
+      width: 65px;
+      min-width: 65px;
+      height: 65px;
+      min-height: 65px;
+    }
+
+    marvel-icon {
+      cursor: pointer;
+    }
+  }
+
+  marvel-select mc-form-field mc-form-field-footer {
+    display: none;
+  }
+
+  marvel-select-search mc-form-field mc-form-field-footer {
+    display: none;
   }
 }

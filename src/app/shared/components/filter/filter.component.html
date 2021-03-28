@@ -1,9 +1,43 @@
-<marvel-input
-  errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
-    __marvelFormErrors?.username?.lastMessage | translate
-  }}"
-  icon="search-20"
-  name="filter-search"
-  [placeholder]="'I\'m Looking for...'"
->
-</marvel-input>
+<div class="d-flex flex-column flex-md-row justify-content-between row-search">
+  <div>
+    <marvel-input
+      errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
+        __marvelFormErrors?.username?.lastMessage | translate
+      }}"
+      icon="search-20"
+      name="filter-search"
+      [placeholder]="'I\'m Looking for...'"
+      (onChange)="onChangeSearchFor($event)"
+    >
+    </marvel-input>
+  </div>
+  <div class="row-search">
+    <marvel-select-search
+      [placeholder]="'Character'"
+      (onChange)="onChangeCharacters($event, true)"
+      (onScrolled)="onScrolledCharacters($event)"
+      (onSearch)="onSearchCharacters($event)"
+      [showProgress]="_isLoadingCharacters"
+      fieldToCompare="id"
+    >
+      <marvel-option [value]="character" [type]="'custom'" *ngFor="let character of _characters">
+        <div class="d-flex just align-items-center character-option">
+          <img [src]="character?.thumbnail?.resource" class="logo" width="65" height="65" />
+          <span class="ml-3">
+            {{ character?.name }}
+          </span>
+        </div>
+      </marvel-option>
+    </marvel-select-search>
+  </div>
+  <div>
+    <marvel-select [placeholder]="'Alphabetical'">
+      <marvel-option [label]="'teste'" [value]="'teste'"> </marvel-option>
+    </marvel-select>
+  </div>
+  <div>
+    <marvel-select [placeholder]="'Show 15'">
+      <marvel-option [label]="'teste'" [value]="'teste'"> </marvel-option>
+    </marvel-select>
+  </div>
+</div>

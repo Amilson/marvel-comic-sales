@@ -6,3 +6,4 @@ export * from './marvel-request-paged';
 export * from './marvel-service-credentials';
 export * from './marvel-token-credentials';
 export * from './marvel-translate-options';
+export * from './marvel-response-paged';

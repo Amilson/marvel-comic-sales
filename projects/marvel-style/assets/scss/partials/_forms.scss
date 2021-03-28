@@ -28,6 +28,10 @@ mc-form-field {
       width: 100%;
     }
 
+    &.textarea {
+      min-height: 98px !important;
+    }
+
     &.checkbox {
       background-color: inherit !important;
       display: flex;

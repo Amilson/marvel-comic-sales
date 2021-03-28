@@ -10,7 +10,7 @@ shared-list-content {
   margin: 24px 0px;
   padding: 24px;
 
-  @include media-breakpoint('gt-xs') {
+  @include media-breakpoint('gt-sm') {
     height: 273px;
   }
 
