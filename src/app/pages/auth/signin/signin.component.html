@@ -1,18 +1,18 @@
 <div class="d-flex flex-column justify-content-start m-auto">
-  <div class="login-box">
+  <div class="signin-box">
     <progress class="marvel-progress marvel-progress__theme" *ngIf="_isSubmitting"></progress>
-    <div class="login-box-header">
-      <img class="logo" [src]="_config?.theme?.logos?.login" />
+    <div class="signin-box-header">
+      <img class="logo" [src]="_config?.theme?.logos?.signin" />
     </div>
-    <div class="login-box-body">
-      <form name="loginForm" [formGroup]="_loginForm" novalidate (submit)="onSubmit()">
+    <div class="signin-box-body">
+      <form name="signinForm" [formGroup]="_signinForm" novalidate (submit)="onSubmit()">
         <div class="row">
           <div class="col-md-12">
             <marvel-input
-              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
-                __marvelFormErrors?.username?.lastMessage | translate
+              errorMessage="{{ __marvelFormErrors?.email?.firstMessage | translate }} {{
+                __marvelFormErrors?.email?.lastMessage | translate
               }}"
-              formControlName="username"
+              formControlName="email"
               icon="mail-20"
               name="email"
               [placeholder]="'Email'"
@@ -21,10 +21,10 @@
           </div>
           <div class="col-md-12">
             <marvel-input
-              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
-                __marvelFormErrors?.username?.lastMessage | translate
+              errorMessage="{{ __marvelFormErrors?.password?.firstMessage | translate }} {{
+                __marvelFormErrors?.password?.lastMessage | translate
               }}"
-              formControlName="username"
+              formControlName="password"
               name="password"
               type="password"
               [placeholder]="'Password'"
@@ -35,12 +35,17 @@
       </form>
       <div class="mt-2">
         <marvel-button color="theme" (click)="onSubmit()" [disabled]="_isSubmitting">
-          {{ 'LOGIN.BUTTON.CONFIRM' | translate }}
+          {{ 'SIGNIN.BUTTON.CONFIRM' | translate }}
         </marvel-button>
       </div>
-      <div class="mt-4">or use Social Login</div>
+      <div class="mt-4">or use Social Signin</div>
       <div class="d-flex justify-content-center align-items-center mt-4">
-        <marvel-button color="google" (click)="login()" [disabled]="_isSubmitting" class="mr-4">
+        <marvel-button
+          color="google"
+          (click)="onGoogleSignin()"
+          [disabled]="_isSubmitting"
+          class="mr-4"
+        >
           <marvel-icon icon="google-20" color="#ffffff"></marvel-icon>
           <span>Google</span>
         </marvel-button>
@@ -52,15 +57,10 @@
     </div>
   </div>
 </div>
-<div class="login-footer">
+<div class="signin-footer">
   <div class="d-flex justify-content-end align-items-center">
     <span class="mr-4">I Don't have Password</span>
-    <marvel-button
-      type="border"
-      (click)="onSubmit()"
-      [disabled]="_isSubmitting"
-      [routerLink]="['/auth/register']"
-    >
+    <marvel-button type="border" [disabled]="_isSubmitting" [routerLink]="['/auth/signup']">
       <span>Register</span>
     </marvel-button>
   </div>

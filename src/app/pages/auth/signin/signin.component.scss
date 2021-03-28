@@ -1,6 +1,6 @@
 @import 'src/assets/scss/components/breakpoints';
 
-app-login {
+app-signin {
   width: 100%;
   height: 100%;
   display: flex;
@@ -15,7 +15,7 @@ app-login {
   @include media-breakpoint('xs') {
     background-color: #fafafa;
 
-    .login-box {
+    .signin-box {
       progress {
         position: fixed;
         width: 100%;
@@ -35,7 +35,7 @@ app-login {
     overflow-x: hidden;
     position: absolute;
 
-    .login-box {
+    .signin-box {
       box-sizing: border-box;
       border-radius: 8px;
       width: 480px;
@@ -53,7 +53,7 @@ app-login {
     }
   }
 
-  .login-box-header {
+  .signin-box-header {
     padding-top: 10px;
     padding-left: 32px;
     padding-right: 32px;
@@ -64,7 +64,7 @@ app-login {
     }
   }
 
-  .login-box-body {
+  .signin-box-body {
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -74,7 +74,7 @@ app-login {
     color: #aaaaaa;
   }
 
-  .login-footer {
+  .signin-footer {
     padding: 32px;
     font-style: normal;
     font-weight: normal;

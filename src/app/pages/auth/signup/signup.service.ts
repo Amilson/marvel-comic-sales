@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
+import { MarvelAuthService } from 'app/core/services/auth';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
-import { AuthCredentials, MarvelConfig } from 'app/interfaces';
+import { SignupCredentials } from 'app/interfaces';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable()
-export class LoginService extends MarvelCommonsService implements Resolve<any> {
-  constructor(marvelService: MarvelService) {
+export class SignupService extends MarvelCommonsService implements Resolve<any> {
+  constructor(
+    marvelService: MarvelService,
+    private authService: MarvelAuthService,
+    private router: Router
+  ) {
     super(marvelService);
     this.__onDataChanged$ = new BehaviorSubject(null);
+  }
+
+  private handleSignup() {
+    this.router.navigate(['/auth/signin']);
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
@@ -21,18 +30,16 @@ export class LoginService extends MarvelCommonsService implements Resolve<any> {
     return of(null);
   }
 
-  public login(param: AuthCredentials, config: MarvelConfig) {
-    const { __data } = this;
-    const data = {
-      ...param,
-      username: __data.username,
-    };
+  signup(param: SignupCredentials) {
     this.__onLoadingInProgress$.next(true);
-    /*this.authenticationService.login(data, config).subscribe(
-      () => {},
-      () => {
+    this.authService
+      .signup(param)
+      .then(() => {
+        this.handleSignup();
+      })
+      .catch((err: any) => {
         this.__onLoadingInProgress$.next(false);
-      }
-    );*/
+        this.handleError(err);
+      });
   }
 }

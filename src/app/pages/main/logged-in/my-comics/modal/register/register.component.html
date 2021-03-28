@@ -1,5 +1,5 @@
 <marvel-modal [config]="config" [modalRef]="modalRef" (onHandleConfirm)="onHandleConfirm()">
-  <div class="row-search" *ngIf="!_form?.get('id').value">
+  <div class="row-search" *ngIf="!_form?.get('comicId').value">
     <marvel-select-search
       [placeholder]="'Character'"
       (onChange)="onChangeComics($event, true)"
@@ -7,11 +7,16 @@
       (onSearch)="onSearchComics($event)"
       [showProgress]="_isLoadingComics"
       *ngIf="_comics"
-      fieldToCompare="id"
+      fieldToCompare="comicId"
     >
       <marvel-option [value]="comic" [type]="'custom'" *ngFor="let comic of _comics">
         <div class="d-flex just align-items-center comic-option">
-          <img [src]="comic?.thumbnail?.resource" class="logo" width="65" height="65" />
+          <img
+            [src]="comic?.thumbnail_path + '/portrait_small.jpg'"
+            class="logo"
+            width="65"
+            height="65"
+          />
           <div class="d-flex flex-column ml-3">
             <div class="mb-2">
               <span class="title mr-1"> Title: </span>
@@ -36,10 +41,15 @@
       </marvel-option>
     </marvel-select-search>
   </div>
-  <div class="row-form mt-4" *ngIf="_form?.get('id').value">
+  <div class="row-form mt-4" *ngIf="_form?.get('comicId').value">
     <div class="d-flex justify-content-between comic-option selected mb-2">
       <div class="d-flex align-items-center">
-        <img [src]="_form?.get('thumbnail').value?.resource" class="logo" width="65" height="65" />
+        <img
+          [src]="_form?.get('thumbnail_path').value + '/portrait_small.jpg'"
+          class="logo"
+          width="65"
+          height="65"
+        />
         <div class="d-flex flex-column ml-3">
           <div class="mb-2">
             <span class="title mr-1"> Title: </span>
@@ -65,6 +75,7 @@
         icon="trash-24"
         color="#AAAAAA"
         (click)="onChangeComics(null, false)"
+        *ngIf="_comicModel?.screenType === 'new'"
       ></marvel-icon>
     </div>
 

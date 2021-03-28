@@ -8,11 +8,11 @@ import {
   MarvelIconModule,
   MarvelButtonModule,
 } from '../../../../../projects/marvel-style/src/public-api';
-import { LoginComponent } from './login.component';
-import { LoginService } from './login.service';
+import { SigninComponent } from './signin.component';
+import { SigninService } from './signin.service';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [SigninComponent],
   imports: [
     MarvelCoreCommonModule,
     MarvelCoreFormsModule,
@@ -22,18 +22,18 @@ import { LoginService } from './login.service';
     RouterModule.forChild([
       {
         path: '',
-        component: LoginComponent,
+        component: SigninComponent,
       },
       {
         path: ':username',
-        component: LoginComponent,
+        component: SigninComponent,
         resolve: {
-          LoginService,
+          SigninService,
         },
       },
     ]),
     TranslateModule.forChild(),
   ],
-  providers: [LoginService],
+  providers: [SigninService],
 })
-export class LoginModule {}
+export class SigninModule {}

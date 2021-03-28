@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { ListContent } from 'app/interfaces';
+import { ListContentDetails } from 'app/interfaces';
 
 @Component({
   selector: 'shared-list-content-details-footer',
@@ -8,5 +8,5 @@ import { ListContent } from 'app/interfaces';
   encapsulation: ViewEncapsulation.None,
 })
 export class SharedListContentDetailsFooterComponent {
-  @Input() data: ListContent;
+  @Input() data: ListContentDetails;
 }

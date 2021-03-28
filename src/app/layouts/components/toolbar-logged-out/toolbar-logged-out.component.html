@@ -4,13 +4,13 @@
       <img class="logo-icon" [src]="_config?.theme?.logos?.toolbar" />
     </div>
     <div class="d-flex">
-      <marvel-button type="none" color="theme" class="mr-3">
+      <marvel-button type="none" color="theme" class="mr-3" [routerLink]="['/main/logged-out']">
         {{ 'BUTTONS.HOME' | translate }}
       </marvel-button>
-      <marvel-button type="border" class="mr-3">
+      <marvel-button type="border" class="mr-3" [routerLink]="['/auth/signup']">
         {{ 'BUTTONS.REGISTER' | translate }}
       </marvel-button>
-      <marvel-button color="theme">
+      <marvel-button color="theme" [routerLink]="['/auth/signin']">
         {{ 'BUTTONS.LOGIN' | translate }}
       </marvel-button>
     </div>

@@ -2,7 +2,8 @@ export interface MarvelConfigTheme {
   logos: {
     favicon: string;
     toolbar: string;
-    login: string;
+    signin: string;
+    signup: string;
     footer: string;
   };
 }

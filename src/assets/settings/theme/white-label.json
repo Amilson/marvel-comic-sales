@@ -2,7 +2,8 @@
   "theme": {
     "logos": {
       "toolbar": "assets/settings/theme/images/toolbar.svg",
-      "login": "assets/settings/theme/images/login.svg",
+      "signin": "assets/settings/theme/images/signin.svg",
+      "signup": "assets/settings/theme/images/signup.svg",
       "footer": "assets/settings/theme/images/footer.svg"
     }
   },

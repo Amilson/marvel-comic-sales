@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MarvelAuthGuard, MarvelAuthGuardLoggedout } from 'app/core/services/auth';
 import { LoggedInDetailsLayoutComponent } from 'app/layouts/main/logged-in-details/logged-in-details-layout.component';
 import { LoggedInDetailsLayoutModule } from 'app/layouts/main/logged-in-details/logged-in-details-layout.module';
 import { LoggedInLayoutComponent } from 'app/layouts/main/logged-in/logged-in-layout.component';
@@ -40,6 +41,7 @@ import { MarvelCoreCommonModule } from 'app/shared/modules/marvel-core-common.mo
             },
           },
         ],
+        canActivate: [MarvelAuthGuardLoggedout],
       },
       {
         path: 'logged-in',
@@ -63,6 +65,7 @@ import { MarvelCoreCommonModule } from 'app/shared/modules/marvel-core-common.mo
             },
           },
         ],
+        canActivate: [MarvelAuthGuard],
       },
     ]),
     LoggedOutLayoutModule,

@@ -11,6 +11,8 @@ import { MarvelCoreCommonModule } from './shared/modules/marvel-core-common.modu
 import { TranslateModule } from '@ngx-translate/core';
 import { MarvelStyleModule } from '../../projects/marvel-style/src/public-api';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,8 @@ import { AngularFireModule } from '@angular/fire';
     MarvelConfigModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

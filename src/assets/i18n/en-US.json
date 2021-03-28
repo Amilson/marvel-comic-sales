@@ -1,12 +1,14 @@
 {
   "lang": "en-US",
   "data": {
-    "LOGIN": {
+    "CURRENCY-CODE": "USD",
+    "FORMAT-DATE": "MM/DD/YYYY",
+    "SIGNIN": {
       "BUTTON": {
         "CONFIRM": "Login"
       }
     },
-    "REGISTER": {
+    "SIGNUP": {
       "BUTTON": {
         "CONFIRM": "Create account"
       }
@@ -21,7 +23,12 @@
       "MAX-LENGTH": "Max of chars is",
       "MIN": "Min value is",
       "MAX": "Max value is",
-      "MATCH-PASSWORD": "Passwords do not match"
+      "MATCH-PASSWORD": "Passwords do not match",
+      "AUTH/EMAIL-ALREADY-IN-USE": "Email already in use",
+      "AUTH/USER-NOT-REGISTERED": "Email not registered yet",
+      "AUTH/USER-NOT-FOUND": "Email not found",
+      "AUTH/WRONG-PASSWORD": "Email or password inválid",
+      "AUTH/PROBLEMS": "Unable to authenticate this email"
     },
     "BUTTONS": {
       "BACK": "Back",
@@ -34,7 +41,9 @@
       "REGISTER": "Register",
       "FAVORITE": "Favorite",
       "MORE-INFO": "More Info",
-      "BUY": "Buy"
+      "BUY": "Buy",
+      "EDIT": "Edit",
+      "REMOVE": "Remove"
     },
     "CONDITIONS": {
       "LIKE_NEW": "Like New",

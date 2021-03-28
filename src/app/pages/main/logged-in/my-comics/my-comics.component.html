@@ -7,5 +7,13 @@
     <shared-filter (onFilter)="onFilter($event)"></shared-filter>
   </div>
   <shared-filtered [data]="_filter" (onFilter)="onFilter($event)"></shared-filtered>
-  <shared-list-content></shared-list-content>
+  <shared-list-content
+    *ngFor="let comic of _comics"
+    [data]="comic"
+    [enableEdit]="true"
+    [settings]="{
+      edit: onHandleEdit.bind(this, comic),
+      remove: onHandleRemove.bind(this, comic)
+    }"
+  ></shared-list-content>
 </div>

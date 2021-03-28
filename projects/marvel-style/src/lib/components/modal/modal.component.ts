@@ -39,20 +39,20 @@ import { MarvelStyleModalService } from '../../core/services/modal/marvel-style-
         "
       >
         <marvel-button
-          [type]="config?.action?.cancel?.actionType || 'primary'"
-          [color]="config?.action?.cancel?.actionColor || config?.color || 'theme'"
-          (click)="_actionCancel()"
-          *ngIf="config?.action?.cancel"
-        >
-          {{ config?.action?.cancel?.label }}
-        </marvel-button>
-        <marvel-button
           [type]="config?.action?.confirm?.actionType || 'primary'"
           [color]="config?.action?.confirm?.actionColor || config?.color || 'theme'"
           (click)="_actionConfirm()"
           *ngIf="config?.action?.confirm"
         >
           {{ config?.action?.confirm?.label }}
+        </marvel-button>
+        <marvel-button
+          [type]="config?.action?.cancel?.actionType || 'primary'"
+          [color]="config?.action?.cancel?.actionColor || config?.color || 'theme'"
+          (click)="_actionCancel()"
+          *ngIf="config?.action?.cancel"
+        >
+          {{ config?.action?.cancel?.label }}
         </marvel-button>
         <marvel-button
           [type]="config?.action?.firstAction?.actionType || 'primary'"

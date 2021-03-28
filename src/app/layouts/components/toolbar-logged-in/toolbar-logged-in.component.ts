@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { MarvelAuthService } from 'app/core/services/auth';
 import { MarvelConfigService } from 'app/core/services/config/marvel-config.service';
-import { MarvelConfig } from 'app/interfaces';
+import { MarvelAuthUser, MarvelConfig } from 'app/interfaces';
 import { BaseComponent } from 'app/shared/components/base/base-component';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-toolbar-logged-in',
@@ -13,13 +15,31 @@ import { BaseComponent } from 'app/shared/components/base/base-component';
 export class ToolbarLoggedInComponent extends BaseComponent implements OnInit {
   _config: MarvelConfig = null;
 
-  constructor(public _router: Router, private marvelConfigService: MarvelConfigService) {
+  _me: MarvelAuthUser;
+
+  constructor(
+    public _router: Router,
+    private marvelConfigService: MarvelConfigService,
+    private authService: MarvelAuthService
+  ) {
     super();
   }
 
   ngOnInit() {
-    this.marvelConfigService.config().subscribe((_: MarvelConfig) => {
-      this._config = _;
+    const { marvelConfigService, authService } = this;
+    marvelConfigService
+      .config()
+      .pipe(takeUntil(this.__unsubscribeAll))
+      .subscribe((_: MarvelConfig) => {
+        this._config = _;
+      });
+
+    authService.user$.pipe(takeUntil(this.__unsubscribeAll)).subscribe((_: MarvelAuthUser) => {
+      this._me = _;
     });
+  }
+
+  onSignOut() {
+    this.authService.signOut();
   }
 }

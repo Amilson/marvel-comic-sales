@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MarvelAuthGuardLogin } from './core/services/auth';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AuthLayoutModule } from './layouts/auth/auth-layout.module';
 
@@ -20,6 +21,7 @@ import { AuthLayoutModule } from './layouts/auth/auth-layout.module';
               return m.PagesAuthModule;
             });
           },
+          canActivate: [MarvelAuthGuardLogin],
         },
         {
           path: 'main',

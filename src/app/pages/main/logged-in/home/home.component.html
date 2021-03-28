@@ -1,4 +1,5 @@
 <div class="full-width">
-  <shared-filter></shared-filter>
+  <shared-filter (onFilter)="onFilter($event)"></shared-filter>
 </div>
+<shared-filtered [data]="_filter" (onFilter)="onFilter($event)"></shared-filtered>
 <shared-list-content></shared-list-content>

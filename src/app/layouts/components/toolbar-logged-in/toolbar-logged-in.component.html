@@ -28,8 +28,10 @@
       >
         {{ 'BUTTONS.MY-FAVORITES' | translate }}
       </marvel-button>
-      <div class="mr-3">Amilson Fontes</div>
-      <marvel-button type="border" color="muted">
+      <div class="mr-3">
+        {{ _me?.displayName }}
+      </div>
+      <marvel-button type="border" color="muted" (click)="onSignOut()">
         {{ 'BUTTONS.LOGOUT' | translate }}
       </marvel-button>
     </div>

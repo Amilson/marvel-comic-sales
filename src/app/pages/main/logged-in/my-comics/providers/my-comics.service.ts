@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { MarvelCommonsService } from 'app/core/services/commons';
@@ -12,10 +13,20 @@ export class MyComicsService extends MarvelCommonsService implements Resolve<any
   constructor(
     marvelService: MarvelService,
     private firestore: AngularFirestore,
-    private auth: AngularFireAuth
+    private fireAuth: AngularFireAuth
   ) {
     super(marvelService);
     this.__onDataChanged$ = new BehaviorSubject(null);
+  }
+
+  private mappingData(docs: any[]) {
+    return docs.map((doc: any) => {
+      const data = doc.data();
+      return {
+        ...data,
+        createdAt: data?.createdAt?.toDate(),
+      };
+    });
   }
 
   @MarvelCoreService({
@@ -23,39 +34,22 @@ export class MyComicsService extends MarvelCommonsService implements Resolve<any
       showProgress: true,
     },
   })
-  getData() {
-    /*const docRef = this.firestore.collection('marvel-comics');
+  async getData() {
+    const { email } = await this.fireAuth.currentUser;
+    const docRef = this.firestore.collection('comics', (ref) =>
+      ref.where('createdById', '==', email)
+    );
     docRef.get().subscribe(
-      (doc) => {
-        doc.docs.forEach((doc: any) => {
-          console.log(doc);
-        });
-      },
-      (error) => {
-        console.log('Error getting document:', error);
-      }
-    );*/
-    console.log('this.auth.user');
-    this.auth.user.subscribe(
-      (doc) => {
-        console.log(doc);
+      (resp: any) => {
+        const data = this.getDocsData(resp);
+        this.__data = [...(this.__data ? this.__data : []), ...this.mappingData(data)];
+        this.__onDataChanged$.next(null);
+        this.__onLoadingInProgress$.next(false);
       },
       (error) => {
         console.log('Error getting document:', error);
       }
     );
-
-    this.firestore
-      .collection('marvel-comics', (ref) => ref.where('id', '==', 82967))
-      .valueChanges()
-      .subscribe(
-        (doc) => {
-          console.log(doc);
-        },
-        (error) => {
-          console.log('Error getting document:', error);
-        }
-      );
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {

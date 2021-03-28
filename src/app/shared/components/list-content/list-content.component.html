@@ -1,7 +1,11 @@
 <div class="d-flex flex-column flex-md-row justify-content-start">
-  <shared-list-content-cover></shared-list-content-cover>
+  <shared-list-content-cover [data]="data"></shared-list-content-cover>
   <div class="d-flex flex-column justify-content-between full-width">
-    <shared-list-content-header></shared-list-content-header>
-    <shared-list-content-footer></shared-list-content-footer>
+    <shared-list-content-header [data]="data"></shared-list-content-header>
+    <shared-list-content-footer
+      [data]="data"
+      [enableEdit]="enableEdit"
+      [settings]="settings"
+    ></shared-list-content-footer>
   </div>
 </div>

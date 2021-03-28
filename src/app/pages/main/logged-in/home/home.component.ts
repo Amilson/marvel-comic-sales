@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MarvelConfig } from 'app/interfaces';
+import { SharedFilterModel } from 'app/shared/components';
 import { BaseComponent } from 'app/shared/components/base/base-component';
 
 @Component({
@@ -16,6 +17,8 @@ export class HomeComponent extends BaseComponent implements OnInit, OnDestroy {
 
   _config: MarvelConfig = null;
 
+  _filter: SharedFilterModel;
+
   constructor() {
     super();
   }
@@ -26,5 +29,9 @@ export class HomeComponent extends BaseComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     super.ngOnDestroy();
+  }
+
+  onFilter(event: any) {
+    this._filter = event;
   }
 }

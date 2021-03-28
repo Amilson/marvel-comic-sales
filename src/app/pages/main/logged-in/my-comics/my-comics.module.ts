@@ -19,7 +19,7 @@ import {
 } from '../../../../../../projects/marvel-style/src/public-api';
 import { MyComicsComponent } from './my-comics.component';
 import { SharedFilterCharactersService } from 'app/shared/components/filter';
-import { MyComicsRegisterComponent } from './modal';
+import { MyComicsRegisterComponent, MyComicsDeleteComponent } from './modal';
 import {
   MyComicsRegisterFilterComicsService,
   MyComicsRegisterComicsService,
@@ -27,13 +27,22 @@ import {
 } from './providers';
 
 @NgModule({
-  declarations: [MyComicsComponent, MyComicsRegisterComponent],
+  declarations: [MyComicsComponent, MyComicsRegisterComponent, MyComicsDeleteComponent],
   imports: [
     MarvelCoreCommonModule,
     MarvelCoreFormsModule,
     RouterModule.forChild([
       {
         path: '',
+        component: MyComicsComponent,
+        resolve: {
+          SharedFilterCharactersService,
+          MyComicsRegisterFilterComicsService,
+          MyComicsService,
+        },
+      },
+      {
+        path: 'refresh/:refresh',
         component: MyComicsComponent,
         resolve: {
           SharedFilterCharactersService,

@@ -1,18 +1,18 @@
 <div class="d-flex flex-column justify-content-start m-auto">
-  <div class="register-box">
+  <div class="signup-box">
     <progress class="marvel-progress marvel-progress__theme" *ngIf="_isSubmitting"></progress>
-    <div class="register-box-header">
-      <img class="logo" [src]="_config?.theme?.logos?.login" />
+    <div class="signup-box-header">
+      <img class="logo" [src]="_config?.theme?.logos?.signup" />
     </div>
-    <div class="register-box-body">
-      <form name="registerForm" [formGroup]="_registerForm" novalidate (submit)="onSubmit()">
+    <div class="signup-box-body">
+      <form name="signupForm" [formGroup]="_signupForm" novalidate>
         <div class="row">
           <div class="col-md-12">
             <marvel-input
-              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
-                __marvelFormErrors?.username?.lastMessage | translate
+              errorMessage="{{ __marvelFormErrors?.displayName?.firstMessage | translate }} {{
+                __marvelFormErrors?.displayName?.lastMessage | translate
               }}"
-              formControlName="username"
+              formControlName="displayName"
               name="name"
               [placeholder]="'Name'"
             >
@@ -20,10 +20,10 @@
           </div>
           <div class="col-md-12">
             <marvel-input
-              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
-                __marvelFormErrors?.username?.lastMessage | translate
+              errorMessage="{{ __marvelFormErrors?.email?.firstMessage | translate }} {{
+                __marvelFormErrors?.email?.lastMessage | translate
               }}"
-              formControlName="username"
+              formControlName="email"
               name="email"
               [placeholder]="'Email'"
             >
@@ -31,8 +31,8 @@
           </div>
           <div class="col-md-12">
             <marvel-input
-              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
-                __marvelFormErrors?.username?.lastMessage | translate
+              errorMessage="{{ __marvelFormErrors?.password?.firstMessage | translate }} {{
+                __marvelFormErrors?.password?.lastMessage | translate
               }}"
               formControlName="password"
               name="password"
@@ -43,11 +43,11 @@
           </div>
           <div class="col-md-12">
             <marvel-input
-              errorMessage="{{ __marvelFormErrors?.username?.firstMessage | translate }} {{
-                __marvelFormErrors?.username?.lastMessage | translate
+              errorMessage="{{ __marvelFormErrors?.passwordConfirm?.firstMessage | translate }} {{
+                __marvelFormErrors?.passwordConfirm?.lastMessage | translate
               }}"
-              formControlName="username"
-              name="confirmPassword"
+              formControlName="passwordConfirm"
+              name="passwordConfirm"
               type="password"
               [placeholder]="'Confirm Password'"
             >
@@ -57,10 +57,10 @@
       </form>
       <div class="mt-2">
         <marvel-button color="theme" (click)="onSubmit()" [disabled]="_isSubmitting">
-          {{ 'REGISTER.BUTTON.CONFIRM' | translate }}
+          {{ 'SIGNUP.BUTTON.CONFIRM' | translate }}
         </marvel-button>
       </div>
-      <div class="mt-4">Register account using</div>
+      <div class="mt-4">Signup account using</div>
       <div class="d-flex justify-content-center align-items-center mt-4">
         <marvel-button color="google" (click)="onSubmit()" [disabled]="_isSubmitting" class="mr-4">
           <marvel-icon icon="google-20" color="#ffffff"></marvel-icon>
@@ -74,15 +74,14 @@
     </div>
   </div>
 </div>
-<div class="register-footer">
+<div class="signup-footer">
   <div class="d-flex justify-content-end align-items-center">
     <span class="mr-4">I already have a login</span>
     <marvel-button
       type="border"
       color="none"
-      (click)="onSubmit()"
       [disabled]="_isSubmitting"
-      [routerLink]="['/auth/login']"
+      [routerLink]="['/auth/signin']"
     >
       <span>Back to login</span>
     </marvel-button>

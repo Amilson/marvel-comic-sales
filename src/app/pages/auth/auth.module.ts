@@ -5,12 +5,12 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forChild([
       {
-        path: 'login',
-        loadChildren: () => import('./login').then((m) => m.LoginModule),
+        path: 'signin',
+        loadChildren: () => import('./signin').then((m) => m.SigninModule),
       },
       {
-        path: 'register',
-        loadChildren: () => import('./register').then((m) => m.RegisterModule),
+        path: 'signup',
+        loadChildren: () => import('./signup').then((m) => m.SignupModule),
       },
     ]),
   ],

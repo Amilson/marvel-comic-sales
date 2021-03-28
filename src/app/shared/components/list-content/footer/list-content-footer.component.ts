@@ -9,4 +9,8 @@ import { ListContent } from 'app/interfaces';
 })
 export class SharedListContentFooterComponent {
   @Input() data: ListContent;
+
+  @Input() enableEdit: boolean;
+
+  @Input() settings: any;
 }

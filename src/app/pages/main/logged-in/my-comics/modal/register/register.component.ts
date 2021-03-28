@@ -16,6 +16,7 @@ import {
   MyComicsRegisterFilterComicsModel,
   MyComicsRegisterComicsService,
   RegisterComicsModel,
+  MyComicsService,
 } from '../../providers';
 
 @Component({
@@ -28,6 +29,8 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
   @Input() config: MarvelModalConfig;
 
   @Input() modalRef: any;
+
+  _comicModel: RegisterComicsModel;
 
   _comics: MyComicsRegisterFilterComicsModel[] = null;
 
@@ -46,15 +49,16 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
   }
 
   private buildForm(): FormGroup {
+    const { _comicModel } = this;
     const form: FormGroup = this.formBuilder.group({
-      id: ['', [Validators.required]],
-      title: ['', [Validators.required]],
-      format: [''],
-      pageCount: [''],
-      thumbnail: [''],
-      condition: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.maxLength(255)]],
+      comicId: [_comicModel?.comicId, [Validators.required]],
+      title: [_comicModel?.title, [Validators.required]],
+      format: [_comicModel?.format],
+      pageCount: [_comicModel?.pageCount],
+      thumbnail_path: [_comicModel?.thumbnail_path],
+      condition: [_comicModel?.condition, [Validators.required]],
+      price: [_comicModel?.price, [Validators.required]],
+      description: [_comicModel?.description, [Validators.required, Validators.maxLength(255)]],
     });
 
     return form;
@@ -85,10 +89,12 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
         this._isLoadingComics = val;
       });
 
+    this._comicModel = new RegisterComicsModel(this.config.data);
     this._form = this.buildForm();
   }
 
   ngOnDestroy() {
+    super.ngOnDestroy(false);
     this.comicsService.setSearch(null);
   }
 
@@ -96,21 +102,23 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
     const { _form, registerComicsService } = this;
     this.__marvelFormErrors = null;
     if (this.validateForm(_form)) {
-      console.log('_form');
-      console.log(_form);
-      registerComicsService.saveData(new RegisterComicsModel(_form.value));
+      registerComicsService.saveData(
+        new RegisterComicsModel({
+          ...this._comicModel,
+          ..._form.value,
+        })
+      );
     }
-    console.log(this.__marvelFormErrors);
   }
 
   onChangeComics(event: MyComicsRegisterFilterComicsModel, type: boolean) {
     if (!type) {
       event = {
-        id: null,
+        comicId: null,
         title: '',
         format: '',
         pageCount: null,
-        thumbnail: null,
+        thumbnail_path: null,
       };
     }
     this._form.setValue({

@@ -102,6 +102,11 @@ export class MarvelCommonsService {
     return { offset, limit, total, count };
   }
 
+  getDocsData(result: any): any[] | any {
+    const { docs } = result;
+    return docs || [];
+  }
+
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
@@ -156,5 +161,25 @@ export class MarvelCommonsService {
       this.__i18n = translations;
       this.__oni18nDataChanged$.next(null);
     });
+  }
+
+  handleError({ code }) {
+    const types = {
+      'auth/email-already-in-use': 'email',
+      'auth/user-not-found': 'email',
+      'auth/user-not-registered': 'email',
+      'auth/wrong-password': 'password',
+    };
+
+    let type = types[code];
+    if (!type) {
+      type = 'password';
+      code = 'auth/problems';
+    }
+
+    this.__error = {
+      [type]: { lastMessage: `ERRORS.${code}`.toUpperCase() },
+    };
+    this.__onErrorChanged$.next(null);
   }
 }

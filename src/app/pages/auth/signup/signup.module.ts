@@ -8,11 +8,11 @@ import {
   MarvelIconModule,
   MarvelButtonModule,
 } from '../../../../../projects/marvel-style/src/public-api';
-import { RegisterComponent } from './register.component';
-import { RegisterService } from './register.service';
+import { SignupComponent } from './signup.component';
+import { SignupService } from './signup.service';
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [SignupComponent],
   imports: [
     MarvelCoreCommonModule,
     MarvelCoreFormsModule,
@@ -22,18 +22,18 @@ import { RegisterService } from './register.service';
     RouterModule.forChild([
       {
         path: '',
-        component: RegisterComponent,
+        component: SignupComponent,
       },
       {
         path: ':username',
-        component: RegisterComponent,
+        component: SignupComponent,
         resolve: {
-          RegisterService,
+          SignupService,
         },
       },
     ]),
     TranslateModule.forChild(),
   ],
-  providers: [RegisterService],
+  providers: [SignupService],
 })
-export class RegisterModule {}
+export class SignupModule {}

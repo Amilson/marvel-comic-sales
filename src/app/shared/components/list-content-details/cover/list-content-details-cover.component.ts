@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
-import { ListContent } from 'app/interfaces';
+import { ListContentDetails } from 'app/interfaces';
 
 @Component({
   selector: 'shared-list-content-details-cover',
@@ -8,7 +8,7 @@ import { ListContent } from 'app/interfaces';
   encapsulation: ViewEncapsulation.None,
 })
 export class SharedListContentDetailsCoverComponent {
-  @Input() data: ListContent;
+  @Input() data: ListContentDetails;
 
   constructor(private elRef: ElementRef) {
     //not to do
