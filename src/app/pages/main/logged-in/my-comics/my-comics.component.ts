@@ -7,7 +7,7 @@ import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
 import { MarvelStyleModalService } from '../../../../../../projects/marvel-style/src/public-api';
 import { SharedComicsDeleteComponent, SharedComicsRegisterComponent } from 'app/shared/components';
-import { MyComicsService } from './providers';
+import { MyComicsSearchModel, MyComicsService } from './providers';
 
 @Component({
   selector: 'app-my-comics-logedin',
@@ -55,6 +55,7 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
 
   onFilter(event: any) {
     this._filter = event;
+    this.myComicsService.setSearch(new MyComicsSearchModel(this._filter));
   }
 
   onHandleAdd() {

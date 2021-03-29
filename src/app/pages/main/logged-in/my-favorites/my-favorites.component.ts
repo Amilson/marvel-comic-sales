@@ -6,7 +6,7 @@ import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
 import { MarvelStyleModalService } from '../../../../../../projects/marvel-style/src/public-api';
 import { SharedComicsRegisterComponent } from 'app/shared/components';
-import { MyFavoritesService } from './providers';
+import { MyFavoritesSearchModel, MyFavoritesService } from './providers';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { SharedComicsDeleteFavoriteComponent } from 'app/shared/components/modal/delete-favorite';
 
@@ -56,6 +56,7 @@ export class MyFavoritesComponent extends BaseComponent implements OnInit, OnDes
 
   onFilter(event: any) {
     this._filter = event;
+    this.myFavoritesService.setSearch(new MyFavoritesSearchModel(this._filter));
   }
 
   onHandleAdd() {

@@ -57,7 +57,7 @@ export class HomeComponent extends BaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    super.ngOnDestroy();
+    super.ngOnDestroy(true);
   }
 
   onFilter(event: any) {

@@ -38,7 +38,7 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
       showProgress: true,
     },
   })
-  async getData() {
+  private async getData() {
     const { email } = await this.fireAuth.currentUser;
 
     const search = new HomeSearchModel({

@@ -7,6 +7,7 @@ import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { MyComicsSearchModel } from './my-comics-search.model';
 
 @Injectable()
 export class MyComicsService extends MarvelCommonsService implements Resolve<any> {
@@ -36,15 +37,38 @@ export class MyComicsService extends MarvelCommonsService implements Resolve<any
       showProgress: true,
     },
   })
-  async getData() {
+  private async getData() {
     const { email } = await this.fireAuth.currentUser;
-    const docRef = this.firestore.collection('comics', (ref) =>
-      ref.where('createdById', '==', email).orderBy('updatedAt', 'desc')
-    );
+
+    const search = new MyComicsSearchModel({
+      ...this.__search,
+    });
+
+    this.__onLoadingInProgress$.next(true);
+
+    const docRef = this.firestore.collection('comics', (ref) => {
+      return search.buildParams(ref, this.__data, email);
+    });
     docRef.get().subscribe(
       (resp: any) => {
         const data = this.getDocsData(resp);
         this.__data = [...(this.__data ? this.__data : []), ...this.mappingData(data)];
+        let page = null;
+        if (data && data.length > 0) {
+          page = {
+            offset: 0,
+            limit: 15,
+            total: 9999,
+          };
+        } else {
+          page = {
+            offset: 9999,
+            limit: 15,
+            total: 9999,
+          };
+        }
+        this.__page = page;
+
         this.__onDataChanged$.next(null);
         this.__onLoadingInProgress$.next(false);
       },
@@ -65,5 +89,20 @@ export class MyComicsService extends MarvelCommonsService implements Resolve<any
     });
 
     return of(null);
+  }
+
+  setSearch(search: MyComicsSearchModel) {
+    this.__data = null;
+    this.__search = search;
+
+    this.setPage({
+      page: {
+        offset: 0,
+        limit: search.limit,
+        total: 9999,
+      },
+    });
+
+    this.getData();
   }
 }

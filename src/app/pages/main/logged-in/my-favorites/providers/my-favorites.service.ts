@@ -9,6 +9,7 @@ import { MarvelService } from 'app/core/services/marvel-service.service';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import firebase from 'firebase/app';
 import { MarvelUtils } from '../../../../../../../projects/marvel-style/src/public-api';
+import { MyFavoritesSearchModel } from './my-favorites-search.model';
 
 @Injectable()
 export class MyFavoritesService extends MarvelCommonsService implements Resolve<any> {
@@ -33,7 +34,7 @@ export class MyFavoritesService extends MarvelCommonsService implements Resolve<
     });
   }
 
-  @MarvelCoreService({
+  /*@MarvelCoreService({
     requestInProgress: {
       showProgress: true,
     },
@@ -50,6 +51,51 @@ export class MyFavoritesService extends MarvelCommonsService implements Resolve<
       (resp: any) => {
         const data = this.getDocsData(resp);
         this.__data = [...(this.__data ? this.__data : []), ...this.mappingData(data)];
+        this.__onDataChanged$.next(null);
+        this.__onLoadingInProgress$.next(false);
+      },
+      (error) => {
+        console.log('Error getting document:', error);
+      }
+    );
+  }*/
+  @MarvelCoreService({
+    requestInProgress: {
+      showProgress: true,
+    },
+  })
+  private async getData() {
+    const { email } = await this.fireAuth.currentUser;
+
+    const search = new MyFavoritesSearchModel({
+      ...this.__search,
+    });
+
+    this.__onLoadingInProgress$.next(true);
+
+    const docRef = this.firestore.collection('favorite_comics', (ref) => {
+      return search.buildParams(ref, this.__data, email);
+    });
+    docRef.get().subscribe(
+      (resp: any) => {
+        const data = this.getDocsData(resp);
+        this.__data = [...(this.__data ? this.__data : []), ...this.mappingData(data)];
+        let page = null;
+        if (data && data.length > 0) {
+          page = {
+            offset: 0,
+            limit: 15,
+            total: 9999,
+          };
+        } else {
+          page = {
+            offset: 9999,
+            limit: 15,
+            total: 9999,
+          };
+        }
+        this.__page = page;
+
         this.__onDataChanged$.next(null);
         this.__onLoadingInProgress$.next(false);
       },
@@ -124,5 +170,20 @@ export class MyFavoritesService extends MarvelCommonsService implements Resolve<
       .catch((e) => {
         console.log(e);
       });
+  }
+
+  setSearch(search: MyFavoritesSearchModel) {
+    this.__data = null;
+    this.__search = search;
+
+    this.setPage({
+      page: {
+        offset: 0,
+        limit: search.limit,
+        total: 9999,
+      },
+    });
+
+    this.getData();
   }
 }

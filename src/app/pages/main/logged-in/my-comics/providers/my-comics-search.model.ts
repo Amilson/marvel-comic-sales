@@ -1,7 +1,7 @@
 import { CollectionReference } from '@angular/fire/firestore';
 import { SharedFilterCharactersModel } from 'app/shared/components';
 
-export class HomeSearchModel {
+export class MyComicsSearchModel {
   name: string;
 
   characters: SharedFilterCharactersModel[] = [];
@@ -20,7 +20,7 @@ export class HomeSearchModel {
     this.orderType = data?.orderType || 'asc';
   }
 
-  public buildParams(ref: CollectionReference<any>, data: any[]): any {
+  public buildParams(ref: CollectionReference<any>, data: any[], email: string): any {
     let lastInResponse: any = data || [];
     let or = null;
     if (this.orderField === 'title') {
@@ -50,12 +50,14 @@ export class HomeSearchModel {
       return ref
         .limit(this.limit)
         .where('filterAsArray', 'array-contains-any', filterAsArray)
+        .where('createdById', '==', email)
         .orderBy(this.orderField, this.orderType)
         .startAfter(lastInResponse);
     }
 
     return ref
       .limit(this.limit)
+      .where('createdById', '==', email)
       .orderBy(this.orderField, this.orderType)
       .startAfter(lastInResponse);
   }
