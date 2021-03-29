@@ -11,4 +11,6 @@ export interface ListContent {
   createdAt: Date;
   createdByName: string;
   createdById: string;
+  enableEdit: boolean;
+  enableRemove: boolean;
 }

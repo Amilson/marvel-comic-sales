@@ -1,12 +1,15 @@
 export interface ListContentDetails {
-  cover: string;
+  id: string;
   title: string;
   format: string;
-  pages: number;
+  a;
+  pageCount: number;
+  thumbnail_path: string;
   condition: string;
   price: number;
-  createdAt: Date;
-  owner: string;
   description: string;
-  favorite: boolean;
+  userId: string;
+  createdAt: Date;
+  createdByName: string;
+  createdById: string;
 }

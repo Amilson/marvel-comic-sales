@@ -4,7 +4,7 @@ import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
 import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { SharedFilterCharactersModel } from './filter-characters.model';
 import { SharedFilterSearchModel } from './filter-search.model';
 
@@ -71,7 +71,7 @@ export class SharedFilterCharactersService extends MarvelCommonsService implemen
       callbackPagination: this.getData.bind(this),
     });
 
-    return null;
+    return of(null);
   }
 
   setSearch(search: SharedFilterSearchModel) {

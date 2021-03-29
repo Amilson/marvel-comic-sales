@@ -9,4 +9,6 @@ import { ListContentDetails } from 'app/interfaces';
 })
 export class SharedListContentDetailsFooterComponent {
   @Input() data: ListContentDetails;
+
+  @Input() settings: any;
 }

@@ -7,32 +7,29 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BaseComponent } from 'app/shared/components';
+import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
-import { MarvelModalConfig } from '../../../../../../../../projects/marvel-style/src/public-api';
-import {
-  MyComicsRegisterFilterSearchModel,
-  MyComicsRegisterFilterComicsService,
-  MyComicsRegisterFilterComicsModel,
-  MyComicsRegisterComicsService,
-  RegisterComicsModel,
-  MyComicsService,
-} from '../../providers';
+import { MarvelModalConfig } from '../../../../../../projects/marvel-style/src/public-api';
+import { SharedComicsRegisterFilterComicsModel } from '../providers/register-filter-comics.model';
+import { SharedRegisterComicsModel } from '../providers/register-comics.model';
+import { SharedComicsRegisterFilterComicsService } from '../providers/register-filter-comics.service';
+import { SharedComicsRegisterComicsService } from '../providers/register-comics.service';
+import { SharedComicsRegisterFilterSearchModel } from '../providers/register-filter-search.model';
 
 @Component({
-  selector: 'app-my-comics-logedin-register',
+  selector: 'shared-comics-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class MyComicsRegisterComponent extends BaseComponent implements OnInit, OnDestroy {
+export class SharedComicsRegisterComponent extends BaseComponent implements OnInit, OnDestroy {
   @Input() config: MarvelModalConfig;
 
   @Input() modalRef: any;
 
-  _comicModel: RegisterComicsModel;
+  _comicModel: SharedRegisterComicsModel;
 
-  _comics: MyComicsRegisterFilterComicsModel[] = null;
+  _comics: SharedComicsRegisterFilterComicsModel[] = null;
 
   _isLoadingComics: boolean = false;
 
@@ -41,9 +38,9 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
   _conditions = ['LIKE_NEW', 'VERY_GOOD', 'GOOD', 'ACCEPTABLE', 'NEW'];
 
   constructor(
-    private comicsService: MyComicsRegisterFilterComicsService,
+    private comicsService: SharedComicsRegisterFilterComicsService,
     private formBuilder: FormBuilder,
-    private registerComicsService: MyComicsRegisterComicsService
+    private registerComicsService: SharedComicsRegisterComicsService
   ) {
     super();
   }
@@ -64,10 +61,10 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
     return form;
   }
 
-  private doComicsSeach(search?: MyComicsRegisterFilterSearchModel) {
+  private doComicsSeach(search?: SharedComicsRegisterFilterSearchModel) {
     const { comicsService } = this;
     comicsService.setSearch(
-      new MyComicsRegisterFilterSearchModel({
+      new SharedComicsRegisterFilterSearchModel({
         ...search,
       })
     );
@@ -89,7 +86,7 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
         this._isLoadingComics = val;
       });
 
-    this._comicModel = new RegisterComicsModel(this.config.data);
+    this._comicModel = new SharedRegisterComicsModel(this.config.data);
     this._form = this.buildForm();
   }
 
@@ -103,7 +100,7 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
     this.__marvelFormErrors = null;
     if (this.validateForm(_form)) {
       registerComicsService.saveData(
-        new RegisterComicsModel({
+        new SharedRegisterComicsModel({
           ...this._comicModel,
           ..._form.value,
         })
@@ -111,7 +108,7 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
     }
   }
 
-  onChangeComics(event: MyComicsRegisterFilterComicsModel, type: boolean) {
+  onChangeComics(event: SharedComicsRegisterFilterComicsModel, type: boolean) {
     if (!type) {
       event = {
         comicId: null,
@@ -135,7 +132,7 @@ export class MyComicsRegisterComponent extends BaseComponent implements OnInit, 
 
   onSearchComics(event: any) {
     this.doComicsSeach(
-      new MyComicsRegisterFilterSearchModel({
+      new SharedComicsRegisterFilterSearchModel({
         title: event,
       })
     );

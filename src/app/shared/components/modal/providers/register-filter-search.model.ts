@@ -1,4 +1,4 @@
-export class MyComicsRegisterFilterSearchModel {
+export class SharedComicsRegisterFilterSearchModel {
   title: string;
 
   constructor(data?: any) {

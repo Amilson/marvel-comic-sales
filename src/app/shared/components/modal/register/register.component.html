@@ -79,20 +79,24 @@
       ></marvel-icon>
     </div>
 
-    <marvel-select
-      [placeholder]="'Condition'"
-      [formControl]="_form.controls['condition']"
-      errorMessage="{{ __marvelFormErrors?.condition?.firstMessage | translate }} {{
-        __marvelFormErrors?.condition?.lastMessage | translate
-      }}"
-    >
-      <marvel-option
-        [label]="'CONDITIONS.' + condition | translate"
-        [value]="condition"
-        *ngFor="let condition of _conditions"
-      >
-      </marvel-option>
-    </marvel-select>
+    <div class="row">
+      <div class="col-md-12">
+        <marvel-select
+          [placeholder]="'Condition'"
+          [formControl]="_form.controls['condition']"
+          errorMessage="{{ __marvelFormErrors?.condition?.firstMessage | translate }} {{
+            __marvelFormErrors?.condition?.lastMessage | translate
+          }}"
+        >
+          <marvel-option
+            [label]="'CONDITIONS.' + condition | translate"
+            [value]="condition"
+            *ngFor="let condition of _conditions"
+          >
+          </marvel-option>
+        </marvel-select>
+      </div>
+    </div>
 
     <marvel-input
       errorMessage="{{ __marvelFormErrors?.price?.firstMessage | translate }} {{

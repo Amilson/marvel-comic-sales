@@ -1,4 +1,4 @@
-export class MyComicsRegisterFilterComicsModel {
+export class SharedComicsRegisterFilterComicsModel {
   comicId: number;
   title: string;
   format: string;

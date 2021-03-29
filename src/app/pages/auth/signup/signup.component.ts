@@ -89,4 +89,12 @@ export class SignupComponent extends BaseComponent implements OnInit, OnDestroy 
       signupService.signup(params);
     }
   }
+
+  onHandleGoogleSignup() {
+    this.signupService.googleSignup();
+  }
+
+  onHandleFacebookSignup() {
+    this.signupService.facebookSignup();
+  }
 }

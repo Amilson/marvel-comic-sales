@@ -12,6 +12,7 @@ import { SharedListContentDetailsCoverComponent } from './cover';
 import { SharedListContentDetailsFooterComponent } from './footer';
 import { SharedListContentDetailsHeaderComponent } from './header';
 import { SharedListContentDetailsCharacterComponent } from './character';
+import { MarvelPipesModule } from 'app/core/pipes/marvel-pipes.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SharedListContentDetailsCharacterComponent } from './character';
     MarvelCoreCommonModule,
     RouterModule,
     TranslateModule.forChild(),
+    MarvelPipesModule,
     MarvelInputModule,
     MarvelIconModule,
     MarvelButtonModule,

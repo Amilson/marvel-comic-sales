@@ -4,12 +4,12 @@ import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
 import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { MyComicsRegisterFilterComicsModel } from './register-filter-comics.model';
-import { MyComicsRegisterFilterSearchModel } from './register-filter-search.model';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { SharedComicsRegisterFilterComicsModel } from './register-filter-comics.model';
+import { SharedComicsRegisterFilterSearchModel } from './register-filter-search.model';
 
 @Injectable()
-export class MyComicsRegisterFilterComicsService
+export class SharedComicsRegisterFilterComicsService
   extends MarvelCommonsService
   implements Resolve<any> {
   private route: string = `${environment.baseUrl}/comics`;
@@ -22,7 +22,7 @@ export class MyComicsRegisterFilterComicsService
   private mappingData(data: any[]) {
     if (!data) return null;
     return data.map((_: any) => {
-      return new MyComicsRegisterFilterComicsModel(_);
+      return new SharedComicsRegisterFilterComicsModel(_);
     });
   }
 
@@ -35,7 +35,7 @@ export class MyComicsRegisterFilterComicsService
     const { marvelService, route } = this;
     const url = `${route}?ts=1616467550322&apikey=266b9086b186aa8bda0442c48d6de198&hash=baa3a26cbe5ef790d5d07721e935da9a`;
 
-    const _search = new MyComicsRegisterFilterSearchModel({
+    const _search = new SharedComicsRegisterFilterSearchModel({
       ...this.__search,
     });
     this.__onLoadingInProgress$.next(true);
@@ -73,10 +73,10 @@ export class MyComicsRegisterFilterComicsService
       callbackPagination: this.getData.bind(this),
     });
 
-    return null;
+    return of(null);
   }
 
-  setSearch(search: MyComicsRegisterFilterSearchModel) {
+  setSearch(search: SharedComicsRegisterFilterSearchModel) {
     this.__data = null;
     this.__search = search;
 

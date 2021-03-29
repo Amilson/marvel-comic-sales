@@ -1,13 +1,13 @@
-<div class="d-flex flex-column full-width">
+<div class="d-flex flex-column full-width" *ngIf="data">
   <div class="d-flex justify-content-between align-items-end">
     <span class="title mr-4">
-      Avengers (2003)Avengers (2003)Avengers (2003)Avengers (2003)Avengers (2003)Avengers
-      (2003)Avengers (2003)Avengers (2003)Avengers (2003)Avengers (2003)Avengers (2003)Avengers
-      (2003)Avengers (2003)Avengers (2003)Avengers (2003)
+      {{ data?.title }}
     </span>
     <div class="d-flex align-items-center price">
       <span class="title-muted mr-1">Price</span>
-      <span class="data-rised">$ 18</span>
+      <span class="data-rised">
+        {{ data?.price | marvelFormatCurrency }}
+      </span>
     </div>
   </div>
   <div class="row mt-3">
@@ -15,15 +15,21 @@
       <div class="d-flex flex-column flex-md-row justify-content-between">
         <div class="d-flex flex-column align-items-start mt-2">
           <span class="sub-title mr-1">Pages</span>
-          <span class="data">38</span>
+          <span class="data">
+            {{ data?.pageCount }}
+          </span>
         </div>
         <div class="d-flex flex-column align-items-start mt-2">
           <span class="sub-title mr-1">Format</span>
-          <span class="data">Comic</span>
+          <span class="data">
+            {{ data?.format }}
+          </span>
         </div>
         <div class="d-flex flex-column align-items-start mt-2">
           <span class="sub-title mr-1">Condition</span>
-          <span class="data">Good</span>
+          <span class="data">
+            {{ 'CONDITIONS.' + data?.condition | translate }}
+          </span>
         </div>
       </div>
     </div>

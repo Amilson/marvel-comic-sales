@@ -8,5 +8,9 @@ import { ListContentDetails } from 'app/interfaces';
   encapsulation: ViewEncapsulation.None,
 })
 export class SharedListContentDetailsComponent {
-  @Input() data: ListContentDetails;
+  @Input() comic: ListContentDetails;
+
+  @Input() characters: any;
+
+  @Input() settings: any;
 }

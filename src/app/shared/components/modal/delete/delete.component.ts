@@ -1,19 +1,19 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { MarvelModalConfig } from '../../../../../../../../projects/marvel-style/src/public-api';
-import { MyComicsRegisterComicsService } from '../../providers';
+import { MarvelModalConfig } from '../../../../../../projects/marvel-style/src/public-api';
+import { SharedComicsRegisterComicsService } from '../providers/register-comics.service';
 
 @Component({
-  selector: 'app-my-comics-logedin-delete',
+  selector: 'shared-comics-delete',
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class MyComicsDeleteComponent {
+export class SharedComicsDeleteComponent {
   @Input() config: MarvelModalConfig;
 
   @Input() modalRef: any;
 
-  constructor(private registerComicsService: MyComicsRegisterComicsService) {
+  constructor(private registerComicsService: SharedComicsRegisterComicsService) {
     //not to do
   }
 

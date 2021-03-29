@@ -8,7 +8,7 @@ import { ListContentDetails } from 'app/interfaces';
   encapsulation: ViewEncapsulation.None,
 })
 export class SharedListContentDetailsCharacterComponent implements AfterViewInit {
-  @Input() data: ListContentDetails;
+  @Input() data: any;
 
   constructor(private elRef: ElementRef) {
     //not to do
@@ -17,7 +17,7 @@ export class SharedListContentDetailsCharacterComponent implements AfterViewInit
   ngAfterViewInit() {
     this.elRef.nativeElement.style.setProperty(
       '--mc-content-details-character-image',
-      `url(${this.data?.cover})`
+      `url(${this.data?.thumbnail?.path}/portrait_fantastic.jpg)`
     );
   }
 }

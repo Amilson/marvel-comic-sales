@@ -1,11 +1,10 @@
-<div class="d-flex flex-column flex-md-row justify-content-start">
+<div class="d-flex flex-column flex-md-row justify-content-start full-width">
+  <div class="move">
+    <marvel-icon icon="align-justify-20" color="#aaaaaa"></marvel-icon>
+  </div>
   <shared-list-content-cover [data]="data"></shared-list-content-cover>
   <div class="d-flex flex-column justify-content-between full-width">
     <shared-list-content-header [data]="data"></shared-list-content-header>
-    <shared-list-content-footer
-      [data]="data"
-      [enableEdit]="enableEdit"
-      [settings]="settings"
-    ></shared-list-content-footer>
+    <shared-list-content-footer [data]="data" [settings]="settings"></shared-list-content-footer>
   </div>
 </div>

@@ -1,0 +1,107 @@
+.marvel-progress {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  height: 0.25em;
+  font-size: 16px;
+
+  &__theme {
+    color: map-get($mc-theme, main);
+    background-color: map-get($mc-theme, 200);
+  }
+
+  &__grey {
+    color: #c9cacc;
+    background-color: rgba(#c9cacc, 0.12);
+  }
+
+  &__determinate {
+    color: map-get($mc-theme, main);
+    background-color: map-get($mc-theme, 200);
+    border-radius: 8px;
+    height: 0.25em;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 29px;
+    text-align: center;
+
+    & > div {
+      padding-top: 6px;
+      color: map-get(map-get($mc-theme, contrast), main);
+      background: map-get($mc-theme, main);
+    }
+  }
+}
+
+.marvel-progress::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+.marvel-progress::-webkit-progress-value {
+  background-color: currentColor;
+  transition: all 0.2s;
+  border-radius: 8px;
+}
+
+.marvel-progress__determinate:after {
+  content: attr(value) ' / ' attr(max);
+}
+
+.marvel-progress__determinate-no-progress:after {
+  content: '';
+}
+
+.marvel-progress::-moz-progress-bar {
+  background-color: currentColor;
+  transition: all 0.2s;
+  border-radius: 8px;
+}
+
+.marvel-progress::-ms-fill {
+  border: none;
+  background-color: currentColor;
+  transition: all 0.2s;
+  border-radius: 8px;
+}
+
+.marvel-progress:indeterminate {
+  background-size: 200% 100%;
+  background-image: linear-gradient(
+    to right,
+    transparent 50%,
+    currentColor 50%,
+    currentColor 60%,
+    transparent 60%,
+    transparent 71.5%,
+    currentColor 71.5%,
+    currentColor 84%,
+    transparent 84%
+  );
+  animation: marvel-progress 2s infinite linear;
+}
+
+.marvel-progress:indeterminate::-moz-progress-bar {
+  background-color: transparent;
+}
+
+.marvel-progress:indeterminate::-ms-fill {
+  animation-name: none;
+}
+
+@keyframes marvel-progress {
+  0% {
+    background-size: 200% 100%;
+    background-position: left -31.25% top 0%;
+  }
+  50% {
+    background-size: 800% 100%;
+    background-position: left -49% top 0%;
+  }
+  100% {
+    background-size: 400% 100%;
+    background-position: left -102% top 0%;
+  }
+}

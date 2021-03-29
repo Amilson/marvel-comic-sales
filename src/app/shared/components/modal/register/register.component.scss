@@ -1,4 +1,4 @@
-app-my-comics-logedin-register {
+shared-comics-register {
   .row-search {
     marvel-select-search mc-form-field mc-form-field-footer {
       display: none;
@@ -51,12 +51,10 @@ app-my-comics-logedin-register {
   }
 
   .row-form {
-    /*mc-select-inside {
-      position: absolute;
-      margin-top: 50px;
-      padding-left: 48px;
-      padding-right: 48px;
-    }*/
+    mc-select-inside {
+      position: absolute !important;
+      margin-top: 58px !important;
+    }
 
     mc-select__trigger {
       color: #aaaaaa;

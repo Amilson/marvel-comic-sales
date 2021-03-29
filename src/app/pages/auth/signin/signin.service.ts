@@ -48,9 +48,22 @@ export class SigninService extends MarvelCommonsService implements Resolve<any> 
     this.__onLoadingInProgress$.next(true);
     this.authService
       .googleSignin()
-      .then((resp) => {
-        console.log(resp);
-        //this.handleSignin();
+      .then(() => {
+        this.handleSignin();
+        this.__onLoadingInProgress$.next(false);
+      })
+      .catch((err: any) => {
+        this.__onLoadingInProgress$.next(false);
+        this.handleError(err);
+      });
+  }
+
+  facebookSignin() {
+    this.__onLoadingInProgress$.next(true);
+    this.authService
+      .facebookSignin()
+      .then(() => {
+        this.handleSignin();
         this.__onLoadingInProgress$.next(false);
       })
       .catch((err: any) => {

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
 import { ListContentDetails } from 'app/interfaces';
 
 @Component({
@@ -15,9 +15,10 @@ export class SharedListContentDetailsCoverComponent {
   }
 
   ngAfterViewInit() {
+    console.log(this.data);
     this.elRef.nativeElement.style.setProperty(
       '--mc-content-details-cover-image',
-      `url(${this.data?.cover})`
+      `url(${this.data?.thumbnail_path}/portrait_incredible.jpg)`
     );
   }
 }

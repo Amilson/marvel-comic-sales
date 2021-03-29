@@ -169,6 +169,7 @@ export class MarvelCommonsService {
       'auth/user-not-found': 'email',
       'auth/user-not-registered': 'email',
       'auth/wrong-password': 'password',
+      'auth/popup-closed-by-user': 'password',
     };
 
     let type = types[code];

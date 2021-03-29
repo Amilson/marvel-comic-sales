@@ -1,6 +1,6 @@
-import { MarvelUtils } from '../../../../../../../projects/marvel-style/src/public-api';
+import { MarvelUtils } from '../../../../../../projects/marvel-style/src/public-api';
 
-export class RegisterComicsModel {
+export class SharedRegisterComicsModel {
   id: string;
   comicId: number;
   title: string;
@@ -28,12 +28,12 @@ export class RegisterComicsModel {
     this.condition = data?.condition;
     this.price = data?.price;
     this.description = data?.description;
-    this.createdAt = data?.createdAt;
-    this.createdById = data?.createdById;
-    this.createdByName = data?.createdByName;
-    this.updatedAt = data?.updatedAt;
-    this.updatedById = data?.updatedById;
-    this.updatedByName = data?.updatedByName;
+    this.createdAt = data?.createdAt || '';
+    this.createdById = data?.createdById || '';
+    this.createdByName = data?.createdByName || '';
+    this.updatedAt = data?.updatedAt || '';
+    this.updatedById = data?.updatedById || '';
+    this.updatedByName = data?.updatedByName || '';
     this.screenType = data?.screenType || (data?.id ? 'edit' : 'new');
   }
 

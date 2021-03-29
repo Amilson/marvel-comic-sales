@@ -10,7 +10,7 @@ import {
   MarvelButtonModule,
 } from '../../../../../projects/marvel-style/src/public-api';
 import { DetailsComponent } from './details.component';
-import { DetailsService } from './details.service';
+import { DetailsService, DetailsCharactersService } from './providers';
 
 @NgModule({
   declarations: [DetailsComponent],
@@ -24,11 +24,15 @@ import { DetailsService } from './details.service';
       {
         path: '',
         component: DetailsComponent,
+        resolve: {
+          DetailsService,
+          DetailsCharactersService,
+        },
       },
     ]),
     TranslateModule.forChild(),
     SharedListContentDetailsModule,
   ],
-  providers: [DetailsService],
+  providers: [DetailsService, DetailsCharactersService],
 })
 export class DetailsModule {}

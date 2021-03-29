@@ -20,6 +20,7 @@ export class MarvelFormatCurrencyPipe extends CurrencyPipe implements PipeTransf
 
   transform(value: string): any {
     const { currencyCode, currentLocale } = this;
+    if (!value) return 0;
     return super.transform(`${value}`, currencyCode, 'symbol', '', currentLocale);
   }
 }

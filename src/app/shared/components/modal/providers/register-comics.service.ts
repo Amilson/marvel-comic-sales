@@ -5,16 +5,18 @@ import { MarvelService } from 'app/core/services/marvel-service.service';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
-import { RegisterComicsModel } from './register-comics.model';
+import { SharedRegisterComicsModel } from './register-comics.model';
 import firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
 import {
   MarvelStyleModalService,
   MarvelUtils,
-} from '../../../../../../../projects/marvel-style/src/public-api';
-import { AngularFireAuth } from '@angular/fire/auth';
+} from '../../../../../../projects/marvel-style/src/public-api';
 
 @Injectable()
-export class MyComicsRegisterComicsService extends MarvelCommonsService implements Resolve<any> {
+export class SharedComicsRegisterComicsService
+  extends MarvelCommonsService
+  implements Resolve<any> {
   constructor(
     marvelService: MarvelService,
     private fireAuth: AngularFireAuth,
@@ -31,9 +33,9 @@ export class MyComicsRegisterComicsService extends MarvelCommonsService implemen
       showProgress: true,
     },
   })
-  async saveData(data: RegisterComicsModel) {
-    const { email, displayName } = await this.fireAuth.currentUser;
-
+  async saveData(data: SharedRegisterComicsModel) {
+    const handled = await this.fireAuth.currentUser;
+    const { email, displayName } = handled;
     const type = data?.screenType === 'new' ? 'created' : 'updated';
 
     const handledData = {
@@ -70,7 +72,7 @@ export class MyComicsRegisterComicsService extends MarvelCommonsService implemen
       showProgress: true,
     },
   })
-  async removeData(data: RegisterComicsModel) {
+  async removeData(data: SharedRegisterComicsModel) {
     this.firestore
       .doc(`comics/${data.id}`)
       .delete()

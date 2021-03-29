@@ -107,14 +107,7 @@ export class SigninComponent extends BaseComponent implements OnInit, OnDestroy 
     this.signinService.googleSignin();
   }
 
-  signin() {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    /*this.auth.createUserWithEmailAndPassword('amilson@teste.cc', '123456').then((resp) => {
-      console.log(resp);
-    });*/
-  }
-
-  logout() {
-    this.auth.signOut();
+  onFacebookSignin() {
+    this.signinService.facebookSignin();
   }
 }

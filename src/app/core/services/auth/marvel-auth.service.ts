@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { SigninCredentials, MarvelAuthUser, SignupCredentials } from 'app/interfaces';
 import { Observable, of } from 'rxjs';
-import { map, mergeMap, switchMap, take, tap } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
 
@@ -20,6 +20,8 @@ export class MarvelAuthService {
   ) {
     this.user$ = this.fireAuth.authState.pipe(
       switchMap((user) => {
+        console.log('=====');
+        console.log(user);
         if (user) {
           return this.fireStore.doc<MarvelAuthUser>(`users/${user.uid}`).valueChanges();
         } else {
@@ -40,6 +42,9 @@ export class MarvelAuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
     };
+
+    console.log('@@@@@@@@@@@');
+    console.log(data);
 
     return userRef.set(data, { merge: true });
   }
@@ -67,12 +72,16 @@ export class MarvelAuthService {
 
   async signin(authCredentials: SigninCredentials) {
     const { email, password } = authCredentials;
-    return this.fireAuth.signInWithEmailAndPassword(email, password);
+    const credential = await this.fireAuth.signInWithEmailAndPassword(email, password);
+    return this.handleUser(credential.user);
   }
 
   async signup(user: SignupCredentials) {
     const { email, password } = user;
     const credential = await this.fireAuth.createUserWithEmailAndPassword(email, password);
+    await (await this.fireAuth.currentUser).updateProfile({
+      displayName: user.displayName,
+    });
     return this.saveUser({ ...credential.user, displayName: user.displayName });
   }
 
@@ -90,6 +99,12 @@ export class MarvelAuthService {
 
   async googleSignup() {
     const provider = new firebase.auth.GoogleAuthProvider();
+    const credential = await this.fireAuth.signInWithPopup(provider);
+    return this.saveUser(credential.user);
+  }
+
+  async facebookSignup() {
+    const provider = new firebase.auth.FacebookAuthProvider();
     const credential = await this.fireAuth.signInWithPopup(provider);
     return this.saveUser(credential.user);
   }

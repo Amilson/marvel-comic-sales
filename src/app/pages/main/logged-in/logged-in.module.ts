@@ -27,6 +27,14 @@ import { MarvelCoreCommonModule } from 'app/shared/modules/marvel-core-common.mo
           });
         },
       },
+      {
+        path: 'my-favorites',
+        loadChildren: () => {
+          return import('./my-favorites').then((m: any) => {
+            return m.MyFavoritesModule;
+          });
+        },
+      },
     ]),
   ],
   declarations: [],

@@ -6,7 +6,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable()
 export class MyComicsService extends MarvelCommonsService implements Resolve<any> {
@@ -25,6 +25,8 @@ export class MyComicsService extends MarvelCommonsService implements Resolve<any
       return {
         ...data,
         createdAt: data?.createdAt?.toDate(),
+        enableEdit: true,
+        enableRemove: true,
       };
     });
   }
@@ -62,6 +64,6 @@ export class MyComicsService extends MarvelCommonsService implements Resolve<any
       callbackPagination: this.getData.bind(this),
     });
 
-    return null;
+    return of(null);
   }
 }

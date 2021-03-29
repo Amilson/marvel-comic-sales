@@ -10,6 +10,13 @@ class BaseIconComponent {
 }
 
 @Component({
+  selector: 'marvel-icon-align-justify',
+  templateUrl: `../../../../assets/icons/align-justify.svg`,
+  encapsulation: ViewEncapsulation.None,
+})
+export class MarvelIconAlignJustifyComponent extends BaseIconComponent {}
+
+@Component({
   selector: 'marvel-icon-arrow-left',
   templateUrl: `../../../../assets/icons/arrow-left.svg`,
   encapsulation: ViewEncapsulation.None,

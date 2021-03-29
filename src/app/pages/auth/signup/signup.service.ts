@@ -18,7 +18,7 @@ export class SignupService extends MarvelCommonsService implements Resolve<any> 
   }
 
   private handleSignup() {
-    this.router.navigate(['/auth/signin']);
+    this.router.navigate(['/main/logged-in']);
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
@@ -27,7 +27,7 @@ export class SignupService extends MarvelCommonsService implements Resolve<any> 
     this.__data = route.params;
     this.__onDataChanged$.next(null);
     this.__onLoadingInProgress$.next(false);
-    return of(null);
+    return null;
   }
 
   signup(param: SignupCredentials) {
@@ -36,6 +36,35 @@ export class SignupService extends MarvelCommonsService implements Resolve<any> 
       .signup(param)
       .then(() => {
         this.handleSignup();
+        this.__onLoadingInProgress$.next(false);
+      })
+      .catch((err: any) => {
+        this.__onLoadingInProgress$.next(false);
+        this.handleError(err);
+      });
+  }
+
+  googleSignup() {
+    this.__onLoadingInProgress$.next(true);
+    this.authService
+      .googleSignup()
+      .then(() => {
+        this.handleSignup();
+        this.__onLoadingInProgress$.next(false);
+      })
+      .catch((err: any) => {
+        this.__onLoadingInProgress$.next(false);
+        this.handleError(err);
+      });
+  }
+
+  facebookSignup() {
+    this.__onLoadingInProgress$.next(true);
+    this.authService
+      .facebookSignup()
+      .then(() => {
+        this.handleSignup();
+        this.__onLoadingInProgress$.next(false);
       })
       .catch((err: any) => {
         this.__onLoadingInProgress$.next(false);

@@ -3,8 +3,7 @@
 shared-list-content {
   background: #fafafa;
   width: 100%;
-  flex: none;
-  order: 0;
+  display: flex;
   align-self: stretch;
   flex-grow: 0;
   margin: 24px 0px;
@@ -12,6 +11,15 @@ shared-list-content {
 
   @include media-breakpoint('gt-sm') {
     height: 273px;
+  }
+
+  .move {
+    position: absolute;
+    margin-left: -51px;
+    margin-top: -24px;
+    background-color: #ffffff;
+    padding: 4px;
+    cursor: move;
   }
 
   .logo {

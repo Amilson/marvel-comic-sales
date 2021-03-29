@@ -2,15 +2,17 @@
   <div class="d-flex flex-column align-items-start mt-2 mb-5">
     <span class="title">Description</span>
     <span class="data mt-2">
-      Scelerisque tellus tincidunt tempor purus proin suspendisse dui diam. Consectetur turpis a
-      fermentum hac sit eros. Eu ut ac magna lorem imperdiet tristique justo molestie viverra. Neque
-      ut eu aliquet nibh pellentesque interdum morbi.
+      {{ data?.description }}
     </span>
   </div>
   <div class="d-flex justify-content-start">
     <span class="title mr-2"><b>Created At</b></span>
-    <span class="data mr-2">03/22/2021</span>
+    <span class="data mr-2">
+      {{ data?.createdAt | marvelFormatDateTimelapse }}
+    </span>
     <span class="title mr-2"><b>by</b></span>
-    <span class="data mr-2">Lucas Baumgart</span>
+    <span class="data mr-2">
+      {{ data?.createdByName }}
+    </span>
   </div>
 </div>

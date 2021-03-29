@@ -2,6 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MarvelIconComponent } from './icon.component';
 import {
+  MarvelIconAlignJustifyComponent,
   MarvelIconArrowLeftClosedComponent,
   MarvelIconArrowDownClosedComponent,
   MarvelIconEyeClosedComponent,
@@ -21,6 +22,7 @@ import {
 
 @NgModule({
   declarations: [
+    MarvelIconAlignJustifyComponent,
     MarvelIconArrowLeftClosedComponent,
     MarvelIconArrowDownClosedComponent,
     MarvelIconComponent,

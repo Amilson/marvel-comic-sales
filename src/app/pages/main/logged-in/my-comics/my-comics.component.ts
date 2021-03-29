@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MarvelConfig } from 'app/interfaces';
 import { SharedFilterModel } from 'app/shared/components';
 import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
 import { MarvelStyleModalService } from '../../../../../../projects/marvel-style/src/public-api';
-import { MyComicsDeleteComponent, MyComicsRegisterComponent } from './modal';
+import { SharedComicsDeleteComponent, SharedComicsRegisterComponent } from 'app/shared/components';
 import { MyComicsService } from './providers';
 
 @Component({
@@ -25,7 +26,8 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
 
   constructor(
     private modalService: MarvelStyleModalService,
-    private myComicsService: MyComicsService
+    private myComicsService: MyComicsService,
+    private router: Router
   ) {
     super();
   }
@@ -57,7 +59,7 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
 
   onHandleAdd() {
     const { modalService, __i18n } = this;
-    modalService.open(MyComicsRegisterComponent, {
+    modalService.open(SharedComicsRegisterComponent, {
       color: 'theme',
       size: 'md',
       title: '+ ADD COMIC',
@@ -72,8 +74,8 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
   }
 
   onHandleEdit(data: any) {
-    const { modalService, __i18n } = this;
-    modalService.open(MyComicsRegisterComponent, {
+    const { modalService } = this;
+    modalService.open(SharedComicsRegisterComponent, {
       color: 'theme',
       size: 'md',
       title: 'EDIT COMIC',
@@ -89,8 +91,8 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
   }
 
   onHandleRemove(data: any) {
-    const { modalService, myComicsService } = this;
-    modalService.open(MyComicsDeleteComponent, {
+    const { modalService } = this;
+    modalService.open(SharedComicsDeleteComponent, {
       color: 'theme',
       size: 'md',
       action: {
@@ -106,6 +108,15 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
         },
       },
       data,
+    });
+  }
+
+  onHandleMoreDetails(data: any) {
+    const { router } = this;
+    router.navigate(['/main/logged-in/details'], {
+      state: {
+        comicData: data,
+      },
     });
   }
 }

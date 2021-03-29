@@ -7,6 +7,13 @@ import { MarvelUtils } from '../../core/utils';
 @Component({
   selector: 'marvel-icon',
   template: `
+    <marvel-icon-align-justify
+      [fillColor]="_fillColor"
+      [id]="_id"
+      [size]="_size"
+      *ngIf="_icon === 'align-justify'"
+    >
+    </marvel-icon-align-justify>
     <marvel-icon-arrow-down
       [fillColor]="_fillColor"
       [id]="_id"

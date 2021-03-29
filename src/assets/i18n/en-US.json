@@ -26,9 +26,10 @@
       "MATCH-PASSWORD": "Passwords do not match",
       "AUTH/EMAIL-ALREADY-IN-USE": "Email already in use",
       "AUTH/USER-NOT-REGISTERED": "Email not registered yet",
-      "AUTH/USER-NOT-FOUND": "Email not found",
+      "AUTH/USER-NOT-FOUND": "Email not found or not registered yet",
       "AUTH/WRONG-PASSWORD": "Email or password inválid",
-      "AUTH/PROBLEMS": "Unable to authenticate this email"
+      "AUTH/PROBLEMS": "Unable to authenticate this email",
+      "AUTH/POPUP-CLOSED-BY-USER": "External authentication not performed"
     },
     "BUTTONS": {
       "BACK": "Back",
