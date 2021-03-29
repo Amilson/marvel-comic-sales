@@ -8,6 +8,7 @@ import { MarvelService } from 'app/core/services/marvel-service.service';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import firebase from 'firebase/app';
 import { MarvelUtils } from '../../../../../../../projects/marvel-style/src/public-api';
+import { HomeSearchModel } from './home-search.model';
 
 @Injectable()
 export class HomeService extends MarvelCommonsService implements Resolve<any> {
@@ -39,11 +40,36 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
   })
   async getData() {
     const { email } = await this.fireAuth.currentUser;
-    const docRef = this.firestore.collection('comics');
+
+    const search = new HomeSearchModel({
+      ...this.__search,
+    });
+
+    this.__onLoadingInProgress$.next(true);
+
+    const docRef = this.firestore.collection('comics', (ref) => {
+      return search.buildParams(ref, this.__data);
+    });
     docRef.get().subscribe(
       (resp: any) => {
         const data = this.getDocsData(resp);
         this.__data = [...(this.__data ? this.__data : []), ...this.mappingData(data, email)];
+        let page = null;
+        if (data && data.length > 0) {
+          page = {
+            offset: 0,
+            limit: 15,
+            total: 9999,
+          };
+        } else {
+          page = {
+            offset: 9999,
+            limit: 15,
+            total: 9999,
+          };
+        }
+        this.__page = page;
+
         this.__onDataChanged$.next(null);
         this.__onLoadingInProgress$.next(false);
       },
@@ -74,20 +100,25 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
     const handled = await this.fireAuth.currentUser;
     const { email, displayName } = handled;
 
+    data.id = MarvelUtils.getRandomString(30);
+
     const handledData = {
       createdByName: displayName,
       createdById: email,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedByName: displayName,
+      updatedById: email,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
       currentIndex: 0,
     };
 
     this.firestore
       .doc(`favorite_comics/${data.id}`)
       .set(
-        {
+        this.excludeNonUsedFields({
           ...data,
           ...handledData,
-        },
+        }),
         { merge: true }
       )
       .then(() => {
@@ -101,5 +132,20 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
       .catch((e) => {
         console.log(e);
       });
+  }
+
+  setSearch(search: HomeSearchModel) {
+    this.__data = null;
+    this.__search = search;
+
+    this.setPage({
+      page: {
+        offset: 0,
+        limit: search.limit,
+        total: 9999,
+      },
+    });
+
+    this.getData();
   }
 }

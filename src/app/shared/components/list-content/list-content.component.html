@@ -1,5 +1,5 @@
 <div class="d-flex flex-column flex-md-row justify-content-start full-width">
-  <div class="move">
+  <div class="move" *ngIf="data?.enableMove">
     <marvel-icon icon="align-justify-20" color="#aaaaaa"></marvel-icon>
   </div>
   <shared-list-content-cover [data]="data"></shared-list-content-cover>

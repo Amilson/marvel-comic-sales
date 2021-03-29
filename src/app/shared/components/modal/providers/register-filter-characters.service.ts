@@ -1,30 +1,24 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
-import { MarvelDiscoveryParamsService } from 'app/core/services/routes';
 import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { DetailsCharactersModel } from './details-characters.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
-export class DetailsCharactersService extends MarvelCommonsService implements Resolve<any> {
+export class SharedComicsRegisterFilterCharactersService extends MarvelCommonsService {
   private route: string = `${environment.baseUrl}/comics/{comicId}/characters`;
 
-  constructor(
-    marvelService: MarvelService,
-    private marvelDiscovery: MarvelDiscoveryParamsService,
-    private router: Router
-  ) {
+  constructor(marvelService: MarvelService) {
     super(marvelService);
     this.__onDataChanged$ = new BehaviorSubject(null);
   }
 
   private mappingData(data: any[]) {
     if (!data) return null;
+    data.push('');
     return data.map((_: any) => {
-      return new DetailsCharactersModel(_);
+      return `${_.id ? _.id : ''}`;
     });
   }
 
@@ -33,10 +27,9 @@ export class DetailsCharactersService extends MarvelCommonsService implements Re
       showProgress: true,
     },
   })
-  private getData(comic: any) {
+  getData(comicId: number) {
     const { marvelService, route } = this;
     let url = `${route}?ts=1616467550322&apikey=266b9086b186aa8bda0442c48d6de198&hash=baa3a26cbe5ef790d5d07721e935da9a`;
-    //url = url.replace('{comicId}', comic.comicId);
     url = url.replace('{comicId}', '6181');
 
     this.__onLoadingInProgress$.next(true);
@@ -44,9 +37,7 @@ export class DetailsCharactersService extends MarvelCommonsService implements Re
     marvelService.get<any>(this.getNormalizedUrl(`${url}`)).subscribe(
       (resp: any) => {
         const data = this.getResultsData(resp);
-        const page = this.getPageData(resp);
         this.__data = this.mappingData(data);
-        this.__page = page;
 
         this.__onDataChanged$.next(null);
         this.__onLoadingInProgress$.next(false);
@@ -64,20 +55,16 @@ export class DetailsCharactersService extends MarvelCommonsService implements Re
     );
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    const { router, marvelDiscovery } = this;
+  setSearch(comicId: number) {
     this.__data = null;
-    this.__page = null;
 
-    const comicData = marvelDiscovery.getDataFromCurrentNavigation('comicData');
+    this.setPage({
+      page: {
+        offset: 0,
+        total: 0,
+      },
+    });
 
-    if (!comicData) {
-      router.navigate(['/main/logged-out']);
-      return;
-    }
-
-    this.getData(comicData);
-
-    return of(null);
+    this.getData(comicId);
   }
 }

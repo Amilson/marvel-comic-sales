@@ -39,7 +39,7 @@ export class MyComicsService extends MarvelCommonsService implements Resolve<any
   async getData() {
     const { email } = await this.fireAuth.currentUser;
     const docRef = this.firestore.collection('comics', (ref) =>
-      ref.where('createdById', '==', email)
+      ref.where('createdById', '==', email).orderBy('updatedAt', 'desc')
     );
     docRef.get().subscribe(
       (resp: any) => {

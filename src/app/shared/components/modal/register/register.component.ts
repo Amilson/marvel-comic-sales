@@ -15,6 +15,7 @@ import { SharedRegisterComicsModel } from '../providers/register-comics.model';
 import { SharedComicsRegisterFilterComicsService } from '../providers/register-filter-comics.service';
 import { SharedComicsRegisterComicsService } from '../providers/register-comics.service';
 import { SharedComicsRegisterFilterSearchModel } from '../providers/register-filter-search.model';
+import { SharedComicsRegisterFilterCharactersService } from '../providers/register-filter-characters.service';
 
 @Component({
   selector: 'shared-comics-register',
@@ -35,12 +36,13 @@ export class SharedComicsRegisterComponent extends BaseComponent implements OnIn
 
   _form: FormGroup;
 
-  _conditions = ['LIKE_NEW', 'VERY_GOOD', 'GOOD', 'ACCEPTABLE', 'NEW'];
+  _conditions = ['LIKE-NEW', 'VERY-GOOD', 'GOOD', 'ACCEPTABLE', 'NEW'];
 
   constructor(
     private comicsService: SharedComicsRegisterFilterComicsService,
     private formBuilder: FormBuilder,
-    private registerComicsService: SharedComicsRegisterComicsService
+    private registerComicsService: SharedComicsRegisterComicsService,
+    private registerFilterCharactersService: SharedComicsRegisterFilterCharactersService
   ) {
     super();
   }
@@ -56,6 +58,7 @@ export class SharedComicsRegisterComponent extends BaseComponent implements OnIn
       condition: [_comicModel?.condition, [Validators.required]],
       price: [_comicModel?.price, [Validators.required]],
       description: [_comicModel?.description, [Validators.required, Validators.maxLength(255)]],
+      charactersAsArray: [_comicModel?.charactersAsArray],
     });
 
     return form;
@@ -71,7 +74,7 @@ export class SharedComicsRegisterComponent extends BaseComponent implements OnIn
   }
 
   ngOnInit() {
-    const { comicsService } = this;
+    const { comicsService, registerFilterCharactersService } = this;
 
     comicsService.__onDataChanged$.pipe(takeUntil(this.__unsubscribeAll)).subscribe(() => {
       const data = comicsService.__data;
@@ -84,6 +87,15 @@ export class SharedComicsRegisterComponent extends BaseComponent implements OnIn
       .pipe(takeUntil(this.__unsubscribeAll))
       .subscribe((val: boolean) => {
         this._isLoadingComics = val;
+      });
+
+    registerFilterCharactersService.__onDataChanged$
+      .pipe(takeUntil(this.__unsubscribeAll))
+      .subscribe(() => {
+        const data = registerFilterCharactersService.__data;
+        if (this._form && data) {
+          this._form.controls['charactersAsArray'].setValue(data);
+        }
       });
 
     this._comicModel = new SharedRegisterComicsModel(this.config.data);
@@ -122,8 +134,11 @@ export class SharedComicsRegisterComponent extends BaseComponent implements OnIn
       ...event,
       condition: '',
       price: '',
+      charactersAsArray: [],
       description: '',
     });
+
+    if (event.comicId) this.registerFilterCharactersService.setSearch(event.comicId);
   }
 
   onScrolledComics(event: boolean) {

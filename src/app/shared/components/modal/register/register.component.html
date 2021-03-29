@@ -1,7 +1,7 @@
 <marvel-modal [config]="config" [modalRef]="modalRef" (onHandleConfirm)="onHandleConfirm()">
   <div class="row-search" *ngIf="!_form?.get('comicId').value">
     <marvel-select-search
-      [placeholder]="'Character'"
+      [placeholder]="'Search by Title'"
       (onChange)="onChangeComics($event, true)"
       (onScrolled)="onScrolledComics($event)"
       (onSearch)="onSearchComics($event)"

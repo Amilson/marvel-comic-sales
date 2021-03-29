@@ -183,4 +183,11 @@ export class MarvelCommonsService {
     };
     this.__onErrorChanged$.next(null);
   }
+
+  excludeNonUsedFields(data?: any) {
+    for (const field of ['enableRemove', 'enableEdit', 'enableMove']) {
+      delete data[field];
+    }
+    return data;
+  }
 }

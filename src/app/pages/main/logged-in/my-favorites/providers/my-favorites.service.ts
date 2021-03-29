@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import firebase from 'firebase/app';
+import { MarvelUtils } from '../../../../../../../projects/marvel-style/src/public-api';
 
 @Injectable()
 export class MyFavoritesService extends MarvelCommonsService implements Resolve<any> {
   constructor(
     marvelService: MarvelService,
     private firestore: AngularFirestore,
-    private fireAuth: AngularFireAuth
+    private fireAuth: AngularFireAuth,
+    private router: Router
   ) {
     super(marvelService);
     this.__onDataChanged$ = new BehaviorSubject(null);
@@ -26,6 +28,7 @@ export class MyFavoritesService extends MarvelCommonsService implements Resolve<
       return {
         ...data,
         createdAt: data?.createdAt?.toDate(),
+        enableMove: true,
       };
     });
   }
@@ -38,7 +41,10 @@ export class MyFavoritesService extends MarvelCommonsService implements Resolve<
   async getData() {
     const { email } = await this.fireAuth.currentUser;
     const docRef = this.firestore.collection('favorite_comics', (ref) =>
-      ref.where('createdById', '==', email)
+      ref
+        .where('createdById', '==', email)
+        .orderBy('currentIndex', 'asc')
+        .orderBy('updatedAt', 'desc')
     );
     docRef.get().subscribe(
       (resp: any) => {
@@ -71,7 +77,7 @@ export class MyFavoritesService extends MarvelCommonsService implements Resolve<
       showProgress: true,
     },
   })
-  async sortFavorite(data: any) {
+  async sort(data: any) {
     const handled = await this.fireAuth.currentUser;
     const { email, displayName } = handled;
 
@@ -84,14 +90,36 @@ export class MyFavoritesService extends MarvelCommonsService implements Resolve<
     this.firestore
       .doc(`favorite_comics/${data.id}`)
       .set(
-        {
+        this.excludeNonUsedFields({
           ...data,
           ...handledData,
-        },
+        }),
         { merge: true }
       )
       .then(() => {
         //TODO
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  @MarvelCoreService({
+    requestInProgress: {
+      showProgress: true,
+    },
+  })
+  async remove(data: any) {
+    this.firestore
+      .doc(`favorite_comics/${data.id}`)
+      .delete()
+      .then(() => {
+        this.router.navigate(
+          [`/main/logged-in/my-favorites/refresh/${MarvelUtils.getRandomString(30)}`],
+          {
+            skipLocationChange: true,
+          }
+        );
       })
       .catch((e) => {
         console.log(e);

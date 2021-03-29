@@ -151,7 +151,6 @@ export class MarvelInputComponent implements ControlValueAccessor, OnInit {
   private formatValue(value: any): any {
     const { settings } = this;
     if (this.currency !== undefined) {
-      console.log(settings?.currency);
       return this.currencyPipe.transform(
         `${value}`,
         settings?.currency?.code || 'BRL',

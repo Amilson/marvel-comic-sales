@@ -47,11 +47,24 @@
       "REMOVE": "Remove"
     },
     "CONDITIONS": {
-      "LIKE_NEW": "Like New",
-      "VERY_GOOD": "Very Good",
+      "LIKE-NEW": "Like New",
+      "VERY-GOOD": "Very Good",
       "GOOD": "Good",
       "ACCEPTABLE": "Acceptable",
       "NEW": "New"
+    },
+    "FILTER": {
+      "SIZE": {
+        "15": "Show - 15",
+        "30": "Show - 30",
+        "50": "Show - 50"
+      },
+      "ORDER": {
+        "ALPHABETICAL": "Alphabetical",
+        "MOST-RECENT": "Most Recent",
+        "PRICE-LOW-TO-HIGH": "Price - Low to High",
+        "PRICE-HIGH-TO-LOW": "Price - High to Low"
+      }
     }
   }
 }

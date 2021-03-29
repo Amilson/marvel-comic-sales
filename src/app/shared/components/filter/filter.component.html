@@ -31,13 +31,26 @@
     </marvel-select-search>
   </div>
   <div>
-    <marvel-select [placeholder]="'Alphabetical'">
-      <marvel-option [label]="'teste'" [value]="'teste'"> </marvel-option>
+    <marvel-select
+      [placeholder]="'FILTER.ORDER.ALPHABETICAL' | translate"
+      (onChange)="onChangeOrder($event)"
+    >
+      <marvel-option
+        [label]="'FILTER.ORDER.' + option | translate"
+        [value]="option"
+        *ngFor="let option of _orders"
+      >
+      </marvel-option>
     </marvel-select>
   </div>
   <div>
-    <marvel-select [placeholder]="'Show 15'">
-      <marvel-option [label]="'teste'" [value]="'teste'"> </marvel-option>
+    <marvel-select [placeholder]="'FILTER.SIZE.15' | translate" (onChange)="onChangeSize($event)">
+      <marvel-option
+        [label]="'FILTER.SIZE.' + option | translate"
+        [value]="option"
+        *ngFor="let option of _sizes"
+      >
+      </marvel-option>
     </marvel-select>
   </div>
 </div>

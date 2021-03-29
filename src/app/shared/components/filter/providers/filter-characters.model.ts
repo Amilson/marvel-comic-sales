@@ -11,13 +11,13 @@ class Thumbnail {
 }
 
 export class SharedFilterCharactersModel {
-  id: number;
+  id: string;
   name: string;
   description: string;
   thumbnail: Thumbnail;
 
   constructor(data?: any) {
-    this.id = data?.id;
+    this.id = `${data?.id}`;
     this.name = data?.name;
     this.description = data?.description;
     this.thumbnail = new Thumbnail(data?.thumbnail);

@@ -10,3 +10,8 @@ export interface MarvelRequestPaged {
   sort?: Sort;
   page?: MarvelResponsePaged;
 }
+
+export interface MarvelPaginationOptions {
+  mainElement?: string;
+  service: MarvelCommonsService;
+}

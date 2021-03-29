@@ -5,9 +5,10 @@ import { SharedFilterModel } from 'app/shared/components';
 import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
 import { MarvelStyleModalService } from '../../../../../../projects/marvel-style/src/public-api';
-import { SharedComicsDeleteComponent, SharedComicsRegisterComponent } from 'app/shared/components';
+import { SharedComicsRegisterComponent } from 'app/shared/components';
 import { MyFavoritesService } from './providers';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { SharedComicsDeleteFavoriteComponent } from 'app/shared/components/modal/delete-favorite';
 
 @Component({
   selector: 'app-my-favorites-logedin',
@@ -92,7 +93,7 @@ export class MyFavoritesComponent extends BaseComponent implements OnInit, OnDes
 
   onHandleRemove(data: any) {
     const { modalService } = this;
-    modalService.open(SharedComicsDeleteComponent, {
+    modalService.open(SharedComicsDeleteFavoriteComponent, {
       color: 'theme',
       size: 'md',
       action: {
@@ -123,8 +124,8 @@ export class MyFavoritesComponent extends BaseComponent implements OnInit, OnDes
   drop(event: CdkDragDrop<string[]>) {
     const { previousIndex, currentIndex } = event;
     moveItemInArray(this._comics, previousIndex, currentIndex);
-    const data = this._comics[previousIndex];
-    this.myFavoritesService.sortFavorite({
+    const data = this._comics[currentIndex];
+    this.myFavoritesService.sort({
       ...data,
       currentIndex,
     });

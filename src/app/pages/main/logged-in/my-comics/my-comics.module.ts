@@ -5,6 +5,7 @@ import {
   SharedFilterModule,
   SharedFilteredModule,
   SharedListContentModule,
+  SharedComicsRegisterFilterCharactersService,
 } from 'app/shared/components';
 import { MarvelCoreCommonModule } from 'app/shared/modules/marvel-core-common.module';
 import { MarvelCoreFormsModule } from 'app/shared/modules/marvel-core-forms.module';
@@ -67,6 +68,7 @@ import { MyComicsService } from './providers';
     MyComicsService,
     MarvelStyleModalService,
     SharedComicsRegisterFilterComicsService,
+    SharedComicsRegisterFilterCharactersService,
     SharedComicsRegisterComicsService,
     MyComicsService,
   ],

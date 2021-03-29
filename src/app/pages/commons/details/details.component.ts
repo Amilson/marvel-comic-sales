@@ -35,9 +35,6 @@ export class DetailsComponent extends BaseComponent implements OnInit, OnDestroy
       const data = detailsService.__data;
       if (data) {
         this._comic = data;
-        console.log('====');
-        console.log(this._comic);
-        console.log('====');
 
         document.documentElement.style.setProperty(
           '--mc-details-image',

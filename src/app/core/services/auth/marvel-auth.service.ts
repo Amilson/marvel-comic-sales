@@ -20,8 +20,6 @@ export class MarvelAuthService {
   ) {
     this.user$ = this.fireAuth.authState.pipe(
       switchMap((user) => {
-        console.log('=====');
-        console.log(user);
         if (user) {
           return this.fireStore.doc<MarvelAuthUser>(`users/${user.uid}`).valueChanges();
         } else {
@@ -42,9 +40,6 @@ export class MarvelAuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
     };
-
-    console.log('@@@@@@@@@@@');
-    console.log(data);
 
     return userRef.set(data, { merge: true });
   }

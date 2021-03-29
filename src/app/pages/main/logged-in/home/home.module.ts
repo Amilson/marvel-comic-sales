@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   SharedComicsRegisterComicsService,
+  SharedComicsRegisterFilterCharactersService,
   SharedComicsRegisterFilterComicsService,
   SharedFilteredModule,
   SharedFilterModule,
@@ -48,6 +49,7 @@ import { SharedFilterCharactersService } from 'app/shared/components/filter';
     HomeService,
     MarvelStyleModalService,
     SharedComicsRegisterFilterComicsService,
+    SharedComicsRegisterFilterCharactersService,
     SharedComicsRegisterComicsService,
   ],
 })

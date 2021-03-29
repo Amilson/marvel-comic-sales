@@ -29,6 +29,10 @@ export class SharedFilterComponent extends BaseComponent implements OnInit {
 
   _isLoadingCharacters: boolean = false;
 
+  _sizes = [15, 30, 50];
+
+  _orders = ['ALPHABETICAL', 'MOST-RECENT', 'PRICE-LOW-TO-HIGH', 'PRICE-HIGH-TO-LOW'];
+
   constructor(
     private marvelConfigService: MarvelConfigService,
     private charactersService: SharedFilterCharactersService
@@ -96,5 +100,21 @@ export class SharedFilterComponent extends BaseComponent implements OnInit {
         characterName: event,
       })
     );
+  }
+
+  onChangeOrder(order: string) {
+    this._filter = new SharedFilterModel({
+      ...this._filter,
+      order,
+    });
+    this.onHandleFilter();
+  }
+
+  onChangeSize(limit: number) {
+    this._filter = new SharedFilterModel({
+      ...this._filter,
+      limit,
+    });
+    this.onHandleFilter();
   }
 }

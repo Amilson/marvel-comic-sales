@@ -1,6 +1,6 @@
 import { MarvelUtils } from '../../../../../../projects/marvel-style/src/public-api';
 
-export class SharedRegisterComicsModel {
+export class SharedFavoriteComicsModel {
   id: string;
   comicId: number;
   title: string;
@@ -10,7 +10,6 @@ export class SharedRegisterComicsModel {
   condition: string;
   price: number;
   description: string;
-  charactersAsArray: string[];
   createdAt: string;
   createdById: string;
   createdByName: string;
@@ -35,7 +34,6 @@ export class SharedRegisterComicsModel {
     this.updatedAt = data?.updatedAt || '';
     this.updatedById = data?.updatedById || '';
     this.updatedByName = data?.updatedByName || '';
-    this.charactersAsArray = data?.charactersAsArray || [];
     this.screenType = data?.screenType || (data?.id ? 'edit' : 'new');
   }
 
@@ -50,7 +48,6 @@ export class SharedRegisterComicsModel {
       condition: this.condition,
       price: this.price,
       description: this.description,
-      charactersAsArray: this.charactersAsArray,
       createdAt: this.createdAt,
       createdById: this.createdById,
       createdByName: this.createdByName,

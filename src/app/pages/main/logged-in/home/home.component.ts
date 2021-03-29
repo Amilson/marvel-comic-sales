@@ -7,7 +7,7 @@ import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
 import { MarvelStyleModalService } from '../../../../../../projects/marvel-style/src/public-api';
 import { SharedComicsRegisterComponent } from 'app/shared/components';
-import { HomeService } from './providers';
+import { HomeSearchModel, HomeService } from './providers';
 
 @Component({
   selector: 'app-home-logedin',
@@ -35,6 +35,13 @@ export class HomeComponent extends BaseComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const { homeService } = this;
 
+    super.ngOnInit({
+      paginationOptions: {
+        mainElement: 'container-3',
+        service: homeService,
+      },
+    });
+
     homeService.__onDataChanged$.pipe(takeUntil(this.__unsubscribeAll)).subscribe(() => {
       const data = homeService.__data;
       if (data) {
@@ -55,6 +62,7 @@ export class HomeComponent extends BaseComponent implements OnInit, OnDestroy {
 
   onFilter(event: any) {
     this._filter = event;
+    this.homeService.setSearch(new HomeSearchModel(this._filter));
   }
 
   onHandleEdit(data: any) {
@@ -75,7 +83,6 @@ export class HomeComponent extends BaseComponent implements OnInit, OnDestroy {
   }
 
   onHandleFavorite(data: any) {
-    console.log(data);
     this.homeService.saveFavorite(data);
   }
 

@@ -38,7 +38,14 @@ export class SharedComicsRegisterComicsService
     const { email, displayName } = handled;
     const type = data?.screenType === 'new' ? 'created' : 'updated';
 
+    let filterAsArray = [''];
+    for (let i = 1; i < data.title.length + 1; i++) {
+      filterAsArray.push(data.title.substring(0, i).toLowerCase());
+    }
+    filterAsArray = [...filterAsArray, ...data.charactersAsArray];
+
     const handledData = {
+      filterAsArray: filterAsArray,
       [`${type}ByName`]: displayName,
       [`${type}ById`]: email,
       [`${type}At`]: firebase.firestore.FieldValue.serverTimestamp(),
@@ -47,10 +54,10 @@ export class SharedComicsRegisterComicsService
     this.firestore
       .doc(`comics/${data.id}`)
       .set(
-        {
-          ...data.toJSON(),
+        this.excludeNonUsedFields({
+          ...data,
           ...handledData,
-        },
+        }),
         { merge: true }
       )
       .then(() => {
@@ -72,7 +79,7 @@ export class SharedComicsRegisterComicsService
       showProgress: true,
     },
   })
-  async removeData(data: SharedRegisterComicsModel) {
+  async remove(data: SharedRegisterComicsModel) {
     this.firestore
       .doc(`comics/${data.id}`)
       .delete()

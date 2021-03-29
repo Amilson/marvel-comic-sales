@@ -15,7 +15,6 @@ export class SharedListContentDetailsCoverComponent {
   }
 
   ngAfterViewInit() {
-    console.log(this.data);
     this.elRef.nativeElement.style.setProperty(
       '--mc-content-details-cover-image',
       `url(${this.data?.thumbnail_path}/portrait_incredible.jpg)`

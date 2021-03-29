@@ -2,7 +2,7 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { OnDestroy, Directive } from '@angular/core';
 import { MarvelCommonsService } from 'app/core/services/commons';
-import { MarvelTranslateOptions } from 'app/interfaces';
+import { MarvelPaginationOptions, MarvelTranslateOptions } from 'app/interfaces';
 import { takeUntil } from 'rxjs/operators';
 import { MarvelUtils } from '../../../../../projects/marvel-style/src/public-api';
 
@@ -14,12 +14,36 @@ export abstract class BaseComponent implements OnDestroy {
 
   __unsubscribeAll: Subject<any>;
 
+  __paginationOptions: MarvelPaginationOptions;
+
   __i18n: any;
 
   private paginationFunc: Function;
 
   protected constructor() {
     this.__unsubscribeAll = new Subject();
+  }
+
+  private handlePagination(create = true) {
+    const { __paginationOptions } = this;
+    if (__paginationOptions) {
+      const { mainElement, service } = __paginationOptions;
+      const element = document.getElementById(mainElement);
+      if (element) {
+        if (create) {
+          this.paginationFunc = () => {
+            const { scrollTop, scrollHeight, offsetHeight } = element;
+            const contentHeight = scrollHeight - offsetHeight;
+            if (contentHeight <= scrollTop) {
+              service.__onDoPagination$.next(true);
+            }
+          };
+          element.addEventListener('scroll', this.paginationFunc.bind(this));
+        } else {
+          element.removeEventListener('scroll', this.paginationFunc.bind(this));
+        }
+      }
+    }
   }
 
   private handleTranslate(translateOptions: MarvelTranslateOptions) {
@@ -158,7 +182,14 @@ export abstract class BaseComponent implements OnDestroy {
     });
   }
 
-  public ngOnInit(args: { translateOptions?: MarvelTranslateOptions }) {
+  public ngOnInit(args: {
+    paginationOptions?: MarvelPaginationOptions;
+    translateOptions?: MarvelTranslateOptions;
+  }) {
+    if (args?.paginationOptions) {
+      this.__paginationOptions = args?.paginationOptions;
+      this.handlePagination();
+    }
     if (args?.translateOptions) {
       this.handleTranslate(args?.translateOptions);
     }

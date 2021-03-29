@@ -5,15 +5,28 @@ export class SharedFilterModel {
 
   characters: SharedFilterCharactersModel[];
 
-  order: string;
+  orderField: 'title' | 'createdAt' | 'price';
 
-  size: number = 15;
+  orderType: 'desc' | 'asc';
+
+  limit: number = 15;
 
   constructor(data?: any) {
     this.name = data?.name;
     this.characters = data?.characters || [];
-    this.order = data?.order;
-    this.size = data?.size || 15;
+    this.limit = data?.limit || 15;
+    this.orderField = 'title';
+    this.orderType = 'asc';
+    if (data?.order === 'MOST-RECENT') {
+      this.orderField = 'createdAt';
+      this.orderType = 'desc';
+    } else if (data?.order === 'PRICE-LOW-TO-HIGH') {
+      this.orderField = 'price';
+      this.orderType = 'asc';
+    } else if (data?.order === 'PRICE-HIGH-TO-LOW') {
+      this.orderField = 'price';
+      this.orderType = 'desc';
+    }
   }
 
   public handleCharacters(data: SharedFilterCharactersModel, type: boolean) {

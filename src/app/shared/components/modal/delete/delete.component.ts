@@ -18,6 +18,6 @@ export class SharedComicsDeleteComponent {
   }
 
   onHandleConfirm() {
-    this.registerComicsService.removeData(this.config.data);
+    this.registerComicsService.remove(this.config.data);
   }
 }

@@ -5,6 +5,7 @@ import {
   SharedFilterModule,
   SharedFilteredModule,
   SharedListContentModule,
+  SharedComicsFavoriteComicsService,
 } from 'app/shared/components';
 import { MarvelCoreCommonModule } from 'app/shared/modules/marvel-core-common.module';
 import { MarvelCoreFormsModule } from 'app/shared/modules/marvel-core-forms.module';
@@ -25,9 +26,10 @@ import {
 } from 'app/shared/components';
 import { MyFavoritesService } from './providers';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SharedComicsDeleteFavoriteComponent } from 'app/shared/components/modal/delete-favorite';
 
 @NgModule({
-  declarations: [MyFavoritesComponent],
+  declarations: [MyFavoritesComponent, SharedComicsDeleteFavoriteComponent],
   imports: [
     MarvelCoreCommonModule,
     MarvelCoreFormsModule,
@@ -67,7 +69,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MyFavoritesService,
     MarvelStyleModalService,
     SharedComicsRegisterFilterComicsService,
-    SharedComicsRegisterComicsService,
+    SharedComicsFavoriteComicsService,
     MyFavoritesService,
   ],
 })
