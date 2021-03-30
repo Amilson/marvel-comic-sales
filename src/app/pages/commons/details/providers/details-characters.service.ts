@@ -36,8 +36,9 @@ export class DetailsCharactersService extends MarvelCommonsService implements Re
   private getData(comic: any) {
     const { marvelService, route } = this;
     let url = `${route}?ts=1616467550322&apikey=266b9086b186aa8bda0442c48d6de198&hash=baa3a26cbe5ef790d5d07721e935da9a`;
-    //url = url.replace('{comicId}', comic.comicId);
-    url = url.replace('{comicId}', '6181');
+    url = url.replace('{comicId}', comic.comicId);
+    //just for test purpose
+    //url = url.replace('{comicId}', '6181');
 
     this.__onLoadingInProgress$.next(true);
 
