@@ -8,10 +8,7 @@ import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { SharedRegisterComicsModel } from './register-comics.model';
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-import {
-  MarvelStyleModalService,
-  MarvelUtils,
-} from '../../../../../../projects/marvel-style/src/public-api';
+import { MarvelStyleModalService, MarvelUtils } from 'marvel-style';
 
 @Injectable()
 export class SharedComicsRegisterComicsService
@@ -34,13 +31,16 @@ export class SharedComicsRegisterComicsService
     },
   })
   async saveData(data: SharedRegisterComicsModel) {
-    const handled = await this.fireAuth.currentUser;
-    const { email, displayName } = handled;
+    const credentials = await this.fireAuth.currentUser;
+    const { email, displayName } = credentials;
     const type = data?.screenType === 'new' ? 'created' : 'updated';
 
+    const dataSplited = data.title.split(' ').filter((_) => _);
     let filterAsArray = [''];
-    for (let i = 1; i < data.title.length + 1; i++) {
-      filterAsArray.push(data.title.substring(0, i).toLowerCase());
+    for (let j = 0; j < dataSplited.length; j++) {
+      for (let i = 1; i < dataSplited[j].length + 1; i++) {
+        filterAsArray.push(dataSplited[j].substring(0, i).toLowerCase());
+      }
     }
     filterAsArray = [...filterAsArray, ...data.charactersAsArray];
 

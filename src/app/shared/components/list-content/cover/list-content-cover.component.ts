@@ -9,4 +9,6 @@ import { ListContent } from 'app/interfaces';
 })
 export class SharedListContentCoverComponent {
   @Input() data: ListContent;
+
+  @Input() isLoading: boolean = true;
 }

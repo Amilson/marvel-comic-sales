@@ -10,6 +10,8 @@ import { ListContentDetails } from 'app/interfaces';
 export class SharedListContentDetailsCharacterComponent implements AfterViewInit {
   @Input() data: any;
 
+  @Input() isLoading: boolean = true;
+
   constructor(private elRef: ElementRef) {
     //not to do
   }

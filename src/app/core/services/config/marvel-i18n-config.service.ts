@@ -48,6 +48,7 @@ export class Marveli18nConfigService extends MarvelCommonsService {
       (config: any) => {
         const { lang, data } = config;
         this.translateService.setTranslation(lang, data, true);
+        this.translateService.use(lang);
       },
       (err: HttpErrorResponse) => {
         console.error(`i18n ${i18n.lang} not found!`);

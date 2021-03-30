@@ -1,0 +1,7 @@
+<img
+  [src]="'/assets/icons/' + language + '.svg'"
+  width="36"
+  class="icon ml-2"
+  (click)="onChangeLanguage(language)"
+  *ngFor="let language of _languages"
+/>

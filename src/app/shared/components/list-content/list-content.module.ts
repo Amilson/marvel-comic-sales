@@ -2,11 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { MarvelCoreCommonModule } from 'app/shared/modules/marvel-core-common.module';
-import {
-  MarvelInputModule,
-  MarvelIconModule,
-  MarvelButtonModule,
-} from '../../../../../projects/marvel-style/src/public-api';
+import { MarvelInputModule, MarvelIconModule, MarvelButtonModule } from 'marvel-style';
 import { SharedListContentComponent } from './list-content.component';
 import { SharedListContentCoverComponent } from './cover';
 import { SharedListContentFooterComponent } from './footer';

@@ -1,34 +1,52 @@
-<div class="d-flex flex-column full-width">
+<div class="d-flex flex-column full-width" *ngIf="!isLoading; else loading">
   <div class="d-flex justify-content-between">
     <div class="d-flex flex-column flex-md-row justify-content-start align-items-start">
-      <span class="title mr-1">Title: </span>
+      <span class="title mr-1"> {{ 'FIELDS.TITLE' | translate }}: </span>
       <span class="data">
         {{ data?.title }}
       </span>
     </div>
     <div class="d-flex align-items-center price">
-      <span class="title-muted mr-1">Price</span>
+      <span class="title-muted mr-1"> {{ 'FIELDS.PRICE' | translate }}: </span>
       <span class="data-rised">
         {{ data?.price | marvelFormatCurrency }}
       </span>
     </div>
   </div>
   <div class="d-flex justify-content-start row-data">
-    <span class="title mr-1">Format:</span>
+    <span class="title mr-1"> {{ 'FIELDS.FORMAT' | translate }}: </span>
     <span class="data">
       {{ data?.format }}
     </span>
   </div>
   <div class="d-flex justify-content-start row-data">
-    <span class="title mr-1">Pages:</span>
+    <span class="title mr-1"> {{ 'FIELDS.PAGES' | translate }}: </span>
     <span class="data">
       {{ data?.pageCount }}
     </span>
   </div>
   <div class="d-flex justify-content-start row-data">
-    <span class="title mr-1">Condition:</span>
+    <span class="title mr-1">
+      {{ 'FIELDS.CONDITION' | translate }}
+    </span>
     <span class="data">
       {{ 'CONDITIONS.' + data?.condition | translate }}
     </span>
   </div>
 </div>
+<ng-template #loading>
+  <div class="d-flex flex-column full-width">
+    <div class="d-flex justify-content-between">
+      <span class="loading"></span>
+    </div>
+    <div class="d-flex justify-content-start row-data">
+      <span class="loading"></span>
+    </div>
+    <div class="d-flex justify-content-start row-data">
+      <span class="loading"></span>
+    </div>
+    <div class="d-flex justify-content-start row-data">
+      <span class="loading"></span>
+    </div>
+  </div>
+</ng-template>

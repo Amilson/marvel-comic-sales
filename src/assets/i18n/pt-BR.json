@@ -1,20 +1,106 @@
 {
   "lang": "pt-BR",
   "data": {
-    "LOGIN": {
-      "TITLE": ""
+    "CURRENCY-CODE": "BRL",
+    "FORMAT-DATE": "DD/MM/YYYY",
+    "SIGNIN": {
+      "SOCIAL-LOGIN": "ou logue pelas redes sociais",
+      "HAVE-NO-PASS": "Eu não tenho conta"
+    },
+    "SIGNUP": {
+      "SOCIAL": "ou Cadastrar usando",
+      "HAVE-PASS": "Já tenho uma conta"
+    },
+    "FIELDS": {
+      "EMAIL": "Email",
+      "PASSWORD": "Senha",
+      "CONFIRM-PASSWORD": "Confirme sua Senha",
+      "NAME": "Nome",
+      "TITLE": "Título",
+      "PRICE": "Valor",
+      "FORMAT": "Formato",
+      "PAGES": "Paginas",
+      "PAGE-NUMBER": "Paginas:",
+      "CONDITION": "Estado",
+      "CREATED-AT": "Criado em",
+      "BY": "Por",
+      "DESCRIPTION": "Descrição"
+    },
+    "MODAL": {
+      "DELETE": {
+        "TITLE": "Aviso",
+        "DESCRIPTION": "Você quer mesmo remover este quadrinho?"
+      },
+      "DELETE-FAVORITE": {
+        "TITLE": "Aviso",
+        "DESCRIPTION": "Você quer mesmo remover dos seus favoritos?"
+      },
+      "REGISTER": {
+        "SEARCH-BY": "Pesquisar por Título"
+      }
     },
     "ERRORS": {
       "OPTIONAL": "Opcional",
       "MANDATORY": "Obrigatório",
-      "FIELD-REQUIRED": "Campo Obrigatório",
-      "FIELD-INVALID": "Campo Inválido",
-      "INVALID-EMAIL": "Email Inválido",
-      "MIN-LENGTH": "Mínimo de",
-      "MAX-LENGTH": "Máximo de",
-      "MIN": "Mínimo de",
-      "MAX": "Máximo de",
-      "MATCH-PASSWORD": "As senhas não conferem"
+      "FIELD-REQUIRED": "Campo obrigatório",
+      "FIELD-INVALID": "Campo inválido",
+      "INVALID-EMAIL": "Email inválido",
+      "MIN-LENGTH": "Mínimo de caracteres é",
+      "MAX-LENGTH": "Máxiom de caracteres é",
+      "MIN": "Mínimo de valor é",
+      "MAX": "Máximo de valor é",
+      "MATCH-PASSWORD": "Senhas não conferem",
+      "AUTH/EMAIL-ALREADY-IN-USE": "Email em uso",
+      "AUTH/USER-NOT-REGISTERED": "Email não cadastrado ainda",
+      "AUTH/USER-NOT-FOUND": "Email não encontrado ou não cadastrado",
+      "AUTH/WRONG-PASSWORD": "Email ou senha inválidos",
+      "AUTH/PROBLEMS": "Não foi possível entrar com este email",
+      "AUTH/POPUP-CLOSED-BY-USER": "Autênticação externa não realizada"
+    },
+    "BUTTONS": {
+      "BACK": "Voltar",
+      "BACK-SIGNIN": "Voltar para Login",
+      "HOME": "Home",
+      "MY-COMICS": "Meus Quadrinhos",
+      "MY-FAVORITES": "Favoritos",
+      "ADD-COMIC": "Adicionar",
+      "LOGIN": "Entrar",
+      "LOGOUT": "Sair",
+      "REGISTER": "Cadastrar",
+      "FAVORITE": "Favorito",
+      "MORE-INFO": "Mais Info",
+      "BUY": "Comprar",
+      "EDIT": "Editar",
+      "REMOVE": "Remover",
+      "CREATE-ACCOUNT": "Criar Conta",
+      "YES": "SIM",
+      "NO": "NÃO"
+    },
+    "TITLES": {
+      "ADD-COMIC": "ADD COMIC",
+      "EDIT-COMIC": "EDIT COMIC"
+    },
+    "CONDITIONS": {
+      "LIKE-NEW": "Quase Novo",
+      "VERY-GOOD": "Muito Bom",
+      "GOOD": "Bom",
+      "ACCEPTABLE": "Aceitavel",
+      "NEW": "Novo"
+    },
+    "FILTER": {
+      "SEARCH-BY": "Pesquisar por...",
+      "CHARACTER": "Personagem",
+      "SIZE": {
+        "15": "Ver - 15",
+        "30": "Ver - 30",
+        "50": "Ver - 50"
+      },
+      "ORDER": {
+        "ALPHABETICAL": "Alfabético",
+        "MOST-RECENT": "Mais Recentes",
+        "PRICE-LOW-TO-HIGH": "Valor - Menor",
+        "PRICE-HIGH-TO-LOW": "Valor - Maior"
+      }
     }
   }
 }

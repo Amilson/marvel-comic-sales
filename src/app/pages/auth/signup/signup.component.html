@@ -14,7 +14,7 @@
               }}"
               formControlName="displayName"
               name="name"
-              [placeholder]="'Name'"
+              [placeholder]="'FIELDS.NAME' | translate"
             >
             </marvel-input>
           </div>
@@ -25,7 +25,7 @@
               }}"
               formControlName="email"
               name="email"
-              [placeholder]="'Email'"
+              [placeholder]="'FIELDS.EMAIL' | translate"
             >
             </marvel-input>
           </div>
@@ -37,7 +37,7 @@
               formControlName="password"
               name="password"
               type="password"
-              [placeholder]="'Password'"
+              [placeholder]="'FIELDS.PASSWORD' | translate"
             >
             </marvel-input>
           </div>
@@ -49,7 +49,7 @@
               formControlName="passwordConfirm"
               name="passwordConfirm"
               type="password"
-              [placeholder]="'Confirm Password'"
+              [placeholder]="'FIELDS.CONFIRM-PASSWORD' | translate"
             >
             </marvel-input>
           </div>
@@ -57,10 +57,12 @@
       </form>
       <div class="mt-2">
         <marvel-button color="theme" (click)="onSubmit()" [disabled]="_isSubmitting">
-          {{ 'SIGNUP.BUTTON.CONFIRM' | translate }}
+          {{ 'BUTTONS.CREATE-ACCOUNT' | translate }}
         </marvel-button>
       </div>
-      <div class="mt-4">Signup account using</div>
+      <div class="mt-4">
+        {{ 'SIGNUP.SOCIAL' | translate }}
+      </div>
       <div class="d-flex justify-content-center align-items-center mt-4">
         <marvel-button
           color="google"
@@ -84,15 +86,22 @@
   </div>
 </div>
 <div class="signup-footer">
-  <div class="d-flex justify-content-end align-items-center">
-    <span class="mr-4">I already have a login</span>
-    <marvel-button
-      type="border"
-      color="none"
-      [disabled]="_isSubmitting"
-      [routerLink]="['/auth/signin']"
-    >
-      <span>Back to login</span>
-    </marvel-button>
+  <div class="d-flex justify-content-between align-items-center">
+    <shared-language-choose class="mb-3"></shared-language-choose>
+    <div class="d-flex align-items-center mb-3">
+      <span class="mr-4">
+        {{ 'SIGNUP.HAVE-PASS' | translate }}
+      </span>
+      <marvel-button
+        type="border"
+        color="none"
+        [disabled]="_isSubmitting"
+        [routerLink]="['/auth/signin']"
+      >
+        <span>
+          {{ 'BUTTONS.BACK-SIGNIN' | translate }}
+        </span>
+      </marvel-button>
+    </div>
   </div>
 </div>

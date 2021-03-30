@@ -38,13 +38,7 @@ span:empty,
     #ebebeb 40%,
     #ebebeb 100%
   );
-  background-image: linear-gradient(
-    to right,
-    #ebebeb 0%,
-    #f2f3f5 20%,
-    #ebebeb 40%,
-    #ebebeb 100%
-  );
+  background-image: linear-gradient(to right, #ebebeb 0%, #f2f3f5 20%, #ebebeb 40%, #ebebeb 100%);
   background-repeat: no-repeat;
 }
 @keyframes loading {

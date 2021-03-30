@@ -6,14 +6,14 @@
       }}"
       icon="search-20"
       name="filter-search"
-      [placeholder]="'I\'m Looking for...'"
+      [placeholder]="'FILTER.SEARCH-BY' | translate"
       (onChange)="onChangeSearchFor($event)"
     >
     </marvel-input>
   </div>
-  <div class="row-search">
+  <div>
     <marvel-select-search
-      [placeholder]="'Character'"
+      [placeholder]="'FILTER.CHARACTER' | translate"
       (onChange)="onChangeCharacters($event, true)"
       (onScrolled)="onScrolledCharacters($event)"
       (onSearch)="onSearchCharacters($event)"

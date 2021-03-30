@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { MarvelModalConfig } from '../../../../../../projects/marvel-style/src/public-api';
+import { MarvelModalConfig } from 'marvel-style';
 import { SharedComicsRegisterComicsService } from '../providers/register-comics.service';
 
 @Component({

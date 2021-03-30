@@ -17,7 +17,8 @@ import {
   MarvelStyleModalService,
   MarvelSelectModule,
   MarvelOptionModule,
-} from '../../../../../../projects/marvel-style/src/public-api';
+  MarvelProgressModule,
+} from 'marvel-style';
 import { MyFavoritesComponent } from './my-favorites.component';
 import { SharedFilterCharactersService } from 'app/shared/components/filter';
 import {
@@ -64,6 +65,7 @@ import { SharedComicsDeleteFavoriteComponent } from 'app/shared/components/modal
     MarvelIconModule,
     MarvelButtonModule,
     MarvelModalModule,
+    MarvelProgressModule,
   ],
   providers: [
     MyFavoritesService,

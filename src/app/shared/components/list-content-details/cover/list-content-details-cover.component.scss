@@ -1,3 +1,5 @@
+@import 'src/assets/scss/theme';
+
 shared-list-content-details-cover {
   display: flex;
   justify-content: center;
@@ -6,4 +8,9 @@ shared-list-content-details-cover {
   max-width: 216px;
   background: var(--mc-content-details-cover-image) no-repeat center center;
   background-size: cover;
+
+  @include media-breakpoint('xs') {
+    max-width: unset !important;
+    margin-bottom: 20px;
+  }
 }

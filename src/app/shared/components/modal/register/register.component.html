@@ -1,7 +1,7 @@
 <marvel-modal [config]="config" [modalRef]="modalRef" (onHandleConfirm)="onHandleConfirm()">
   <div class="row-search" *ngIf="!_form?.get('comicId').value">
     <marvel-select-search
-      [placeholder]="'Search by Title'"
+      [placeholder]="'MODAL.REGISTER.SEARCH-BY' | translate"
       (onChange)="onChangeComics($event, true)"
       (onScrolled)="onScrolledComics($event)"
       (onSearch)="onSearchComics($event)"
@@ -19,19 +19,19 @@
           />
           <div class="d-flex flex-column ml-3">
             <div class="mb-2">
-              <span class="title mr-1"> Title: </span>
+              <span class="title mr-1"> {{ 'FIELDS.TITLE' | translate }}: </span>
               <span class="data">
                 {{ comic?.title }}
               </span>
             </div>
             <div class="mb-2">
-              <span class="title mr-1">Format:</span>
+              <span class="title mr-1">{{ 'FIELDS.FORMAT' | translate }}:</span>
               <span class="data-muted">
                 {{ comic?.format }}
               </span>
             </div>
             <div class="mb-2">
-              <span class="title mr-1">Page Number:</span>
+              <span class="title mr-1">{{ 'FIELDS.PAGE-NUMBER' | translate }}:</span>
               <span class="data-muted">
                 {{ comic?.pageCount }}
               </span>
@@ -52,19 +52,19 @@
         />
         <div class="d-flex flex-column ml-3">
           <div class="mb-2">
-            <span class="title mr-1"> Title: </span>
+            <span class="title mr-1"> {{ 'FIELDS.TITLE' | translate }}: </span>
             <span class="data">
               {{ _form?.get('title').value }}
             </span>
           </div>
           <div class="mb-2">
-            <span class="title mr-1">Format:</span>
+            <span class="title mr-1">{{ 'FIELDS.FORMAT' | translate }}:</span>
             <span class="data-muted">
               {{ _form?.get('format').value }}
             </span>
           </div>
           <div class="mb-2">
-            <span class="title mr-1">Page Number:</span>
+            <span class="title mr-1">{{ 'FIELDS.PAGE-NUMBER' | translate }}:</span>
             <span class="data-muted">
               {{ _form?.get('pageCount').value }}
             </span>
@@ -82,7 +82,7 @@
     <div class="row">
       <div class="col-md-12">
         <marvel-select
-          [placeholder]="'Condition'"
+          [placeholder]="'FIELDS.CONDITION' | translate"
           [formControl]="_form.controls['condition']"
           errorMessage="{{ __marvelFormErrors?.condition?.firstMessage | translate }} {{
             __marvelFormErrors?.condition?.lastMessage | translate
@@ -105,7 +105,7 @@
       [formControl]="_form.controls['price']"
       name="price"
       currency
-      [placeholder]="'Price'"
+      [placeholder]="'FIELDS.PRICE' | translate"
     >
     </marvel-input>
 
@@ -115,7 +115,7 @@
       }}"
       [formControl]="_form.controls['description']"
       name="description"
-      [placeholder]="'Description'"
+      [placeholder]="'FIELDS.DESCRIPTION' | translate"
     >
     </marvel-textarea>
   </div>

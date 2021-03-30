@@ -9,7 +9,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
-import { MarvelModalConfig } from '../../../../../../projects/marvel-style/src/public-api';
+import { MarvelModalConfig } from 'marvel-style';
 import { SharedComicsRegisterFilterComicsModel } from '../providers/register-filter-comics.model';
 import { SharedRegisterComicsModel } from '../providers/register-comics.model';
 import { SharedComicsRegisterFilterComicsService } from '../providers/register-filter-comics.service';

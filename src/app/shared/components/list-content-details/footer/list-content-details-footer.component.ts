@@ -11,4 +11,6 @@ export class SharedListContentDetailsFooterComponent {
   @Input() data: ListContentDetails;
 
   @Input() settings: any;
+
+  @Input() isLoading: boolean = true;
 }

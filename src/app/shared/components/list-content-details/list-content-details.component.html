@@ -2,17 +2,34 @@
   <div class="d-flex flex-column flex-md-row justify-content-start">
     <shared-list-content-details-cover [data]="comic"></shared-list-content-details-cover>
     <div class="d-flex flex-column justify-content-between full-width">
-      <shared-list-content-details-header [data]="comic"></shared-list-content-details-header>
-      <shared-list-content-details-footer [data]="comic"></shared-list-content-details-footer>
+      <shared-list-content-details-header
+        [data]="comic"
+        [settings]="settings"
+        [isLoading]="isLoading"
+      ></shared-list-content-details-header>
+      <shared-list-content-details-footer
+        [data]="comic"
+        [settings]="settings"
+        [isLoading]="isLoading"
+      ></shared-list-content-details-footer>
     </div>
   </div>
 </div>
 <div class="characters">
-  <div class="row">
+  <div class="row" *ngIf="!isLoading; else loading">
     <div class="col-md-2 mb-2" *ngFor="let character of characters">
       <shared-list-content-details-character
         [data]="character"
+        [isLoading]="false"
       ></shared-list-content-details-character>
     </div>
   </div>
+  <ng-template #loading>
+    <div class="col-md-2 mb-2" *ngFor="let character of [1, 2, 3, 4, 5, 6]">
+      <shared-list-content-details-character
+        [data]="character"
+        [isLoading]="true"
+      ></shared-list-content-details-character>
+    </div>
+  </ng-template>
 </div>

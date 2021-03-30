@@ -4,7 +4,7 @@ import { MarvelConfig } from 'app/interfaces';
 import { SharedFilterModel } from 'app/shared/components';
 import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
-import { MarvelStyleModalService } from '../../../../../../projects/marvel-style/src/public-api';
+import { MarvelStyleModalService } from 'marvel-style';
 import { SharedComicsRegisterComponent } from 'app/shared/components';
 import { MyFavoritesSearchModel, MyFavoritesService } from './providers';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -35,6 +35,13 @@ export class MyFavoritesComponent extends BaseComponent implements OnInit, OnDes
 
   ngOnInit() {
     const { myFavoritesService } = this;
+
+    super.ngOnInit({
+      paginationOptions: {
+        mainElement: 'container-3',
+        service: myFavoritesService,
+      },
+    });
 
     myFavoritesService.__onDataChanged$.pipe(takeUntil(this.__unsubscribeAll)).subscribe(() => {
       const data = myFavoritesService.__data;

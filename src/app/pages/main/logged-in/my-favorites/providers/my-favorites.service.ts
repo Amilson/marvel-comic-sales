@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import firebase from 'firebase/app';
-import { MarvelUtils } from '../../../../../../../projects/marvel-style/src/public-api';
+import { MarvelUtils } from 'marvel-style';
 import { MyFavoritesSearchModel } from './my-favorites-search.model';
 
 @Injectable()
@@ -34,31 +33,6 @@ export class MyFavoritesService extends MarvelCommonsService implements Resolve<
     });
   }
 
-  /*@MarvelCoreService({
-    requestInProgress: {
-      showProgress: true,
-    },
-  })
-  async getData() {
-    const { email } = await this.fireAuth.currentUser;
-    const docRef = this.firestore.collection('favorite_comics', (ref) =>
-      ref
-        .where('createdById', '==', email)
-        .orderBy('currentIndex', 'asc')
-        .orderBy('updatedAt', 'desc')
-    );
-    docRef.get().subscribe(
-      (resp: any) => {
-        const data = this.getDocsData(resp);
-        this.__data = [...(this.__data ? this.__data : []), ...this.mappingData(data)];
-        this.__onDataChanged$.next(null);
-        this.__onLoadingInProgress$.next(false);
-      },
-      (error) => {
-        console.log('Error getting document:', error);
-      }
-    );
-  }*/
   @MarvelCoreService({
     requestInProgress: {
       showProgress: true,
@@ -124,8 +98,8 @@ export class MyFavoritesService extends MarvelCommonsService implements Resolve<
     },
   })
   async sort(data: any) {
-    const handled = await this.fireAuth.currentUser;
-    const { email, displayName } = handled;
+    const credentials = await this.fireAuth.currentUser;
+    const { email, displayName } = credentials;
 
     const handledData = {
       updatedByName: displayName,

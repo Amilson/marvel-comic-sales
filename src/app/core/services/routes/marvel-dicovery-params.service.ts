@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
-import { MarvelUtils } from '../../../../../projects/marvel-style/src/public-api';
+import { MarvelUtils } from 'marvel-style';
 
 @Injectable({ providedIn: 'root' })
 export class MarvelDiscoveryParamsService {

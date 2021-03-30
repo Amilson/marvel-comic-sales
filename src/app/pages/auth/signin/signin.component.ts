@@ -110,4 +110,8 @@ export class SigninComponent extends BaseComponent implements OnInit, OnDestroy 
   onFacebookSignin() {
     this.signinService.facebookSignin();
   }
+
+  onHandleSignup() {
+    this.signinService.signup();
+  }
 }

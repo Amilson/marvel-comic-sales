@@ -5,6 +5,11 @@
       "signin": "assets/settings/theme/images/signin.svg",
       "signup": "assets/settings/theme/images/signup.svg",
       "footer": "assets/settings/theme/images/footer.svg"
+    },
+    "externalLinks": {
+      "twitter": "https://twitter.com/eusouamilson",
+      "facebook": "https://pt-br.facebook.com/amilson.fontes",
+      "instagram": "https://www.instagram.com/eusouamilson"
     }
   },
   "i18n": {

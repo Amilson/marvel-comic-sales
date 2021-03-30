@@ -1,4 +1,4 @@
-import { MarvelUtils } from '../../../../../../projects/marvel-style/src/public-api';
+import { MarvelUtils } from 'marvel-style';
 
 export class SharedRegisterComicsModel {
   id: string;

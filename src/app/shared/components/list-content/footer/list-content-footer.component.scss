@@ -3,6 +3,12 @@
 shared-list-content-footer {
   margin-left: 24px;
 
+  .row-data {
+    @include media-breakpoint('xs') {
+      width: 100%;
+    }
+  }
+
   marvel-button {
     @include media-breakpoint('xs') {
       margin-top: 8px;

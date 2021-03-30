@@ -10,7 +10,7 @@ shared-list-content {
   padding: 24px;
 
   @include media-breakpoint('gt-sm') {
-    height: 273px;
+    min-height: 273px;
   }
 
   .move {

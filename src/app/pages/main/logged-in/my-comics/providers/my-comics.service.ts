@@ -8,13 +8,15 @@ import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { MyComicsSearchModel } from './my-comics-search.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class MyComicsService extends MarvelCommonsService implements Resolve<any> {
   constructor(
     marvelService: MarvelService,
     private firestore: AngularFirestore,
-    private fireAuth: AngularFireAuth
+    private fireAuth: AngularFireAuth,
+    private translateService: TranslateService
   ) {
     super(marvelService);
     this.__onDataChanged$ = new BehaviorSubject(null);
@@ -86,6 +88,10 @@ export class MyComicsService extends MarvelCommonsService implements Resolve<any
         this.getData();
       },
       callbackPagination: this.getData.bind(this),
+      translateOptions: {
+        service: this.translateService,
+        keys: ['BUTTONS', 'TITLES'],
+      },
     });
 
     return of(null);

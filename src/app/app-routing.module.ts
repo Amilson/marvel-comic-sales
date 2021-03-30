@@ -25,7 +25,6 @@ import { AuthLayoutModule } from './layouts/auth/auth-layout.module';
         },
         {
           path: 'main',
-          component: AuthLayoutComponent,
           loadChildren: () => {
             return import('app/pages/main').then((m: any) => {
               return m.PagesMainModule;

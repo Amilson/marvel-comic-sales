@@ -1,3 +1,5 @@
+@import 'src/assets/scss/theme';
+
 app-my-comics-logedin {
   width: 100%;
   height: 100%;
@@ -7,6 +9,10 @@ app-my-comics-logedin {
   align-items: center;
   text-align: center;
   padding-top: 40px;
+
+  @include media-breakpoint('xs') {
+    padding: 10px;
+  }
 
   marvel-button {
     min-width: 120px;

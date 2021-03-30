@@ -13,4 +13,6 @@ export class SharedListContentDetailsComponent {
   @Input() characters: any;
 
   @Input() settings: any;
+
+  @Input() isLoading: boolean = true;
 }

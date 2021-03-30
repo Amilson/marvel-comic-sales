@@ -10,10 +10,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { MarvelService } from '../marvel-service.service';
 import { MarvelTokenStorageService } from '../storage/marvel-token-storage.service';
 import { MarvelRequestPagedHandling } from '../request-paged';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
+import firebase from 'firebase/app';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { MarvelUtils } from 'marvel-style';
 
 export class MarvelCommonsService {
-  //TODO criar interface para any
-
   __data: any | any[];
 
   __params: any | any[];
@@ -189,5 +192,66 @@ export class MarvelCommonsService {
       delete data[field];
     }
     return data;
+  }
+
+  async verifyLogged(fireAuth: AngularFireAuth, callback?: Function) {
+    const credentials = await fireAuth.currentUser;
+    if (!credentials) {
+      if (callback) {
+        callback();
+        return;
+      }
+    }
+    return credentials || { email: '', displayName: '' };
+  }
+
+  @MarvelCoreService({
+    requestInProgress: {
+      showProgress: true,
+    },
+  })
+  async saveFavorite(
+    fireAuth: AngularFireAuth,
+    firestore: AngularFirestore,
+    router: Router,
+    data: any
+  ) {
+    const credentials = await fireAuth.currentUser;
+    console.log('credentials');
+    console.log(credentials);
+    const { email, displayName } = credentials;
+
+    data.id = `${email}${data.id}`;
+
+    const handledData = {
+      createdByName: displayName,
+      createdById: email,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedByName: displayName,
+      updatedById: email,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      currentIndex: 0,
+    };
+
+    firestore
+      .doc(`favorite_comics/${data.id}`)
+      .set(
+        this.excludeNonUsedFields({
+          ...data,
+          ...handledData,
+        }),
+        { merge: true }
+      )
+      .then(() => {
+        router.navigate(
+          [`/main/logged-in/my-favorites/refresh/${MarvelUtils.getRandomString(30)}`],
+          {
+            skipLocationChange: true,
+          }
+        );
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 }

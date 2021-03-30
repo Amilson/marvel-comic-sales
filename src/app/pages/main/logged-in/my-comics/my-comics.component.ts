@@ -5,7 +5,7 @@ import { MarvelConfig } from 'app/interfaces';
 import { SharedFilterModel } from 'app/shared/components';
 import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
-import { MarvelStyleModalService } from '../../../../../../projects/marvel-style/src/public-api';
+import { MarvelStyleModalService } from 'marvel-style';
 import { SharedComicsDeleteComponent, SharedComicsRegisterComponent } from 'app/shared/components';
 import { MyComicsSearchModel, MyComicsService } from './providers';
 
@@ -35,6 +35,16 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
   ngOnInit() {
     const { myComicsService } = this;
 
+    super.ngOnInit({
+      paginationOptions: {
+        mainElement: 'container-3',
+        service: myComicsService,
+      },
+      translateOptions: {
+        service: myComicsService,
+      },
+    });
+
     myComicsService.__onDataChanged$.pipe(takeUntil(this.__unsubscribeAll)).subscribe(() => {
       const data = myComicsService.__data;
       if (data) {
@@ -63,28 +73,28 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
     modalService.open(SharedComicsRegisterComponent, {
       color: 'theme',
       size: 'md',
-      title: '+ ADD COMIC',
+      title: `+ ${__i18n?.TITLES['ADD-COMIC']}`,
       action: {
         confirm: {
           actionColor: 'theme',
           actionType: 'primary',
-          label: '+ ADD COMIC',
+          label: `+ ${__i18n?.BUTTONS['ADD-COMIC']}`,
         },
       },
     });
   }
 
   onHandleEdit(data: any) {
-    const { modalService } = this;
+    const { modalService, __i18n } = this;
     modalService.open(SharedComicsRegisterComponent, {
       color: 'theme',
       size: 'md',
-      title: 'EDIT COMIC',
+      title: `${__i18n?.TITLES['EDIT-COMIC']}`,
       action: {
         confirm: {
           actionColor: 'theme',
           actionType: 'primary',
-          label: 'SAVE',
+          label: `${__i18n?.BUTTONS.SAVE}`,
         },
       },
       data,
@@ -92,7 +102,7 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
   }
 
   onHandleRemove(data: any) {
-    const { modalService } = this;
+    const { modalService, __i18n } = this;
     modalService.open(SharedComicsDeleteComponent, {
       color: 'theme',
       size: 'md',
@@ -100,12 +110,12 @@ export class MyComicsComponent extends BaseComponent implements OnInit, OnDestro
         confirm: {
           actionColor: 'success',
           actionType: 'primary',
-          label: 'YES',
+          label: __i18n?.BUTTONS.YES,
         },
         cancel: {
           actionColor: 'error',
           actionType: 'primary',
-          label: 'NO',
+          label: __i18n?.BUTTONS.NO,
         },
       },
       data,

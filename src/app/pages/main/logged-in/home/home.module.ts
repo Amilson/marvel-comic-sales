@@ -16,7 +16,8 @@ import {
   MarvelIconModule,
   MarvelButtonModule,
   MarvelStyleModalService,
-} from '../../../../../../projects/marvel-style/src/public-api';
+  MarvelProgressModule,
+} from 'marvel-style';
 import { HomeComponent } from './home.component';
 import { HomeService } from './providers';
 import { SharedFilterCharactersService } from 'app/shared/components/filter';
@@ -29,6 +30,7 @@ import { SharedFilterCharactersService } from 'app/shared/components/filter';
     MarvelInputModule,
     MarvelIconModule,
     MarvelButtonModule,
+    MarvelProgressModule,
     RouterModule.forChild([
       {
         path: '',

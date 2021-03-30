@@ -1,3 +1,5 @@
+@import 'src/assets/scss/theme';
+
 app-toolbar-logged-in {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
@@ -6,6 +8,10 @@ app-toolbar-logged-in {
   width: 100%;
   display: flex;
   justify-content: center;
+
+  @include media-breakpoint('xs') {
+    height: 120px;
+  }
 
   .container {
     width: 100%;

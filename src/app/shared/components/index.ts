@@ -5,3 +5,5 @@ export * from './list-content';
 export * from './list-content-details';
 export * from './progress-bar';
 export * from './modal';
+export * from './language-choose';
+export * from './social-media';

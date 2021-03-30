@@ -4,13 +4,39 @@
     "CURRENCY-CODE": "USD",
     "FORMAT-DATE": "MM/DD/YYYY",
     "SIGNIN": {
-      "BUTTON": {
-        "CONFIRM": "Login"
-      }
+      "SOCIAL": "or use Social Signin",
+      "HAVE-NO-PASS": "I Don't have Password"
     },
     "SIGNUP": {
-      "BUTTON": {
-        "CONFIRM": "Create account"
+      "SOCIAL": "Signup account using",
+      "HAVE-PASS": "I already have a login"
+    },
+    "FIELDS": {
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "CONFIRM-PASSWORD": "Confirm Password",
+      "NAME": "Name",
+      "TITLE": "Title",
+      "PRICE": "Price",
+      "FORMAT": "Format",
+      "PAGES": "Pages",
+      "PAGE-NUMBER": "Page Number:",
+      "CONDITION": "Condition",
+      "CREATED-AT": "Created At",
+      "BY": "By",
+      "DESCRIPTION": "Description"
+    },
+    "MODAL": {
+      "DELETE": {
+        "TITLE": "Warning",
+        "DESCRIPTION": "Do you really want to remove this comic?"
+      },
+      "DELETE-FAVORITE": {
+        "TITLE": "Warning",
+        "DESCRIPTION": "Do you really want to remove this comic from your favorites?"
+      },
+      "REGISTER": {
+        "SEARCH-BY": "Search by Title"
       }
     },
     "ERRORS": {
@@ -33,18 +59,27 @@
     },
     "BUTTONS": {
       "BACK": "Back",
+      "BACK-SIGNIN": "Back to Login",
       "HOME": "Home",
       "MY-COMICS": "My Comics",
       "MY-FAVORITES": "My Favorites",
       "ADD-COMIC": "Add Comic",
-      "LOGIN": "Login",
+      "SIGNIN": "Login",
       "LOGOUT": "Log Out",
       "REGISTER": "Register",
       "FAVORITE": "Favorite",
       "MORE-INFO": "More Info",
       "BUY": "Buy",
       "EDIT": "Edit",
-      "REMOVE": "Remove"
+      "SAVE": "Save",
+      "REMOVE": "Remove",
+      "CREATE-ACCOUNT": "Create account",
+      "YES": "YES",
+      "NO": "NO"
+    },
+    "TITLES": {
+      "ADD-COMIC": "ADD COMIC",
+      "EDIT-COMIC": "EDIT COMIC"
     },
     "CONDITIONS": {
       "LIKE-NEW": "Like New",
@@ -54,6 +89,8 @@
       "NEW": "New"
     },
     "FILTER": {
+      "SEARCH-BY": "I'm Looking for...",
+      "CHARACTER": "Character",
       "SIZE": {
         "15": "Show - 15",
         "30": "Show - 30",

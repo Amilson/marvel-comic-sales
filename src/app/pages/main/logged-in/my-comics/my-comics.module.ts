@@ -17,7 +17,8 @@ import {
   MarvelStyleModalService,
   MarvelSelectModule,
   MarvelOptionModule,
-} from '../../../../../../projects/marvel-style/src/public-api';
+  MarvelProgressModule,
+} from 'marvel-style';
 import { MyComicsComponent } from './my-comics.component';
 import { SharedFilterCharactersService } from 'app/shared/components/filter';
 import {
@@ -63,6 +64,7 @@ import { MyComicsService } from './providers';
     MarvelIconModule,
     MarvelButtonModule,
     MarvelModalModule,
+    MarvelProgressModule,
   ],
   providers: [
     MyComicsService,

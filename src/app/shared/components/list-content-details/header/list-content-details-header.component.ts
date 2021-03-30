@@ -9,4 +9,8 @@ import { ListContentDetails } from 'app/interfaces';
 })
 export class SharedListContentDetailsHeaderComponent {
   @Input() data: ListContentDetails;
+
+  @Input() settings: any;
+
+  @Input() isLoading: boolean = true;
 }

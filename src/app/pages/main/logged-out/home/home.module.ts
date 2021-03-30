@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import {
+  SharedComicsRegisterComicsService,
+  SharedComicsRegisterFilterCharactersService,
+  SharedComicsRegisterFilterComicsService,
   SharedFilteredModule,
   SharedFilterModule,
   SharedListContentModule,
@@ -12,9 +15,11 @@ import {
   MarvelInputModule,
   MarvelIconModule,
   MarvelButtonModule,
-} from '../../../../../../projects/marvel-style/src/public-api';
+  MarvelStyleModalService,
+  MarvelProgressModule,
+} from 'marvel-style';
 import { HomeComponent } from './home.component';
-import { HomeService } from './home.service';
+import { HomeService } from './providers';
 import { SharedFilterCharactersService } from 'app/shared/components/filter';
 
 @NgModule({
@@ -25,12 +30,15 @@ import { SharedFilterCharactersService } from 'app/shared/components/filter';
     MarvelInputModule,
     MarvelIconModule,
     MarvelButtonModule,
+    MarvelProgressModule,
     RouterModule.forChild([
       {
         path: '',
         component: HomeComponent,
         resolve: {
+          HomeService,
           SharedFilterCharactersService,
+          SharedComicsRegisterFilterComicsService,
         },
       },
     ]),
@@ -39,6 +47,12 @@ import { SharedFilterCharactersService } from 'app/shared/components/filter';
     SharedFilteredModule,
     SharedListContentModule,
   ],
-  providers: [HomeService],
+  providers: [
+    HomeService,
+    MarvelStyleModalService,
+    SharedComicsRegisterFilterComicsService,
+    SharedComicsRegisterFilterCharactersService,
+    SharedComicsRegisterComicsService,
+  ],
 })
 export class HomeModule {}

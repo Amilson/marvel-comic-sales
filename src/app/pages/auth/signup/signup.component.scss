@@ -13,8 +13,6 @@ app-signup {
   padding-bottom: 40px;
 
   @include media-breakpoint('xs') {
-    background-color: #fafafa;
-
     .signup-box {
       progress {
         position: fixed;

@@ -7,10 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
 import { SharedFavoriteComicsModel } from './favorite-comics.model';
 import { AngularFireAuth } from '@angular/fire/auth';
-import {
-  MarvelStyleModalService,
-  MarvelUtils,
-} from '../../../../../../projects/marvel-style/src/public-api';
+import { MarvelStyleModalService, MarvelUtils } from 'marvel-style';
 
 @Injectable()
 export class SharedComicsFavoriteComicsService

@@ -12,4 +12,7 @@ export interface ListContentDetails {
   createdAt: Date;
   createdByName: string;
   createdById: string;
+  enableEdit: boolean;
+  enableRemove: boolean;
+  enableMove: boolean;
 }

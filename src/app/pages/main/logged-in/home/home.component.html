@@ -1,13 +1,19 @@
-<div class="full-width">
-  <shared-filter (onFilter)="onFilter($event)"></shared-filter>
-</div>
+<shared-filter (onFilter)="onFilter($event)"></shared-filter>
+
 <shared-filtered [data]="_filter" (onFilter)="onFilter($event)"></shared-filtered>
-<shared-list-content
-  *ngFor="let comic of _comics"
-  [data]="comic"
-  [settings]="{
-    edit: onHandleEdit.bind(this, comic),
-    moreInfo: onHandleMoreDetails.bind(this, comic),
-    favorite: onHandleFavorite.bind(this, comic)
-  }"
-></shared-list-content>
+<div class="full-width">
+  <shared-list-content
+    *ngFor="let comic of _comics"
+    [data]="comic"
+    [settings]="{
+      edit: onHandleEdit.bind(this, comic),
+      moreInfo: onHandleMoreDetails.bind(this, comic),
+      favorite: onHandleFavorite.bind(this, comic)
+    }"
+    [isLoading]="false"
+  ></shared-list-content>
+</div>
+<div class="mt-2 mb-5 full-width" *ngIf="_isLoading">
+  <marvel-progress></marvel-progress>
+  <shared-list-content [isLoading]="true"></shared-list-content>
+</div>

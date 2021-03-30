@@ -9,7 +9,7 @@ import { MarvelConfigModule } from './core/services/config/marvel-config.module'
 import { HttpClientModule } from '@angular/common/http';
 import { MarvelCoreCommonModule } from './shared/modules/marvel-core-common.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { MarvelStyleModule } from '../../projects/marvel-style/src/public-api';
+import { MarvelStyleModule } from 'marvel-style';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';

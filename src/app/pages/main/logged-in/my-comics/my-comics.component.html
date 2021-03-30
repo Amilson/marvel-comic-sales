@@ -1,5 +1,5 @@
 <div class="d-flex flex-column full-width">
-  <div class="d-flex justify-content-between">
+  <div class="d-flex flex-column flex-md-row justify-content-between">
     <marvel-button type="primary" color="success" class="mt-1" (click)="onHandleAdd()">
       +
       {{ 'BUTTONS.ADD-COMIC' | translate }}
@@ -7,16 +7,20 @@
     <shared-filter (onFilter)="onFilter($event)"></shared-filter>
   </div>
   <shared-filtered [data]="_filter" (onFilter)="onFilter($event)"></shared-filtered>
-  <div cdkDropList>
-    <shared-list-content
-      *ngFor="let comic of _comics"
-      [data]="comic"
-      [settings]="{
-        edit: onHandleEdit.bind(this, comic),
-        remove: onHandleRemove.bind(this, comic),
-        moreInfo: onHandleMoreDetails.bind(this, comic)
-      }"
-      cdkDrag
-    ></shared-list-content>
+
+  <shared-list-content
+    *ngFor="let comic of _comics"
+    [data]="comic"
+    [settings]="{
+      edit: onHandleEdit.bind(this, comic),
+      remove: onHandleRemove.bind(this, comic),
+      moreInfo: onHandleMoreDetails.bind(this, comic)
+    }"
+    [isLoading]="false"
+  ></shared-list-content>
+
+  <div class="mt-2 mb-5 full-width" *ngIf="_isLoading">
+    <marvel-progress></marvel-progress>
+    <shared-list-content [isLoading]="true"></shared-list-content>
   </div>
 </div>

@@ -1,8 +1,17 @@
+@import 'src/assets/scss/theme';
+
 shared-filter {
   width: 100%;
   background: inherit;
   height: 48px;
-  padding-right: 10px;
+
+  @include media-breakpoint('xs') {
+    height: 200px;
+
+    mc-select-inside {
+      position: absolute;
+    }
+  }
 
   .logo {
     .logo-icon {
@@ -58,6 +67,10 @@ shared-filter {
     marvel-icon {
       cursor: pointer;
     }
+  }
+
+  marvel-input mc-form-field mc-form-field-footer {
+    display: none;
   }
 
   marvel-select mc-form-field mc-form-field-footer {

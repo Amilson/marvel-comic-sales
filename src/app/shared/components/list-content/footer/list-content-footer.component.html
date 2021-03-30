@@ -1,5 +1,5 @@
-<div class="d-flex flex-column justify-content-end align-items-end">
-  <div class="d-flex flex-column" *ngIf="!data?.enableEdit; else edit">
+<div class="d-flex flex-column justify-content-end align-items-end" *ngIf="!isLoading">
+  <div class="d-flex flex-column row-data" *ngIf="!data?.enableEdit; else edit">
     <marvel-button type="primary" color="theme">
       {{ 'BUTTONS.BUY' | translate }}
     </marvel-button>
@@ -23,14 +23,21 @@
     </marvel-button>
   </ng-template>
 </div>
-<div class="d-flex flex-column flex-md-row justify-content-between align-items-end">
+<div
+  class="d-flex flex-column flex-md-row justify-content-between align-items-end"
+  *ngIf="!isLoading"
+>
   <marvel-button type="border" color="muted" (click)="settings?.moreInfo()">
     {{ 'BUTTONS.MORE-INFO' | translate }}
   </marvel-button>
   <div class="mt-2">
-    <b>Created At</b>
+    <b>
+      {{ 'FIELDS.CREATED-AT' | translate }}
+    </b>
     {{ data?.createdAt | marvelFormatDateTimelapse }}
-    <b>by</b>
+    <b>
+      {{ 'FIELDS.BY' | translate }}
+    </b>
     {{ data?.createdByName }}
   </div>
 </div>

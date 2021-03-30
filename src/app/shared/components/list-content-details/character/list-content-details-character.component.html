@@ -1,1 +1,6 @@
-<span class="title full-width">Apocalipse</span>
+<span class="title full-width" *ngIf="!isLoading; else loading">
+  {{ data?.name }}
+</span>
+<ng-template #loading>
+  <div class="loading"></div>
+</ng-template>

@@ -11,10 +11,7 @@ import { Marveli18nConfigService } from './marvel-i18n-config.service';
 import { MarvelSplashScreenService } from '../splash-screen/marvel-splash-screen.service';
 import { MarvelServiceWorkerConfigService } from './marvel-service-worker-config.service';
 import { MarvelMaintenanceConfigService } from './marvel-maintenance-config.service';
-import {
-  MarvelStyleSettingsService,
-  MarvelUtils,
-} from '../../../../../projects/marvel-style/src/public-api';
+import { MarvelStyleSettingsService, MarvelUtils } from 'marvel-style';
 
 @Injectable({
   providedIn: 'root',

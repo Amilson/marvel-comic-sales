@@ -5,7 +5,7 @@ import { MarvelConfig } from 'app/interfaces';
 import { SharedFilterModel } from 'app/shared/components';
 import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
-import { MarvelStyleModalService } from '../../../../../../projects/marvel-style/src/public-api';
+import { MarvelStyleModalService } from 'marvel-style';
 import { SharedComicsRegisterComponent } from 'app/shared/components';
 import { HomeSearchModel, HomeService } from './providers';
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { MarvelConfigService } from 'app/core/services/config/marvel-config.service';
 import { MarvelConfig } from 'app/interfaces';
 import { BaseComponent } from 'app/shared/components';
@@ -13,7 +14,12 @@ import { takeUntil } from 'rxjs/operators';
 export class FooterComponent extends BaseComponent implements OnInit {
   _config: MarvelConfig = null;
 
-  constructor(private marvelConfigService: MarvelConfigService) {
+  _languages = ['pt-BR', 'en-US'];
+
+  constructor(
+    private marvelConfigService: MarvelConfigService,
+    private translateService: TranslateService
+  ) {
     super();
   }
 
@@ -24,5 +30,9 @@ export class FooterComponent extends BaseComponent implements OnInit {
       .subscribe((_: MarvelConfig) => {
         this._config = _;
       });
+  }
+
+  onChangeLanguage(lang: string) {
+    this.translateService.use(lang);
   }
 }

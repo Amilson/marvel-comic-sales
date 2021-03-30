@@ -1,1 +1,8 @@
-<img [src]="data?.thumbnail_path + '/portrait_fantastic.jpg'" class="logo" />
+<img
+  [src]="data?.thumbnail_path + '/portrait_fantastic.jpg'"
+  class="logo"
+  *ngIf="!isLoading; else loading"
+/>
+<ng-template #loading>
+  <div class="loading"></div>
+</ng-template>

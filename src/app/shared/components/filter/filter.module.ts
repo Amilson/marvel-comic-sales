@@ -8,7 +8,7 @@ import {
   MarvelButtonModule,
   MarvelSelectModule,
   MarvelOptionModule,
-} from '../../../../../projects/marvel-style/src/public-api';
+} from 'marvel-style';
 import { SharedFilterComponent } from './filter.component';
 import { SharedFilterCharactersService } from './providers';
 

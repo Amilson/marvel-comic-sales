@@ -1,7 +1,7 @@
 import { Injector, Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
-import { MarvelUtils } from '../../../../projects/marvel-style/src/public-api';
+import { MarvelUtils } from 'marvel-style';
 
 @Pipe({
   name: 'marvelFormatDateTimelapse',

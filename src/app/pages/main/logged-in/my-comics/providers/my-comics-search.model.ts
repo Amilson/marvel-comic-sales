@@ -24,7 +24,7 @@ export class MyComicsSearchModel {
     let lastInResponse: any = data || [];
     let or = null;
     if (this.orderField === 'title') {
-      or = '';
+      or = null;
     } else if (this.orderField === 'createdAt') {
       or = new Date();
     } else if (this.orderField === 'price') {
@@ -33,7 +33,8 @@ export class MyComicsSearchModel {
         or = 9999999999;
       }
     }
-    lastInResponse = lastInResponse[lastInResponse?.length - 1]?.[this.orderField] || or;
+    const handledData = lastInResponse[lastInResponse?.length - 1];
+    lastInResponse = handledData ? handledData[this.orderField] : or;
 
     let filterAsArray = [''];
     for (let i = 1; i < this.name?.length + 1; i++) {

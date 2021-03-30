@@ -10,3 +10,4 @@ export * from './marvel-token-credentials';
 export * from './marvel-translate-options';
 export * from './marvel-response-paged';
 export * from './marvel-auth-user';
+export * from './marvel-data-after-login';

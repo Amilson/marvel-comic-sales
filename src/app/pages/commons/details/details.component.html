@@ -7,6 +7,10 @@
     class="mt-5"
     [comic]="_comic"
     [characters]="_comicCharacters"
-    *ngIf="_comic"
+    [settings]="{
+      edit: onHandleEdit.bind(this, _comic),
+      favorite: onHandleFavorite.bind(this, _comic)
+    }"
+    [isLoading]="_isLoading"
   ></shared-list-content-details>
 </div>

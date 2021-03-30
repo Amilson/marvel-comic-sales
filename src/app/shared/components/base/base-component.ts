@@ -4,7 +4,7 @@ import { OnDestroy, Directive } from '@angular/core';
 import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelPaginationOptions, MarvelTranslateOptions } from 'app/interfaces';
 import { takeUntil } from 'rxjs/operators';
-import { MarvelUtils } from '../../../../../projects/marvel-style/src/public-api';
+import { MarvelUtils } from 'marvel-style';
 
 @Directive({
   selector: '[baseComponent]',

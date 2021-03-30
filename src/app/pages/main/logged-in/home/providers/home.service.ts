@@ -7,7 +7,7 @@ import { MarvelCommonsService } from 'app/core/services/commons';
 import { MarvelService } from 'app/core/services/marvel-service.service';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import firebase from 'firebase/app';
-import { MarvelUtils } from '../../../../../../../projects/marvel-style/src/public-api';
+import { MarvelUtils } from 'marvel-style';
 import { HomeSearchModel } from './home-search.model';
 
 @Injectable()
@@ -39,13 +39,12 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
     },
   })
   private async getData() {
+    this.__onLoadingInProgress$.next(true);
     const { email } = await this.fireAuth.currentUser;
 
     const search = new HomeSearchModel({
       ...this.__search,
     });
-
-    this.__onLoadingInProgress$.next(true);
 
     const docRef = this.firestore.collection('comics', (ref) => {
       return search.buildParams(ref, this.__data);
@@ -97,10 +96,10 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
     },
   })
   async saveFavorite(data: any) {
-    const handled = await this.fireAuth.currentUser;
-    const { email, displayName } = handled;
+    const credentials = await this.fireAuth.currentUser;
+    const { email, displayName } = credentials;
 
-    data.id = MarvelUtils.getRandomString(30);
+    data.id = `${email}${data.id}`;
 
     const handledData = {
       createdByName: displayName,

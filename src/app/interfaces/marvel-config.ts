@@ -6,11 +6,16 @@ export interface MarvelConfigTheme {
     signup: string;
     footer: string;
   };
+  externalLinks: {
+    twitter: string;
+    facebook: string;
+    instagram: string;
+  };
 }
 
 export interface MarvelConfigi18n {
-  lang: string;
-  currency: string;
+  lang?: string;
+  currency?: string;
 }
 
 export interface MarvelConfig {
