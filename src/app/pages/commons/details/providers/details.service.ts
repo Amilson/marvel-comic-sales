@@ -131,7 +131,7 @@ export class DetailsService extends MarvelCommonsService implements Resolve<any>
       });
     });
     if (!credentials) return;
-    router.navigate(['/main/logged-int/checkout'], {
+    router.navigate(['/main/logged-in/checkout'], {
       state: {
         comicData: data,
       },

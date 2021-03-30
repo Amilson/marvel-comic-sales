@@ -160,12 +160,11 @@ export class CheckoutService extends MarvelCommonsService implements Resolve<any
         { merge: true }
       )
       .then(() => {
-        this.router.navigate(
-          [`/main/logged-in/my-orders/refresh/${MarvelUtils.getRandomString(30)}`],
-          {
-            skipLocationChange: true,
-          }
-        );
+        this.router.navigate(['/main/logged-in/checkout-success'], {
+          state: {
+            comicData: data,
+          },
+        });
       })
       .catch((e) => {
         console.log(e);

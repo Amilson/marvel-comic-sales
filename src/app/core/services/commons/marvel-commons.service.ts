@@ -269,8 +269,10 @@ export class MarvelCommonsService {
         { merge: true }
       )
       .then(() => {
-        router.navigate([`/main/logged-in/my-orders/refresh/${MarvelUtils.getRandomString(30)}`], {
-          skipLocationChange: true,
+        router.navigate(['/main/logged-in/checkout-success'], {
+          state: {
+            comicData: data,
+          },
         });
       })
       .catch((e) => {
