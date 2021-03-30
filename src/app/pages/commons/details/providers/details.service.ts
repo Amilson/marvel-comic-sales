@@ -9,6 +9,7 @@ import { MarvelDiscoveryParamsService } from 'app/core/services/routes';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { MarvelUtils } from 'marvel-style';
 import firebase from 'firebase/app';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class DetailsService extends MarvelCommonsService implements Resolve<any> {
@@ -17,7 +18,8 @@ export class DetailsService extends MarvelCommonsService implements Resolve<any>
     private marvelDiscovery: MarvelDiscoveryParamsService,
     private firestore: AngularFirestore,
     private fireAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
     super(marvelService);
     this.__onDataChanged$ = new BehaviorSubject(null);
@@ -49,17 +51,27 @@ export class DetailsService extends MarvelCommonsService implements Resolve<any>
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
     const { router, marvelDiscovery } = this;
-    this.__data = null;
-    this.__page = null;
 
     const comicData = marvelDiscovery.getDataFromCurrentNavigation('comicData');
 
-    if (!comicData) {
-      router.navigate(['/main/logged-out']);
-      return;
-    }
+    super.resolve(route, state, {
+      callbackMain: () => {
+        this.__data = null;
+        this.__page = null;
+        if (!comicData) {
+          router.navigate(['/main/logged-out']);
+          return;
+        }
 
-    this.getData(comicData);
+        this.getData(comicData);
+      },
+      callbackPagination: this.getData.bind(this),
+      translateOptions: {
+        service: this.translateService,
+        keys: ['BUTTONS', 'TITLES'],
+      },
+    });
+
     return of(null);
   }
 
@@ -104,5 +116,25 @@ export class DetailsService extends MarvelCommonsService implements Resolve<any>
       .catch((e) => {
         console.log(e);
       });
+  }
+
+  async buy(data: any) {
+    const { router } = this;
+    const credentials = await this.verifyLogged(this.fireAuth, () => {
+      router.navigate(['/auth/signin'], {
+        state: {
+          dataAfterLogin: {
+            type: 'buy',
+            data,
+          },
+        },
+      });
+    });
+    if (!credentials) return;
+    router.navigate(['/main/logged-int/checkout'], {
+      state: {
+        comicData: data,
+      },
+    });
   }
 }

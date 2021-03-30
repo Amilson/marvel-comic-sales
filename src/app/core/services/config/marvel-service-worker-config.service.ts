@@ -1,6 +1,8 @@
 import { ApplicationRef, Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { MarvelConfigBoostrap } from 'app/interfaces';
+import { SharedVersionChangedComponent } from 'app/shared/components/modal/version-changed';
+import { MarvelStyleModalService } from 'marvel-style';
 import { concat, interval } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -8,20 +10,24 @@ import { first } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class MarvelServiceWorkerConfigService {
-  constructor(private appRef: ApplicationRef, private updates: SwUpdate) {
+  constructor(
+    private appRef: ApplicationRef,
+    private updates: SwUpdate,
+    private modalService: MarvelStyleModalService
+  ) {
     // not to do
   }
 
   private handleValidation(config: MarvelConfigBoostrap) {
-    const { updates } = this;
+    const { updates, modalService } = this;
     updates?.available?.subscribe(() => {
       if (!config.showNewVersion || config.maintenance.closed) {
         document.location.reload();
       } else {
-        /*TODO modalService.open(VersionChangedComponent, {
+        modalService.open(SharedVersionChangedComponent, {
           color: 'theme',
           size: 'md',
-        });*/
+        });
       }
     });
   }

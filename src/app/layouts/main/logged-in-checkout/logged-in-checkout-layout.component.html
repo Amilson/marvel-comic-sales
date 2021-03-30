@@ -1,0 +1,22 @@
+<shared-progress-bar></shared-progress-bar>
+
+<div id="main">
+  <div id="container-1" class="container">
+    <div id="container-2" class="container">
+      <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+      <div class="cover-blur"></div>
+      <div id="container-3" class="container">
+        <app-content></app-content>
+        <ng-container *ngTemplateOutlet="footer"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #toolbar>
+  <app-toolbar-logged-in></app-toolbar-logged-in>
+</ng-template>
+
+<ng-template #footer>
+  <app-footer></app-footer>
+</ng-template>

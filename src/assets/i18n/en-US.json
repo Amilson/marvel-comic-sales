@@ -11,6 +11,14 @@
       "SOCIAL": "Signup account using",
       "HAVE-PASS": "I already have a login"
     },
+    "CHECKOUT": {
+      "EXPLAIN": "Just for test purpose. No credit card data will be saved, you can informe any data just to complete the checkout order."
+    },
+    "CHECKOUT-SUCCESS": {
+      "TITLE": "Order created successfully",
+      "SUB-TITLE": "Thanks!",
+      "EXPLAIN": "Now you can have your comic at your home without get out ;)"
+    },
     "FIELDS": {
       "EMAIL": "Email",
       "PASSWORD": "Password",
@@ -23,8 +31,12 @@
       "PAGE-NUMBER": "Page Number:",
       "CONDITION": "Condition",
       "CREATED-AT": "Created At",
+      "PURCHASED-AT": "Purchased At",
       "BY": "By",
-      "DESCRIPTION": "Description"
+      "DESCRIPTION": "Description",
+      "CREDIT-CARD-NUMBER": "Credit Card Number",
+      "CREDIT-CARD-VALIDATE": "Validate",
+      "CREDIT-CARD-SECRET": "Secret"
     },
     "MODAL": {
       "DELETE": {
@@ -37,6 +49,10 @@
       },
       "REGISTER": {
         "SEARCH-BY": "Search by Title"
+      },
+      "VERSION-CHANGED": {
+        "TITLE": "New Version Available",
+        "DESCRIPTION": "Please refresh your browser"
       }
     },
     "ERRORS": {
@@ -63,6 +79,7 @@
       "HOME": "Home",
       "MY-COMICS": "My Comics",
       "MY-FAVORITES": "My Favorites",
+      "MY-ORDERS": "My Orders",
       "ADD-COMIC": "Add Comic",
       "SIGNIN": "Login",
       "LOGOUT": "Log Out",
@@ -70,12 +87,14 @@
       "FAVORITE": "Favorite",
       "MORE-INFO": "More Info",
       "BUY": "Buy",
+      "BUY-NOW": "Buy Now",
       "EDIT": "Edit",
       "SAVE": "Save",
       "REMOVE": "Remove",
       "CREATE-ACCOUNT": "Create account",
       "YES": "YES",
-      "NO": "NO"
+      "NO": "NO",
+      "UPDATE-VERSION": "Update Now"
     },
     "TITLES": {
       "ADD-COMIC": "ADD COMIC",

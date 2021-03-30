@@ -1,16 +1,18 @@
 <shared-filter (onFilter)="onFilter($event)"></shared-filter>
 
 <shared-filtered [data]="_filter" (onFilter)="onFilter($event)"></shared-filtered>
-<div class="full-width">
+<div class="full-width" cdkDropList (cdkDropListDropped)="drop($event)">
   <shared-list-content
     *ngFor="let comic of _comics"
     [data]="comic"
     [settings]="{
       edit: onHandleEdit.bind(this, comic),
       favorite: onHandleRemove.bind(this, comic),
-      moreInfo: onHandleMoreDetails.bind(this, comic)
+      moreInfo: onHandleMoreDetails.bind(this, comic),
+      buy: onHandleBuy.bind(this, comic)
     }"
     [isLoading]="false"
+    cdkDrag
   ></shared-list-content>
 </div>
 <div class="mt-2 mb-5 full-width" *ngIf="_isLoading">

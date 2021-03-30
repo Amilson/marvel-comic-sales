@@ -6,6 +6,7 @@ import { BaseComponent } from 'app/shared/components/base/base-component';
 import { takeUntil } from 'rxjs/operators';
 import { MarvelStyleModalService } from 'marvel-style';
 import { DetailsCharactersService, DetailsService } from './providers';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -27,13 +28,21 @@ export class DetailsComponent extends BaseComponent implements OnInit, OnDestroy
   constructor(
     private modalService: MarvelStyleModalService,
     private detailsService: DetailsService,
-    private detailsCharactersService: DetailsCharactersService
+    private detailsCharactersService: DetailsCharactersService,
+    private router: Router
   ) {
     super();
   }
 
   ngOnInit() {
     const { detailsService, detailsCharactersService } = this;
+
+    super.ngOnInit({
+      translateOptions: {
+        service: detailsService,
+      },
+    });
+
     detailsService.__onDataChanged$.pipe(takeUntil(this.__unsubscribeAll)).subscribe(() => {
       const data = detailsService.__data;
       if (data) {
@@ -66,16 +75,16 @@ export class DetailsComponent extends BaseComponent implements OnInit, OnDestroy
   }
 
   onHandleEdit(data: any) {
-    const { modalService } = this;
+    const { modalService, __i18n } = this;
     modalService.open(SharedComicsRegisterComponent, {
       color: 'theme',
       size: 'md',
-      title: 'EDIT COMIC',
+      title: `${__i18n?.TITLES['EDIT-COMIC']}`,
       action: {
         confirm: {
           actionColor: 'theme',
           actionType: 'primary',
-          label: 'SAVE',
+          label: `${__i18n?.BUTTONS.SAVE}`,
         },
       },
       data,
@@ -84,5 +93,9 @@ export class DetailsComponent extends BaseComponent implements OnInit, OnDestroy
 
   onHandleFavorite(data: any) {
     this.detailsService.saveFavorite(data);
+  }
+
+  onHandleBuy(data: any) {
+    this.detailsService.buy(data);
   }
 }

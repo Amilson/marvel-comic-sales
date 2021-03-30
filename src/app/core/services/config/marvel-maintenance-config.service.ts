@@ -14,14 +14,6 @@ export class MarvelMaintenanceConfigService {
     if (config.maintenance.closed) {
       localStorage.clear();
       this.router.navigate(['']);
-
-      /*TODO setTimeout(() => {
-        this.modalService.open(ClosedToMaintenanceComponent, {
-          color: 'theme',
-          size: 'md',
-          data: config,
-        });
-      }, 200);*/
     }
   }
 

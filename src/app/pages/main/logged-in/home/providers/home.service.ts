@@ -9,6 +9,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import firebase from 'firebase/app';
 import { MarvelUtils } from 'marvel-style';
 import { HomeSearchModel } from './home-search.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class HomeService extends MarvelCommonsService implements Resolve<any> {
@@ -16,7 +17,8 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
     marvelService: MarvelService,
     private firestore: AngularFirestore,
     private fireAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
     super(marvelService);
     this.__onDataChanged$ = new BehaviorSubject(null);
@@ -29,6 +31,9 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
         ...data,
         enableEdit: data?.createdById === email,
         createdAt: data?.createdAt?.toDate(),
+        enableBuy: true,
+        enableFavorite: true,
+        enableDetails: true,
       };
     });
   }
@@ -86,6 +91,10 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
         this.getData();
       },
       callbackPagination: this.getData.bind(this),
+      translateOptions: {
+        service: this.translateService,
+        keys: ['BUTTONS', 'TITLES'],
+      },
     });
     return of(null);
   }

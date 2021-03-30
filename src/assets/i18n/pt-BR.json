@@ -11,6 +11,14 @@
       "SOCIAL": "ou Cadastrar usando",
       "HAVE-PASS": "Já tenho uma conta"
     },
+    "CHECKOUT": {
+      "EXPLAIN": "Apenas para fins de testes. Nenhuma informação de cartão de crédito será salva, você pode informar qualquer número para completar a ordem de compra."
+    },
+    "CHECKOUT-SUCCESS": {
+      "TITLE": "Comprado com sucesso",
+      "SUB-TITLE": "Obrigado!",
+      "EXPLAIN": "Agora você pode ter seus quadrinhos sem sair de casa ;)"
+    },
     "FIELDS": {
       "EMAIL": "Email",
       "PASSWORD": "Senha",
@@ -23,8 +31,12 @@
       "PAGE-NUMBER": "Paginas:",
       "CONDITION": "Estado",
       "CREATED-AT": "Criado em",
+      "PURCHASED-AT": "Comprado em",
       "BY": "Por",
-      "DESCRIPTION": "Descrição"
+      "DESCRIPTION": "Descrição",
+      "CREDIT-CARD-NUMBER": "Cartão de Crédito",
+      "CREDIT-CARD-VALIDATE": "Validade",
+      "CREDIT-CARD-SECRET": "Chave de Segurança"
     },
     "MODAL": {
       "DELETE": {
@@ -37,6 +49,10 @@
       },
       "REGISTER": {
         "SEARCH-BY": "Pesquisar por Título"
+      },
+      "VERSION-CHANGED": {
+        "TITLE": "Nova versão Disponível",
+        "DESCRIPTION": "Atualize seu navegador"
       }
     },
     "ERRORS": {
@@ -63,6 +79,7 @@
       "HOME": "Home",
       "MY-COMICS": "Meus Quadrinhos",
       "MY-FAVORITES": "Favoritos",
+      "MY-ORDERS": "Compras",
       "ADD-COMIC": "Adicionar",
       "LOGIN": "Entrar",
       "LOGOUT": "Sair",
@@ -70,15 +87,18 @@
       "FAVORITE": "Favorito",
       "MORE-INFO": "Mais Info",
       "BUY": "Comprar",
+      "BUY-NOW": "Comprar Agora",
       "EDIT": "Editar",
+      "SAVE": "Salvar",
       "REMOVE": "Remover",
       "CREATE-ACCOUNT": "Criar Conta",
       "YES": "SIM",
-      "NO": "NÃO"
+      "NO": "NÃO",
+      "UPDATE-VERSION": "Atualizar"
     },
     "TITLES": {
-      "ADD-COMIC": "ADD COMIC",
-      "EDIT-COMIC": "EDIT COMIC"
+      "ADD-COMIC": "Adicionar Quadrinho",
+      "EDIT-COMIC": "Editar Quadrinho"
     },
     "CONDITIONS": {
       "LIKE-NEW": "Quase Novo",

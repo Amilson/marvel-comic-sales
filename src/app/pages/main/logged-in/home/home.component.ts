@@ -40,6 +40,9 @@ export class HomeComponent extends BaseComponent implements OnInit, OnDestroy {
         mainElement: 'container-3',
         service: homeService,
       },
+      translateOptions: {
+        service: homeService,
+      },
     });
 
     homeService.__onDataChanged$.pipe(takeUntil(this.__unsubscribeAll)).subscribe(() => {
@@ -66,16 +69,16 @@ export class HomeComponent extends BaseComponent implements OnInit, OnDestroy {
   }
 
   onHandleEdit(data: any) {
-    const { modalService } = this;
+    const { modalService, __i18n } = this;
     modalService.open(SharedComicsRegisterComponent, {
       color: 'theme',
       size: 'md',
-      title: 'EDIT COMIC',
+      title: `${__i18n?.TITLES['EDIT-COMIC']}`,
       action: {
         confirm: {
           actionColor: 'theme',
           actionType: 'primary',
-          label: 'SAVE',
+          label: `${__i18n?.BUTTONS.SAVE}`,
         },
       },
       data,
@@ -89,6 +92,15 @@ export class HomeComponent extends BaseComponent implements OnInit, OnDestroy {
   onHandleMoreDetails(data: any) {
     const { router } = this;
     router.navigate(['/main/logged-in/details'], {
+      state: {
+        comicData: data,
+      },
+    });
+  }
+
+  onHandleBuy(data: any) {
+    const { router } = this;
+    router.navigate(['/main/logged-in/checkout'], {
       state: {
         comicData: data,
       },

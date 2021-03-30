@@ -41,6 +41,9 @@ export class MyFavoritesComponent extends BaseComponent implements OnInit, OnDes
         mainElement: 'container-3',
         service: myFavoritesService,
       },
+      translateOptions: {
+        service: myFavoritesService,
+      },
     });
 
     myFavoritesService.__onDataChanged$.pipe(takeUntil(this.__unsubscribeAll)).subscribe(() => {
@@ -71,28 +74,28 @@ export class MyFavoritesComponent extends BaseComponent implements OnInit, OnDes
     modalService.open(SharedComicsRegisterComponent, {
       color: 'theme',
       size: 'md',
-      title: '+ ADD COMIC',
+      title: `+ ${__i18n?.TITLES['ADD-COMIC']}`,
       action: {
         confirm: {
           actionColor: 'theme',
           actionType: 'primary',
-          label: '+ ADD COMIC',
+          label: `+ ${__i18n?.BUTTONS['ADD-COMIC']}`,
         },
       },
     });
   }
 
   onHandleEdit(data: any) {
-    const { modalService } = this;
+    const { modalService, __i18n } = this;
     modalService.open(SharedComicsRegisterComponent, {
       color: 'theme',
       size: 'md',
-      title: 'EDIT COMIC',
+      title: `${__i18n?.TITLES['EDIT-COMIC']}`,
       action: {
         confirm: {
           actionColor: 'theme',
           actionType: 'primary',
-          label: 'SAVE',
+          label: `${__i18n?.BUTTONS.SAVE}`,
         },
       },
       data,
@@ -100,7 +103,7 @@ export class MyFavoritesComponent extends BaseComponent implements OnInit, OnDes
   }
 
   onHandleRemove(data: any) {
-    const { modalService } = this;
+    const { modalService, __i18n } = this;
     modalService.open(SharedComicsDeleteFavoriteComponent, {
       color: 'theme',
       size: 'md',
@@ -108,12 +111,12 @@ export class MyFavoritesComponent extends BaseComponent implements OnInit, OnDes
         confirm: {
           actionColor: 'success',
           actionType: 'primary',
-          label: 'YES',
+          label: __i18n?.BUTTONS.YES,
         },
         cancel: {
           actionColor: 'error',
           actionType: 'primary',
-          label: 'NO',
+          label: __i18n?.BUTTONS.NO,
         },
       },
       data,
@@ -123,6 +126,15 @@ export class MyFavoritesComponent extends BaseComponent implements OnInit, OnDes
   onHandleMoreDetails(data: any) {
     const { router } = this;
     router.navigate(['/main/logged-in/details'], {
+      state: {
+        comicData: data,
+      },
+    });
+  }
+
+  onHandleBuy(data: any) {
+    const { router } = this;
+    router.navigate(['/main/logged-in/checkout'], {
       state: {
         comicData: data,
       },

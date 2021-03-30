@@ -1,0 +1,20 @@
+@import 'src/assets/scss/theme';
+
+app-my-orders-logedin {
+  width: 100%;
+  height: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 40px;
+
+  @include media-breakpoint('xs') {
+    padding: 10px;
+  }
+
+  marvel-button {
+    min-width: 120px;
+  }
+}

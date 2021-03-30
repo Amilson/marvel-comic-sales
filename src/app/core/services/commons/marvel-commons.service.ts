@@ -1,14 +1,8 @@
-import {
-  MarvelRequestPaged,
-  MarvelResponsePaged,
-  MarvelTokenCredentials,
-  MarvelTranslateOptions,
-} from 'app/interfaces';
+import { MarvelRequestPaged, MarvelResponsePaged, MarvelTranslateOptions } from 'app/interfaces';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MarvelService } from '../marvel-service.service';
-import { MarvelTokenStorageService } from '../storage/marvel-token-storage.service';
 import { MarvelRequestPagedHandling } from '../request-paged';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MarvelCoreService } from 'app/core/decorators/marvel-decorators';
@@ -43,14 +37,9 @@ export class MarvelCommonsService {
 
   __onDoPagination$: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  __tokenCredentials: MarvelTokenCredentials;
-
   __i18n: any;
 
-  constructor(
-    public marvelService?: MarvelService,
-    public tokenStorage?: MarvelTokenStorageService
-  ) {
+  constructor(public marvelService?: MarvelService) {
     //not to do
   }
 
@@ -126,10 +115,6 @@ export class MarvelCommonsService {
   ) {
     this.__data = null;
     this.__page = null;
-
-    if (this.tokenStorage) {
-      this.__tokenCredentials = this.tokenStorage.getToken();
-    }
 
     const { __requestPaged } = this;
     if (!__requestPaged) {
@@ -217,8 +202,6 @@ export class MarvelCommonsService {
     data: any
   ) {
     const credentials = await fireAuth.currentUser;
-    console.log('credentials');
-    console.log(credentials);
     const { email, displayName } = credentials;
 
     data.id = `${email}${data.id}`;
@@ -249,6 +232,46 @@ export class MarvelCommonsService {
             skipLocationChange: true,
           }
         );
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  @MarvelCoreService({
+    requestInProgress: {
+      showProgress: true,
+    },
+  })
+  async buy(fireAuth: AngularFireAuth, firestore: AngularFirestore, router: Router, data: any) {
+    const credentials = await fireAuth.currentUser;
+    const { email, displayName } = credentials;
+
+    data.id = `${email}${data.id}`;
+
+    const handledData = {
+      createdByName: displayName,
+      createdById: email,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedByName: displayName,
+      updatedById: email,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      currentIndex: 0,
+    };
+
+    firestore
+      .doc(`ordered_comics/${data.id}`)
+      .set(
+        this.excludeNonUsedFields({
+          ...data,
+          ...handledData,
+        }),
+        { merge: true }
+      )
+      .then(() => {
+        router.navigate([`/main/logged-in/my-orders/refresh/${MarvelUtils.getRandomString(30)}`], {
+          skipLocationChange: true,
+        });
       })
       .catch((e) => {
         console.log(e);

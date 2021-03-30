@@ -22,11 +22,7 @@ export class HomeComponent extends BaseComponent implements OnDestroy {
 
   _isLoading: boolean = false;
 
-  constructor(
-    private modalService: MarvelStyleModalService,
-    private homeService: HomeService,
-    private router: Router
-  ) {
+  constructor(private homeService: HomeService, private router: Router) {
     super();
   }
 
@@ -70,6 +66,15 @@ export class HomeComponent extends BaseComponent implements OnDestroy {
   onHandleMoreDetails(data: any) {
     const { router } = this;
     router.navigate(['/main/logged-out/details'], {
+      state: {
+        comicData: data,
+      },
+    });
+  }
+
+  onHandleBuy(data: any) {
+    const { router } = this;
+    router.navigate(['/main/logged-out/checkout'], {
       state: {
         comicData: data,
       },

@@ -1,9 +1,15 @@
 <div class="d-flex flex-column justify-content-end align-items-end" *ngIf="!isLoading">
   <div class="d-flex flex-column row-data" *ngIf="!data?.enableEdit; else edit">
-    <marvel-button type="primary" color="theme">
+    <marvel-button type="primary" color="theme" (click)="settings?.buy()" *ngIf="data?.enableBuy">
       {{ 'BUTTONS.BUY' | translate }}
     </marvel-button>
-    <marvel-button type="border" color="muted" class="mt-2" (click)="settings?.favorite()">
+    <marvel-button
+      type="border"
+      color="muted"
+      class="mt-2"
+      (click)="settings?.favorite()"
+      *ngIf="data?.enableFavorite"
+    >
       <marvel-icon icon="heart-20" color="#aaaaaa"></marvel-icon>
       {{ 'BUTTONS.FAVORITE' | translate }}
     </marvel-button>
@@ -27,10 +33,15 @@
   class="d-flex flex-column flex-md-row justify-content-between align-items-end"
   *ngIf="!isLoading"
 >
-  <marvel-button type="border" color="muted" (click)="settings?.moreInfo()">
+  <marvel-button
+    type="border"
+    color="muted"
+    (click)="settings?.moreInfo()"
+    *ngIf="data?.enableDetails"
+  >
     {{ 'BUTTONS.MORE-INFO' | translate }}
   </marvel-button>
-  <div class="mt-2">
+  <div class="mt-2" *ngIf="!data?.creditCardNumber; else purchasedData">
     <b>
       {{ 'FIELDS.CREATED-AT' | translate }}
     </b>
@@ -40,4 +51,18 @@
     </b>
     {{ data?.createdByName }}
   </div>
+  <ng-template #purchasedData>
+    <div class="d-flex justify-content-between mt-2 full-width">
+      <div>
+        <b>Credit Card Data</b>
+        {{ data?.creditCardNumber }}
+      </div>
+      <div>
+        <b>
+          {{ 'FIELDS.PURCHASED-AT' | translate }}
+        </b>
+        {{ data?.createdAt | marvelFormatDateTimelapse }}
+      </div>
+    </div>
+  </ng-template>
 </div>

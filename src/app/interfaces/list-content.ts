@@ -14,4 +14,10 @@ export interface ListContent {
   enableEdit: boolean;
   enableRemove: boolean;
   enableMove: boolean;
+  enableBuy: boolean;
+  enableDetails: boolean;
+  enableFavorite: boolean;
+  creditCardNumber?: string;
+  creditCardValidate?: string;
+  creditCardSecret?: string;
 }

@@ -1,3 +1,4 @@
+export * from './checkout-credentials';
 export * from './list-content';
 export * from './list-content-details';
 export * from './signin-credentials';
@@ -6,6 +7,7 @@ export * from './marvel-config-boostrap';
 export * from './marvel-config';
 export * from './marvel-request-paged';
 export * from './marvel-service-credentials';
+export * from './marvel-request-in-progress';
 export * from './marvel-token-credentials';
 export * from './marvel-translate-options';
 export * from './marvel-response-paged';

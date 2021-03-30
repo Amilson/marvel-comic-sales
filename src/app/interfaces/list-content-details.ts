@@ -15,4 +15,7 @@ export interface ListContentDetails {
   enableEdit: boolean;
   enableRemove: boolean;
   enableMove: boolean;
+  enableBuy: boolean;
+  enableDetails: boolean;
+  enableFavorite: boolean;
 }

@@ -29,6 +29,9 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
         ...data,
         enableEdit: false,
         createdAt: data?.createdAt?.toDate(),
+        enableBuy: true,
+        enableDetails: true,
+        enableFavorite: true,
       };
     });
   }
@@ -95,7 +98,6 @@ export class HomeService extends MarvelCommonsService implements Resolve<any> {
     },
   })
   async saveFavorite(data: any) {
-    //const credentials = await this.fireAuth.currentUser;
     const credentials = await this.verifyLogged(this.fireAuth, () => {
       this.router.navigate(['/auth/signin'], {
         state: {

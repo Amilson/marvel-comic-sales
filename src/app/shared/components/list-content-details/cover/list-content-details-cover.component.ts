@@ -15,9 +15,11 @@ export class SharedListContentDetailsCoverComponent {
   }
 
   ngAfterViewInit() {
-    this.elRef.nativeElement.style.setProperty(
-      '--mc-content-details-cover-image',
-      `url(${this.data?.thumbnail_path}/portrait_incredible.jpg)`
-    );
+    setTimeout(() => {
+      this.elRef.nativeElement.style.setProperty(
+        '--mc-content-details-cover-image',
+        `url(${this.data?.thumbnail_path}/portrait_incredible.jpg)`
+      );
+    }, 200);
   }
 }

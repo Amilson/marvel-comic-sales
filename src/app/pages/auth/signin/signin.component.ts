@@ -36,13 +36,7 @@ export class SigninComponent extends BaseComponent implements OnInit, OnDestroy 
     const { signinData } = this;
 
     return this.formBuilder.group({
-      email: [
-        {
-          value: signinData?.email,
-          disabled: true,
-        },
-        [Validators.required, Validators.email],
-      ],
+      email: [signinData?.email, [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }

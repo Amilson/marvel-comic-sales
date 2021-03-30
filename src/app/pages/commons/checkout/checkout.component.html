@@ -1,0 +1,65 @@
+<div class="d-flex flex-column justify-content-start full-width">
+  <marvel-button type="border" color="white" (click)="goBack()">
+    <marvel-icon icon="arrow-left-20" color="#aaaaaa"></marvel-icon>
+    {{ 'BUTTONS.BACK' | translate }}
+  </marvel-button>
+  <div class="checkout mb-4 mt-4">
+    <div class="d-flex justify-content-between align-items-start full-width">
+      <form name="checkoutForm" [formGroup]="_checkoutForm" novalidate>
+        <div class="row">
+          <div class="col-md-5">
+            <marvel-input
+              errorMessage="{{ __marvelFormErrors?.creditCardNumber?.firstMessage | translate }} {{
+                __marvelFormErrors?.creditCardNumber?.lastMessage | translate
+              }}"
+              formControlName="creditCardNumber"
+              name="creditCardNumber"
+              mask="0000 0000 0000 0000"
+              [placeholder]="'FIELDS.CREDIT-CARD-NUMBER' | translate"
+            >
+            </marvel-input>
+          </div>
+          <div class="col-md-3">
+            <marvel-input
+              errorMessage="{{
+                __marvelFormErrors?.creditCardValidate?.firstMessage | translate
+              }} {{ __marvelFormErrors?.creditCardValidate?.lastMessage | translate }}"
+              formControlName="creditCardValidate"
+              name="creditCardValidate"
+              mask="00/00"
+              [placeholder]="'FIELDS.CREDIT-CARD-VALIDATE' | translate"
+            >
+            </marvel-input>
+          </div>
+          <div class="col-md-4">
+            <marvel-input
+              errorMessage="{{ __marvelFormErrors?.creditCardSecret?.firstMessage | translate }} {{
+                __marvelFormErrors?.creditCardSecret?.lastMessage | translate
+              }}"
+              formControlName="creditCardSecret"
+              name="creditCardSecret"
+              mask="000"
+              [placeholder]="'FIELDS.CREDIT-CARD-SECRET' | translate"
+            >
+            </marvel-input>
+          </div>
+        </div>
+      </form>
+      <marvel-button type="primary" color="success" (click)="onSubmit()" class="mt-1">
+        {{ 'BUTTONS.BUY-NOW' | translate }}
+      </marvel-button>
+    </div>
+    <div>
+      {{ 'CHECKOUT.EXPLAIN' | translate }}
+    </div>
+  </div>
+  <shared-list-content-details
+    class="mt-5"
+    [comic]="_comic"
+    [characters]="_comicCharacters"
+    [settings]="{
+      favorite: onHandleFavorite.bind(this, _comic)
+    }"
+    [isLoading]="_isLoading"
+  ></shared-list-content-details>
+</div>

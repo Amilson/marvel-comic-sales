@@ -35,6 +35,14 @@ import { MarvelCoreCommonModule } from 'app/shared/modules/marvel-core-common.mo
           });
         },
       },
+      {
+        path: 'my-orders',
+        loadChildren: () => {
+          return import('./my-orders').then((m: any) => {
+            return m.MyOrdersModule;
+          });
+        },
+      },
     ]),
   ],
   declarations: [],

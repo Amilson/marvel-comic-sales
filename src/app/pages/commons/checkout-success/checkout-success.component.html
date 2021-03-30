@@ -1,0 +1,33 @@
+<div class="d-flex flex-column justify-content-start full-width">
+  <marvel-button type="border" color="white" (click)="goBack()">
+    <marvel-icon icon="arrow-left-20" color="#aaaaaa"></marvel-icon>
+    {{ 'BUTTONS.BACK' | translate }}
+  </marvel-button>
+  <div
+    class="d-flex flex-column justify-content-center align-items-center checkout-success mb-4 mt-4"
+  >
+    <span class="title">
+      {{ 'CHECKOUT-SUCCESS.TITLE' | translate }}
+    </span>
+    <span class="title">
+      {{ 'CHECKOUT-SUCCESS.SUB-TITLE' | translate }}
+    </span>
+    <span class="description">
+      {{ 'CHECKOUT-SUCCESS.EXPLAIN' | translate }}
+    </span>
+    <marvel-button
+      type="border"
+      color="white"
+      class="mt-1"
+      [routerLink]="['/main/logged-in/my-orders']"
+    >
+      {{ 'BUTTONS.MY-ORDERS' | translate }}
+    </marvel-button>
+  </div>
+  <shared-list-content-details
+    class="mt-5"
+    [comic]="_comic"
+    [characters]="_comicCharacters"
+    [isLoading]="_isLoading"
+  ></shared-list-content-details>
+</div>

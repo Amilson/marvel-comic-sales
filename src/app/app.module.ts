@@ -9,13 +9,20 @@ import { MarvelConfigModule } from './core/services/config/marvel-config.module'
 import { HttpClientModule } from '@angular/common/http';
 import { MarvelCoreCommonModule } from './shared/modules/marvel-core-common.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { MarvelStyleModule } from 'marvel-style';
+import {
+  MarvelButtonModule,
+  MarvelModalModule,
+  MarvelStyleModalService,
+  MarvelStyleModule,
+} from 'marvel-style';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { MarvelHttpConfigInterceptorModule } from './core/interceptors';
+import { SharedVersionChangedComponent } from './shared/components';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SharedVersionChangedComponent],
   imports: [
     BrowserModule,
     MarvelCoreCommonModule,
@@ -25,12 +32,15 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     MarvelStyleModule,
     TranslateModule.forRoot(),
     MarvelConfigModule.forRoot(),
+    MarvelHttpConfigInterceptorModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    MarvelModalModule,
+    MarvelButtonModule,
   ],
-  providers: [],
+  providers: [MarvelStyleModalService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

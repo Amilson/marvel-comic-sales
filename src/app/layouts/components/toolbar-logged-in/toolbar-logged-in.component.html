@@ -29,8 +29,16 @@
     </marvel-button>
   </div>
   <div class="d-flex justify-content-between align-items-center full-width mt-3">
+    <marvel-button
+      type="none"
+      class="mr-3"
+      [color]="_router.isActive('/main/logged-in/my-orders', false) ? 'theme' : 'none'"
+      [routerLink]="['/main/logged-in/my-orders']"
+    >
+      {{ 'BUTTONS.MY-ORDERS' | translate }}
+    </marvel-button>
     <div class="mr-3">
-      {{ _me?.displayName }}
+      {{ _me?.displayName | marvelTextTruncate }}
     </div>
     <marvel-button type="border" color="muted" (click)="onSignOut()">
       {{ 'BUTTONS.LOGOUT' | translate }}
@@ -67,8 +75,16 @@
       >
         {{ 'BUTTONS.MY-FAVORITES' | translate }}
       </marvel-button>
+      <marvel-button
+        type="none"
+        class="mr-3"
+        [color]="_router.isActive('/main/logged-in/my-orders', false) ? 'theme' : 'none'"
+        [routerLink]="['/main/logged-in/my-orders']"
+      >
+        {{ 'BUTTONS.MY-ORDERS' | translate }}
+      </marvel-button>
       <div class="mr-3">
-        {{ _me?.displayName }}
+        {{ _me?.displayName | marvelTextTruncate }}
       </div>
       <marvel-button type="border" color="muted" (click)="onSignOut()">
         {{ 'BUTTONS.LOGOUT' | translate }}

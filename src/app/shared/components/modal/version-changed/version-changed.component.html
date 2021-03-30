@@ -1,0 +1,15 @@
+<marvel-modal [config]="config" [modalRef]="modalRef">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <span class="title mt-1">
+      {{ 'MODAL.VERSION-CHANGED.TITLE' | translate }}
+    </span>
+    <span class="description mt-3">
+      {{ 'MODAL.VERSION-CHANGED.DESCRIPTION' | translate }}
+    </span>
+    <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+      <marvel-button type="primary" color="theme" (click)="onClose()">
+        {{ 'BUTTONS.UPDATE-VERSION' | translate }}
+      </marvel-button>
+    </div>
+  </div>
+</marvel-modal>

@@ -4,7 +4,7 @@
       <span class="title mr-4">
         {{ data?.title }}
       </span>
-      <div class="d-flex align-items-center price">
+      <div class="d-flex flex-column align-items-center price">
         <span class="title-muted mr-1">
           {{ 'FIELDS.PRICE' | translate }}
         </span>
@@ -48,11 +48,22 @@
           class="d-flex flex-column justify-content-end align-items-end mt-2"
           *ngIf="!data?.enableEdit; else edit"
         >
-          <marvel-button type="border" color="white" (click)="settings?.favorite()">
+          <marvel-button
+            type="border"
+            color="white"
+            (click)="settings?.favorite()"
+            *ngIf="data?.enableFavorite"
+          >
             <marvel-icon icon="heart-20" color="#aaaaaa"></marvel-icon>
             {{ 'BUTTONS.FAVORITE' | translate }}
           </marvel-button>
-          <marvel-button type="primary" color="theme" class="mt-2">
+          <marvel-button
+            type="primary"
+            color="theme"
+            class="mt-2"
+            (click)="settings?.buy()"
+            *ngIf="data?.enableBuy"
+          >
             {{ 'BUTTONS.BUY' | translate }}
           </marvel-button>
         </div>
